@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: #52555fb2;
+  margin: 0 7px 2px 0;
+}

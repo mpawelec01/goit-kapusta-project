@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  fill: #ff751d;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.text {
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #000;
+}

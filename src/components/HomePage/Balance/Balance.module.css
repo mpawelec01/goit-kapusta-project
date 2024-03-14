@@ -1,0 +1,83 @@
+.all {
+  background: #f5f6fb;
+  padding: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #52555fb2;
+  margin-bottom: 5px;
+}
+
+.currency {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  position: absolute;
+  right: 18px;
+}
+
+.input {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  border: 0;
+  background: #f5f6fb;
+  text-align: right;
+  width: 85%;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  margin-left: 30px;
+}
+
+.btn {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #52555fb2;
+  border-width: 0 0 0 1px;
+  border-left: 1px solid #ffffff;
+  width: 50%;
+  background: #f5f6fb;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  border: 2px solid #ffffff;
+  width: 280px;
+  height: 44px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+
+  width: 50%;
+  border-width: 0 1px 0 0;
+  border-right: 1px solid #ffffff;
+}
