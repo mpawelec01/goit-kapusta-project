@@ -6,7 +6,8 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import Home from "../pages/Home/Home";
+import Home from "./pages/Home/Home";
+import {Report} from './pages/Report/Report';
 
 const App = () => {
   return (
