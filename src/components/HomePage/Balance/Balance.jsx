@@ -15,7 +15,7 @@ const Balance = () => {
               name="balance"
               max="10000000.00"
               id="balance"
-              step="0.01"
+              step="0.10"
               placeholder="00.00"
               required
             />

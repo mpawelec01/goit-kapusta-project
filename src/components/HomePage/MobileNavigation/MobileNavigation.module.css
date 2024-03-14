@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  padding: 0;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  text-decoration: none;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  height: 53px;
+  background: #f5f6fb;
+}
+
+.item.active {
+  color: #fff;
+  background: #ff751d;
+}

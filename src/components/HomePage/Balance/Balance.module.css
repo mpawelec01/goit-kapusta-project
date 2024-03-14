@@ -60,6 +60,12 @@
   background: #f5f6fb;
 }
 
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background: #ff751d;
+}
+
 .flexWrapper {
   display: flex;
   align-items: center;

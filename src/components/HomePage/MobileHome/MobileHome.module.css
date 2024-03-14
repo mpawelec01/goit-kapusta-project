@@ -8,6 +8,12 @@
   width: 18px;
   height: 18px;
   margin-right: 5px;
+
+  transition: transform 0.2s;
+}
+
+.wrapper:hover .icon {
+  transform: scale(1.2);
 }
 
 .text {
