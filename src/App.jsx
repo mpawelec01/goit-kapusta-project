@@ -11,10 +11,10 @@ import Home from "../pages/Home/Home";
 const App = () => {
   return (
     <Routes>
-      <Route  path="/" element={<Home/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/report" element={<Report />} />
     </Routes>
-    
-  )
+  );
 };
 
 export default App;
