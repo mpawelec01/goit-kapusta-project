@@ -1,6 +1,6 @@
-import css from "./MobileNavigation.module.css";
+import css from "./Navigation.module.css";
 
-const MobileNavigation = () => {
+const Navigation = () => {
   return (
     <nav className={css.wrapper}>
       <a href="/" className={css.item}>
@@ -13,4 +13,4 @@ const MobileNavigation = () => {
   );
 };
 
-export default MobileNavigation;
+export default Navigation;

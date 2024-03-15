@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  gap: 3px;
   padding: 0;
   width: 100vw;
   position: fixed;

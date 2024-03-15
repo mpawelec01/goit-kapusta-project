@@ -1,8 +1,12 @@
+import Today from "../../Today/Today";
+import BalanceModal from "../BalanceModal/BalanceModal";
+import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
 
 const Balance = () => {
   return (
-    <div className={css.all}>
+    <div className={css.fullWrapper}>
+      <ReportsLink />
       <form className={css.form}>
         <label className={css.label} htmlFor="balance">
           Balance:
@@ -26,6 +30,10 @@ const Balance = () => {
           </button>
         </div>
       </form>
+      <div className={css.dateWrapper}>
+        <Today />
+      </div>
+      {/* <BalanceModal /> */}
     </div>
   );
 };

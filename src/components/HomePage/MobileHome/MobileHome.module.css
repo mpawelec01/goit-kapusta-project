@@ -8,12 +8,12 @@
   width: 18px;
   height: 18px;
   margin-right: 5px;
-
   transition: transform 0.2s;
 }
 
 .wrapper:hover .icon {
   transform: scale(1.2);
+  cursor: pointer;
 }
 
 .text {
@@ -24,4 +24,10 @@
   letter-spacing: 0.02em;
   text-decoration: none;
   color: #000;
+}
+
+@media (min-width: 772px) {
+  .wrapper {
+    display: none;
+  }
 }

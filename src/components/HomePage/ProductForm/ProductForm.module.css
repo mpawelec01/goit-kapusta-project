@@ -17,32 +17,35 @@
 .form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
+  background: grey;
 }
 
 .inputWrapper {
   position: relative;
   background-color: transparent;
   width: 100%;
-  border-bottom: 2px solid #ffffff;
+  border: 2px solid #ffffff;
+  border-width: 2px 2px 1px 2px;
+  border-radius: 16px 16px 0 0;
   padding: 14px;
 }
 
 .selectWrapper {
   padding: 14px;
+  border: 2px solid #ffffff;
+  border-width: 1px 2px 2px 2px;
+  border-radius: 0 0 16px 0;
 }
 
 .bothWrapper {
-  width: 280px;
+  width: 100%;
   box-sizing: border-box;
-  border: 2px solid #ffffff;
   border-radius: 22px 22px 22px 0;
   margin-bottom: 44px;
 }
 
 .input {
-  box-sizing: border-box;
   font-family: Roboto;
   font-size: 12px;
   font-weight: 400;
@@ -51,6 +54,14 @@
   background-color: transparent;
   width: 100%;
   border: 0;
+}
+
+option {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.02em;
 }
 
 select {
@@ -110,9 +121,15 @@ option:checked {
   color: #000;
 }
 
-.sumInput::-webkit-outer-spin-button,
-.sumInput::-webkit-inner-spin-button {
-  margin-left: 30px;
+@media (max-width: 771px) {
+  .sumInput::-webkit-outer-spin-button,
+  .sumInput::-webkit-inner-spin-button {
+    margin-left: 45px;
+  }
+
+  .today {
+    display: none;
+  }
 }
 
 .flexWrapper {
@@ -143,7 +160,9 @@ option:checked {
 .buttons {
   margin-top: 100px;
   display: flex;
+  justify-content: center;
   gap: 15px;
+  margin-top: 40px;
 }
 
 .btn {
@@ -173,4 +192,143 @@ option:checked {
 
 .btn:hover {
   transform: scale(1.2);
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 772px) {
+  .formInputs {
+    flex-direction: row;
+    height: 44px;
+  }
+  .bothWrapper {
+    display: flex;
+    margin: 0;
+    height: 44px;
+  }
+
+  .label {
+    top: 13px;
+  }
+
+  .inputWrapper:focus-within .label {
+    top: -3px;
+    left: 13px;
+    font-size: 9px;
+  }
+
+  .inputWrapper {
+    border: 2px solid #f5f6fb;
+    border-width: 2px 1px 2px 2px;
+    border-radius: 16px 0 0 0;
+    min-width: 186px;
+    padding: 10px;
+  }
+
+  .selectWrapper {
+    border: 2px solid #f5f6fb;
+    border-width: 2px 1px 2px 1px;
+    border-radius: 0;
+    min-width: 186px;
+    padding: 10px;
+  }
+
+  .flexWrapper {
+    border: 2px solid #f5f6fb;
+    border-width: 2px 2px 2px 1px;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .flexWrapper {
+    width: 120px;
+    justify-content: flex-end;
+    gap: 7px;
+    padding: 14px;
+    height: 100%;
+  }
+
+  .sumWrapper {
+    border: none;
+    width: 75%;
+  }
+
+  .sumInput {
+    width: 100%;
+  }
+
+  .currency {
+    display: none;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .tabletView {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .today {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  option {
+  }
+}
+
+@media (min-width: 1280px) {
+  .form {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .buttons {
+    margin: 0;
+  }
+
+  .tabletView {
+    gap: 70px;
+  }
+
+  .btn {
+    width: 136px;
+  }
+
+  .formInputs {
+    width: 700px;
+  }
+
+  .inputWrapper:focus-within .label {
+    top: -4px;
+    left: 13px;
+    font-size: 9px;
+  }
+
+  .selectWrapper {
+    border: 2px solid #f5f6fb;
+    border-width: 2px 1px 2px 1px;
+    border-radius: 0;
+    padding: 10px;
+  }
+
+  .inputWrapper {
+    width: 60%;
+  }
+
+  .flexWrapper {
+    width: auto;
+  }
+
+  .input,
+  .label,
+  .sumInput,
+  option {
+    font-size: 16px;
+  }
 }
