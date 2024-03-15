@@ -1,0 +1,40 @@
+.wrapper {
+  position: absolute;
+  left: 240px;
+  top: 130px;
+  background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
+  width: 280px;
+  height: 152px;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-weight: 400;
+  text-align: left;
+  color: #ffffff;
+  letter-spacing: 0em;
+  padding: 30px;
+  box-sizing: border-box;
+  margin: 0 auto 0;
+}
+
+.wrapper::before {
+  position: absolute;
+  top: -47px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #132757;
+  margin: 2rem;
+}
+
+.textFirst {
+  margin-top: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.textSecond {
+  font-size: 12px;
+  line-height: 16px;
+}

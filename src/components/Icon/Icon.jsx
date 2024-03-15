@@ -3,13 +3,11 @@ import sprite from "../../img/icons.svg";
 // Example how to use icons:
 //  <use xlinkHref={`${sprite}#icon-NAME_FROM_SPRITE`}></use>
 
-const Icon = () => {
+const Icon = ({ iconName, className }) => {
   return (
-    <div>
-      <svg width="90" height="31">
-        <use xlinkHref={`${sprite}#icon-logo`}></use>
-      </svg>
-    </div>
+    <svg className={className}>
+      <use xlinkHref={`${sprite}#icon-${iconName}`}></use>
+    </svg>
   );
 };
 

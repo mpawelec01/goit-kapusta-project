@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  fill: #ff751d;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  transition: transform 0.2s;
+}
+
+.wrapper:hover .icon {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.text {
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #000;
+}
+
+@media (min-width: 772px) {
+  .wrapper {
+    display: none;
+  }
+}

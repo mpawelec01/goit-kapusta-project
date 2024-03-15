@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+.fullWrapper {
+  background: #f5f6fb;
+  padding: 50px;
+  position: relative;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.label {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #52555fb2;
+  margin-bottom: 8px;
+}
+
+.currency {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  position: absolute;
+  right: 18px;
+}
+
+.input {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  border: 0;
+  background: #f5f6fb;
+  text-align: right;
+  width: 85%;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  margin-left: 45px;
+}
+
+.btn {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #52555fb2;
+  border-radius: 0 22px 22px 0;
+  border: 2px solid #ffffff;
+  border-width: 2px 2px 2px 1px;
+  width: 50%;
+  height: 100%;
+  background: #f5f6fb;
+  border-radius: 0 22px 22px 0;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background: #ff751d;
+  cursor: pointer;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 44px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+  width: 50%;
+  border-radius: 22px 0 0 22px;
+  border: 2px solid #ffffff;
+  border-width: 2px 1px 2px 2px;
+}
+
+@media (min-width: 772px) {
+  .dateWrapper {
+    display: none;
+  }
+
+  .fullWrapper {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+  }
+  .form {
+    flex-direction: row;
+  }
+
+  .label {
+    margin: 0;
+  }
+
+  .form {
+    gap: 20px;
+  }
+
+  .flexWrapper {
+    gap: 15px;
+  }
+
+  .inputWrapper {
+    border-radius: 16px;
+    border: 2px solid #ffffff;
+  }
+
+  .btn {
+    border-radius: 16px;
+    border: 2px solid #ffffff;
+  }
+}
+
+@media (min-width: 1280px) {
+  .fullWrapper {
+    justify-content: flex-start;
+    gap: 280px;
+  }
+}
