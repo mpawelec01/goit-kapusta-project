@@ -1,0 +1,57 @@
+:root {
+  /*Container*/
+  --container-mobile: 0 20px;
+  --container-main-tablet: 40px 32px 60px;
+  --container-main-desktop: 40px 91px 83px;
+  --container-report-tablet: 40px 32px 80px;
+  --container-report-desktop: 40px 123px 80px;
+
+  /*Colors*/
+  --background-color: #ffffff;
+  --brand-color: #ff751d;
+  --secondary-brand-color: #ffdac0;
+  --main-color: #000000;
+  --secondary-color: #52555f;
+  --tertiary-color: #ffffff;
+  --label-color: #f6f7fb;
+  --button-color: #f5f6fb;
+  --modal-color: #1d346a;
+  --positive-color: #407946;
+  --negative-color: #e7192e;
+
+  /*Resolutions
+  Tutaj niestety nie da się tego
+  zrobić czystym cssem i trzeba będzie 
+  za każdym razem wpisywać media.*/
+
+  /*Font Sizes*/
+  --title-desktop: 102px;
+  --subtitle-mobile: 13px;
+  --subtitle-tablet-up: 16px;
+  --fSize-s: 10px;
+  --fSize-m: 12px;
+  --fSize-l: 14px;
+
+  /*Font Weights*/
+  --fWeight-normal: 400;
+  --fWeight-medium: 500;
+  --fWeight-semi-bold: 600;
+  --fWeight-bold: 700;
+
+  /*Border Radius*/
+  --border-xs: 16px;
+  --border-s: 20px;
+  --border-sm: 22px;
+  --border-m: 30px;
+  --border-chart: 10px 10px 0 0;
+  --border-main: 0 30px 30px 30px;
+  --border-left: 22px 0 0 22px;
+  --border-right: 0 22px 22px 0;
+  --border-circle: 100%;
+
+  /*Borders*/
+  --border-none: none;
+  --border-thin: 1px solid;
+  --border-thick: 2px solid;
+  
+}
