@@ -1,4 +1,11 @@
 :root {
+  /*Container*/
+  --container-mobile: 0 20px;
+  --container-main-tablet: 40px 32px 60px;
+  --container-main-desktop: 40px 91px 83px;
+  --container-report-tablet: 40px 32px 80px;
+  --container-report-desktop: 40px 123px 80px;
+
   /*Colors*/
   --background-color: #ffffff;
   --brand-color: #ff751d;
@@ -46,4 +53,5 @@
   --border-none: none;
   --border-thin: 1px solid;
   --border-thick: 2px solid;
+  
 }
