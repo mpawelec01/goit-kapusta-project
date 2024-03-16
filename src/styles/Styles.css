@@ -2,6 +2,12 @@
 @import "../../styles/Styles.css";
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 :root {
   /*Container*/
   --container-mobile: 0 20px;
@@ -16,12 +22,14 @@
   --secondary-brand-color: #ffdac0;
   --main-color: #000000;
   --secondary-color: #52555f;
+  --secondary-color-dimmed: rgba(82, 85, 95, 70%);
   --tertiary-color: #ffffff;
   --label-color: #f6f7fb;
   --button-color: #f5f6fb;
   --modal-color: #1d346a;
   --positive-color: #407946;
   --negative-color: #e7192e;
+  --line-color: #E0E5EB;
 
   /*Resolutions
   Tutaj niestety nie da się tego
