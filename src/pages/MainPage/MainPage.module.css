@@ -1,3 +1,5 @@
+/* @import "../../styles/Styles.css"; */
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,7 +41,7 @@
 }
 
 .btnIcon {
-  fill: #ff751d;
+  fill: var(--brand-color);
   width: 18px;
   height: 18px;
   margin-right: 5px;
