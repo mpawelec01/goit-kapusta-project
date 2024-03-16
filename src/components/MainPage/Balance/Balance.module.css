@@ -3,10 +3,8 @@
 }
 
 .fullWrapper {
-  background: #f5f6fb;
+  /* background: #f5f6fb; */
   padding: 50px;
-  position: relative;
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
 }
@@ -52,7 +50,7 @@
 
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
-  margin-left: 45px;
+  margin-left: 47px;
 }
 
 .btn {
@@ -68,14 +66,14 @@
   border-width: 2px 2px 2px 1px;
   width: 50%;
   height: 100%;
-  background: #f5f6fb;
+  background-color: transparent;
   border-radius: 0 22px 22px 0;
 }
 
 .btn:hover,
 .btn:focus {
   color: #fff;
-  background: #ff751d;
+  background: var(--brand-color);
   cursor: pointer;
 }
 
@@ -88,6 +86,7 @@
 }
 
 .inputWrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -112,6 +111,7 @@
   }
   .form {
     flex-direction: row;
+    margin: 0;
   }
 
   .label {

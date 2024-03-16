@@ -6,14 +6,15 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  z-index: 9;
 }
 
 .item {
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
-  text-decoration: none;
   font-family: Roboto;
   font-size: 12px;
   font-weight: 700;
@@ -22,9 +23,31 @@
   text-align: center;
   height: 53px;
   background: #f5f6fb;
+  color: #000;
 }
 
 .item.active {
   color: #fff;
-  background: #ff751d;
+  background: var(--brand-color);
+}
+
+/* responsive view */
+@media (min-width: 772px) {
+  .wrapper {
+    gap: 0;
+    position: relative;
+  }
+
+  .item {
+    height: 40px;
+    width: 138px;
+    border-radius: 16px 16px 0 0;
+    background: #fafbfd;
+    color: #000;
+  }
+
+  .item:first-of-type {
+    background: #fefefe;
+    color: var(--brand-color);
+  }
 }

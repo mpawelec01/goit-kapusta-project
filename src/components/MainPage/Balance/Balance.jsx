@@ -4,6 +4,14 @@ import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
 
 const Balance = () => {
+  // let balance;
+
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault();
+  //   const form = evt.currentTarget;
+  //   balance = form.elements.value;
+  // };
+
   return (
     <div className={css.fullWrapper}>
       <ReportsLink />
@@ -21,9 +29,9 @@ const Balance = () => {
               id="balance"
               step="0.10"
               placeholder="00.00"
-              required
             />
             <span className={css.currency}>UAH</span>
+            {/* <BalanceModal /> */}
           </div>
           <button className={css.btn} type="submit">
             CONFIRM
@@ -33,7 +41,6 @@ const Balance = () => {
       <div className={css.dateWrapper}>
         <Today />
       </div>
-      {/* <BalanceModal /> */}
     </div>
   );
 };

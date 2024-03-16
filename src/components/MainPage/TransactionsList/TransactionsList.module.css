@@ -1,0 +1,29 @@
+@media (max-width: 771px) {
+  .table {
+    display: none;
+  }
+}
+
+.table {
+  width: 100%;
+  border: 2px solid #f5f6fb;
+  border-radius: 16px 16px 0 0;
+}
+
+.tHead {
+  background: #f5f6fb;
+  border-radius: 16px 16px 0 0;
+}
+
+tr {
+  height: 40px;
+}
+
+.th {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}

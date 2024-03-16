@@ -1,24 +1,11 @@
-* {
+/* * {
   box-sizing: border-box;
-}
-
-.arrow {
-  width: 24px;
-  height: 24px;
-  fill: #ff751d;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.arrow:hover {
-  transform: scale(1.5);
-}
+} */
 
 .form {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background: grey;
 }
 
 .inputWrapper {
@@ -121,12 +108,12 @@ option:checked {
   color: #000;
 }
 
-@media (max-width: 771px) {
-  .sumInput::-webkit-outer-spin-button,
-  .sumInput::-webkit-inner-spin-button {
-    margin-left: 45px;
-  }
+.sumInput::-webkit-outer-spin-button,
+.sumInput::-webkit-inner-spin-button {
+  margin-left: 47px;
+}
 
+@media (max-width: 771px) {
   .today {
     display: none;
   }
@@ -158,11 +145,10 @@ option:checked {
 }
 
 .buttons {
-  margin-top: 100px;
+  margin-top: 65px;
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-top: 40px;
 }
 
 .btn {
@@ -187,7 +173,7 @@ option:checked {
 
 .btn:first-of-type {
   color: #fff;
-  background: #ff751d;
+  background: var(--brand-color);
 }
 
 .btn:hover {
@@ -277,6 +263,10 @@ option:checked {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .buttons {
+    margin-top: 40px;
   }
 }
 
