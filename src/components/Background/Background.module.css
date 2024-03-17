@@ -1,0 +1,22 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #f5f6fb;
+  border-radius: 0 0 0 38%;
+  z-index: -3;
+}
+
+@media (min-width: 772px) {
+  .background {
+    border-radius: 0 0 0 140px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .background {
+    height: 75%;
+  }
+}

@@ -1,7 +1,7 @@
 .wrapper {
   position: absolute;
-  left: 240px;
-  top: 130px;
+  left: 0;
+  top: 60px;
   background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
   width: 280px;
   height: 152px;
@@ -14,11 +14,12 @@
   padding: 30px;
   box-sizing: border-box;
   margin: 0 auto 0;
+  z-index: 10;
 }
 
 .wrapper::before {
   position: absolute;
-  top: -47px;
+  top: -46px;
   content: "";
   width: 0;
   height: 0;

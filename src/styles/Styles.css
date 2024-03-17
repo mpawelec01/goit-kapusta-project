@@ -35,6 +35,9 @@
   Tutaj niestety nie da się tego
   zrobić czystym cssem i trzeba będzie 
   za każdym razem wpisywać media.*/
+  --mobile: 320px;
+  --tablet: 772px;
+  --desktop: 1280px;
 
   /*Font Sizes*/
   --title-desktop: 102px;
@@ -65,5 +68,4 @@
   --border-none: none;
   --border-thin: 1px solid;
   --border-thick: 2px solid;
-  
 }
