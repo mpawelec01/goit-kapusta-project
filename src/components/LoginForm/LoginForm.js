@@ -1,46 +1,43 @@
-// import React from 'react';
-// import { useForm } from 'react-hook-form';
-// import { GoogleLogin } from 'react-google-login';
+import css from './LoginForm.module.css';
+import React, { useState } from 'react';
+import Logo from '../../img/background/logo-kapusta.png';
 
-// const LoginForm = () => {
-//   const { register, handleSubmit, errors } = useForm();
+const LoginForm = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('Formularz wysłany!');
+    };
 
-//   const onSubmit = (data) => {
-//     console.log(data); // Tutaj można wykonać logikę logowania
-//   };
+  return (
+    <div className={css.container}>
+        <div className={css.logo_mainpage}>
+            <img alt='logo' src={Logo}/>
+        </div>
+        <div className={css.form_container}>
+            <p>Zaloguj się przy pomocy konta Google</p>
+            <button className={css.google_btn}>
+                <img src="https://e7.pngegg.com/pngimages/326/85/png-clipart-google-logo-google-text-trademark.png" alt="Google" />
+                Google
+            </button>
+            <p>Lub przy pomocy adresu e-mail I hasla, po zarejestrowaniu</p>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email:</label>
+                <input type="email" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
+                <label htmlFor="password">Hasło:</label>
+                <input type="password" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+            </form>
+            <div className={css.buttons}>
+                <button className={css.button} type="submit">Login</button>
+                <button className={css.button} type="submit"> Registration </button>
+            </div>
+            
+        </div>
+      
+    </div>
+  );
+};
 
-//   const responseGoogle = (response) => {
-//     console.log(response); // Tutaj można wykonać logikę rejestracji za pomocą Google
-//   };
-
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           name="email"
-//           ref={register({ required: true })}
-//         />
-//         {errors.email && <span>Email jest wymagany</span>}
-//         <input
-//           type="password"
-//           placeholder="Hasło"
-//           name="password"
-//           ref={register({ required: true })}
-//         />
-//         {errors.password && <span>Hasło jest wymagane</span>}
-//         <button type="submit">Zaloguj się</button>
-//       </form>
-//       <GoogleLogin
-//         clientId="your-google-client-id"
-//         buttonText="Zaloguj się z Google"
-//         onSuccess={responseGoogle}
-//         onFailure={responseGoogle}
-//         cookiePolicy={'single_host_origin'}
-//       />
-//     </div>
-//   );
-// };
-
-// export default LoginForm;
+export default LoginForm;
