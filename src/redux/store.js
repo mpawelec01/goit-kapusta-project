@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { transactionsReducer } from "./transactions/transactionsSlice";
-
+import storage from 'redux-persist/lib/storage';
+import  authReducer  from './auth/slice';
 import {
+  persistReducer,
   persistStore,
   FLUSH,
   REHYDRATE,
@@ -11,8 +13,16 @@ import {
   REGISTER,
 } from "redux-persist";
 
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -25,3 +35,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
