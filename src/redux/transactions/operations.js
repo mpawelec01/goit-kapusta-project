@@ -2,13 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 axios.defaults.baseURL =
-  "https://vast-plum-camel-vest.cyclic.app/api/transactions/";
+  "https://vast-plum-camel-vest.cyclic.app/api/transactions";
 
 export const fetchExpenses = createAsyncThunk(
   "transactions/fetchExpenses",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/api/transactions/expenses");
+      const response = await axios.get("/expenses");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
