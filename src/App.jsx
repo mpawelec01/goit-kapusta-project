@@ -9,14 +9,18 @@ import {
 import Home from "./pages/Home/Home";
 import MainPage from "./pages/MainPage/MainPage";
 import { Report } from "./pages/Report/Report";
+import { Header } from "./components/Header/Header";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/main" element={<MainPage />} />
-      <Route path="/report" element={<Report />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/report" element={<Report />} />
+      </Routes>
+    </>
   );
 };
 
