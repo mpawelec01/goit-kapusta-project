@@ -1,10 +1,39 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addExpense } from "../../../redux/transactions/operations";
+
 import css from "./ProductForm.module.css";
 import Icon from "../../Icon/Icon";
 import Today from "../../Today/Today";
+import { getDate } from "../../../getDate";
 
 const ProductForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    const form = evt.currentTarget;
+
+    const today = getDate();
+
+    const transaction = {
+      date: today,
+      description: form.elements.description.value,
+      category: form.elements.category.value,
+      sum: form.elements.sum.value,
+    };
+
+    dispatch(addExpense(transaction));
+
+    form.reset();
+  };
+
+  const handleClear = () => {
+    document.getElementById("addTransactionForm").reset();
+  };
+
   return (
-    <form className={css.form}>
+    <form className={css.form} onSubmit={handleSubmit} id="addTransactionForm">
       <div className={css.tabletView}>
         <div className={css.today}>
           <Today />
@@ -12,16 +41,17 @@ const ProductForm = () => {
         <div className={css.formInputs}>
           <div className={css.bothWrapper}>
             <div className={css.inputWrapper}>
-              <label className={css.label} htmlFor="productName">
-                Product description
-              </label>
               <input
                 type="text"
                 name="description"
                 className={css.input}
                 id="productName"
+                placeholder=" "
                 required
               />
+              <label className={css.label} htmlFor="productName">
+                Product description
+              </label>
             </div>
             <div className={css.selectWrapper}>
               <select
@@ -68,8 +98,12 @@ const ProductForm = () => {
       </div>
 
       <div className={css.buttons}>
-        <button className={css.btn}>INPUT</button>
-        <button className={css.btn}>CLEAR</button>
+        <button className={css.btn} type="submit">
+          INPUT
+        </button>
+        <button className={css.btn} type="button" onClick={handleClear}>
+          CLEAR
+        </button>
       </div>
     </form>
   );

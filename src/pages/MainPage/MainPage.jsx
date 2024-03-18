@@ -7,7 +7,17 @@ import MobileForm from "../../components/MainPage/MobileForm/MobileForm";
 import css from "../MainPage/MainPage.module.css";
 import Background from "../../components/Background/Background";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchExpenses } from "../../redux/transactions/operations";
+
 export default function MainPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
+
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();

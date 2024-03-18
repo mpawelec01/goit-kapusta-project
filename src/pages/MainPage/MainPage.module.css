@@ -3,7 +3,7 @@
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 @media (min-width: 772px) {
   .transactionsWindow {
@@ -38,6 +38,10 @@
 .btnWrapper {
   display: flex;
   align-items: center;
+  border: none;
+  background: none;
+  margin: 13px 0 0 13px;
+  cursor: pointer;
 }
 
 .btnIcon {
@@ -64,7 +68,7 @@
 }
 
 .formDesktop {
-  margin-bottom: 45%;
+  margin-bottom: 40px;
 }
 
 @media (min-width: 772px) {
