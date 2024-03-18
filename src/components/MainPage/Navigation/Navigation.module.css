@@ -42,12 +42,12 @@
     height: 40px;
     width: 138px;
     border-radius: 16px 16px 0 0;
-    background: #fafbfd;
+    background: #f7f7f7;
     color: #000;
   }
 
   .item:first-of-type {
-    background: #fefefe;
+    background: #f9f9f9;
     color: var(--brand-color);
   }
 }

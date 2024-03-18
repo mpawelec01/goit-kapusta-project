@@ -1,15 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
 import Today from "../../Today/Today";
 import BalanceModal from "../BalanceModal/BalanceModal";
 import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
+// import { selectBalance } from "../../../redux/balance/selectors";
+// import { setBalance } from "../../../redux/balance/balanceSlice";
 
 const Balance = () => {
-  // let balance;
+  // const dispatch = useDispatch();
+
+  // const balance = useSelector(selectBalance);
+
+  // console.log(balance);
 
   // const handleSubmit = (evt) => {
   //   evt.preventDefault();
   //   const form = evt.currentTarget;
-  //   balance = form.elements.value;
+  //   const newBalance = form.elements.value;
+  //   dispatch(setBalance(newBalance));
   // };
 
   return (
