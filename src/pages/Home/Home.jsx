@@ -1,15 +1,13 @@
 import React from 'react';
-// import css from './Home.module.css';
-
-
-import LoginForm from '../../components/LoginForm/LoginForm';
+import Background from '../../components/Background/Background'; // Import the Background component
+import LoginForm from '../../components/LoginForm/LoginForm'; // Import the LoginForm component
 
 function Home() {
-
-
   return (
-
-  <LoginForm/>
+    <div>
+      <Background /> {/* Render the Background component */}
+      <LoginForm /> {/* Render the LoginForm component */}
+    </div>
   );
 }
 
