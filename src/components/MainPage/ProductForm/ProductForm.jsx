@@ -20,7 +20,7 @@ const ProductForm = () => {
       date: today,
       description: form.elements.description.value,
       category: form.elements.category.value,
-      sum: form.elements.sum.value,
+      amount: parseFloat(form.elements.amount.value),
     };
 
     dispatch(addExpense(transaction));
@@ -82,7 +82,7 @@ const ProductForm = () => {
             <div className={css.sumWrapper}>
               <input
                 type="number"
-                name="sum"
+                name="amount"
                 className={css.sumInput}
                 required
                 step="0.10"

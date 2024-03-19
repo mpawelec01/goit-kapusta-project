@@ -36,7 +36,7 @@ export const addExpense = createAsyncThunk(
         date: info.date,
         description: info.description,
         category: info.category,
-        sum: info.sum,
+        amount: info.amount,
       });
       return response.data;
     } catch (err) {
@@ -53,7 +53,7 @@ export const addIncome = createAsyncThunk(
         date: info.date,
         description: info.description,
         category: info.category,
-        sum: info.sum,
+        amount: info.amount,
       });
       return response.data;
     } catch (err) {
@@ -62,23 +62,11 @@ export const addIncome = createAsyncThunk(
   }
 );
 
-export const deleteExpense = createAsyncThunk(
-  "transactions/deleteExpense",
+export const deleteTransaction = createAsyncThunk(
+  "transactions/deleteTransaction",
   async (transactionId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/expenses/${transactionId}`);
-      return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-
-export const deleteIncome = createAsyncThunk(
-  "transactions/deleteIncome",
-  async (transactionId, thunkAPI) => {
-    try {
-      const response = await axios.delete(`/income/${transactionId}`);
+      const response = await axios.delete(`/${transactionId}`);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

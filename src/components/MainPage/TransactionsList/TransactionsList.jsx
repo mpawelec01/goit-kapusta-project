@@ -1,10 +1,10 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
 import { useSelector } from "react-redux";
-import { selectExpenses } from "../../../redux/transactions/selectors";
+import { selectTransactions } from "../../../redux/transactions/selectors";
 
 export const TransactionsList = () => {
-  const transactionsList = useSelector(selectExpenses);
+  const transactionsList = useSelector(selectTransactions);
 
   return (
     <>

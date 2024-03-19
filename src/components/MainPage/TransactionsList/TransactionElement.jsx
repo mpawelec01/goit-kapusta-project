@@ -1,21 +1,14 @@
 import css from "./TransactionsList.module.css";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import {
-  deleteExpense,
-  deleteIncome,
-} from "../../../redux/transactions/operations";
+import { deleteTransaction } from "../../../redux/transactions/operations";
 
 export const TransactionElement = ({ transaction }) => {
-  const { date, description, category, sum, id } = transaction;
+  const { date, description, category, amount, id } = transaction;
   const dispatch = useDispatch();
 
-  const handleDeleteExpense = () => {
-    dispatch(deleteExpense(id));
-  };
-
-  const handleDeleteIncome = () => {
-    dispatch(deleteIncome(id));
+  const handleDelete = () => {
+    dispatch(deleteTransaction(id));
   };
 
   return (
@@ -24,12 +17,8 @@ export const TransactionElement = ({ transaction }) => {
       <td>{description}</td>
       <td>{category}</td>
       <td>
-        <span>{sum}</span>
-        <button
-          type="button"
-          className={css.btnDelete}
-          onClick={handleDeleteExpense}
-        >
+        <span>{amount}</span>
+        <button type="button" className={css.btnDelete} onClick={handleDelete}>
           Delete
         </button>
       </td>
@@ -42,7 +31,7 @@ TransactionElement.propTypes = {
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    sum: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
