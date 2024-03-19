@@ -1,22 +1,17 @@
-/* Reset stylów */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Kontener strony */
 .container {
+  position: relative; /* Change position to relative */
+  visibility: visible;
   display: flex;
-  margin: auto;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent; /* Make background transparent */
+  z-index: 100; /* Set z-index to a value higher than the Background component */
 }
+
 
 .logo_mainpage {
   position: relative;
-  left: 20%;
+  left: 15%;
   margin-top: 15%;
 }
 
@@ -84,13 +79,68 @@
 }
 
 @media (max-width: 768px) {
-  .home {
+  .container {
     margin: auto;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo_mainpage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* left: 15%;
+    margin-top: 5%;  */
+  }
+
+  .form_container {
+    position: relative; /* Zmiana na relative */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0; 
+    left: 0; 
+    width: 90%; /* 90% szerokości ekranu */
+    margin: auto; /* Wyśrodkowanie */
+    padding: 20px; /* Mniejszy padding */
   }
 }
 
 @media (max-width: 320px) {
-  .home {
+  .container {
     margin: auto;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo_mainpage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* left: 15%;
+    margin-top: 5%;  */
+  }
+
+  .form_container {
+    position: relative; /* Zmiana na relative */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0; 
+    left: 0; 
+    width: 90%; /* 90% szerokości ekranu */
+    margin: auto; /* Wyśrodkowanie */
+    padding: 20px; /* Mniejszy padding */
   }
 }
+
