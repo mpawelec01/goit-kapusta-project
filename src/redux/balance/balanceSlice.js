@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setBalance } from "./operations";
 
 const balanceInitialState = {
   balance: 0,
@@ -28,5 +29,4 @@ const balanceSlice = createSlice({
   },
 });
 
-export const { setBalance } = balanceSlice.actions;
 export const balanceReducer = balanceSlice.reducer;

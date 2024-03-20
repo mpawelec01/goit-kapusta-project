@@ -13,7 +13,6 @@ const ProductForm = () => {
     evt.preventDefault();
 
     const form = evt.currentTarget;
-
     const today = getDate();
 
     const transaction = {

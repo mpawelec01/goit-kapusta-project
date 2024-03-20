@@ -4,22 +4,21 @@ import BalanceModal from "../BalanceModal/BalanceModal";
 import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
 import { selectBalance } from "../../../redux/balance/selectors";
-import { setBalance } from "../../../redux/balance/balanceSlice";
+import { setBalance } from "../../../redux/balance/operations";
 
 const Balance = () => {
   const dispatch = useDispatch();
 
   const balance = useSelector(selectBalance);
-  console.log(balance);
 
   const handleSubmit = (evt) => {
+    debugger;
     evt.preventDefault();
     const form = evt.currentTarget;
-    const newBalance = form.elements.value;
+    const newBalance = form.elements.balance.value;
 
     dispatch(setBalance(newBalance));
-
-    form.elements.value = newBalance;
+    form.elements.balance.value = newBalance;
   };
 
   return (

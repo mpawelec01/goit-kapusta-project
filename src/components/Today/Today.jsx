@@ -1,13 +1,6 @@
 import Icon from "../Icon/Icon";
 import css from "./Today.module.css";
-
-function getDate() {
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const date = today.getDate();
-  return `${date}.${month}.${year}`;
-}
+import { getDate } from "../../getDate";
 
 const Today = () => {
   return (

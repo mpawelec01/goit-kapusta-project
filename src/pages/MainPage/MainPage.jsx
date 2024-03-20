@@ -43,7 +43,7 @@ export default function MainPage() {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-        <TransactionsList />
+        {/* <TransactionsList /> */}
       </div>
     </div>
   );

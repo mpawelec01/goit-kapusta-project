@@ -15,12 +15,17 @@ axios.defaults.baseURL = "https://vast-plum-camel-vest.cyclic.app/api/users";
 //   }
 // );
 
+//!!! Nie dokonca rozumiem skad pobiera sie userId???
 export const setBalance = createAsyncThunk(
   "balance/setBalance",
-  async (info, thunkAPI) => {
+  async (balance, thunkAPI) => {
+    debugger;
     try {
-      const response = await axios.patch(`/${info.userId}/balance`, {
-        balance: info.balance,
+      const state = thunkAPI.getState();
+      const userId = state.auth.user.id;
+      console.log(userId);
+      const response = await axios.patch(`/${userId}/balance`, {
+        balance,
       });
       return response.data;
     } catch (err) {

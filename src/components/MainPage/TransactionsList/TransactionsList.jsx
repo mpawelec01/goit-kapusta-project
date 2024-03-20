@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectTransactions } from "../../../redux/transactions/selectors";
 
 export const TransactionsList = () => {
-  const transactionsList = useSelector(selectTransactions);
+  const transactionsList = useSelector(selectTransactions) || null;
 
   return (
     <>
@@ -19,12 +19,13 @@ export const TransactionsList = () => {
         </thead>
 
         <tbody>
-          {transactionsList.map((transaction) => (
-            <TransactionElement
-              key={transaction.id}
-              transaction={transaction}
-            />
-          ))}
+          {transactionsList &&
+            transactionsList.map((transaction) => (
+              <TransactionElement
+                key={transaction.id}
+                transaction={transaction}
+              />
+            ))}
         </tbody>
       </table>
     </>
