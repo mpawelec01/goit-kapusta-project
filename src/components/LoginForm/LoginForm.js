@@ -1,21 +1,40 @@
 import css from "./LoginForm.module.css";
 import React, { useState } from "react";
-import Logo from "../../img/background/logo-kapusta.png";
+import Logo from "./Logo/Logo";
+import Button from "./Button/Button";
+import { useDispatch } from 'react-redux';
+import { logIn, register } from '../../redux/auth/operations';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const [isLogin, setIsLogin] = useState(true); // Stan wewnętrzny określający, czy użytkownik chce się zalogować (true) czy zarejestrować (false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log("Formularz wysłany!");
+    const form = e.currentTarget;
+
+    // Jeśli użytkownik chce się zalogować
+    if (isLogin) {
+      dispatch(
+        logIn({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      );
+    } else { // Jeśli użytkownik chce się zarejestrować
+      dispatch(
+        register({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      );
+    }
+    form.reset();
   };
 
   return (
     <div className={css.container}>
-      <div className={css.logo_mainpage}>
-        <img alt="logo" src={Logo} />
-      </div>
+      <Logo/>
       <div className={css.form_container}>
         <p>Zaloguj się przy pomocy konta Google</p>
         <button className={css.google_btn}>
@@ -25,43 +44,37 @@ const LoginForm = () => {
           />
           Google
         </button>
-        <p>Lub przy pomocy adresu e-mail I hasla, po zarejestrowaniu</p>
+        <p>Lub przy pomocy adresu e-mail i hasła, po zarejestrowaniu</p>
+     
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email" className={css.label}>
-            Email:
-          </label>
+          <label className={css.label}>Email</label>
           <input
             className={css.input}
             type="email"
-            id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className={css.label} htmlFor="password">
-            Hasło:
-          </label>
+            placeholder="example: user@user.com"
+            required
+          ></input>
+          <label className={css.label}>Password</label>
           <input
             className={css.input}
             type="password"
-            id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            required
+          ></input>
+
         </form>
-        <div className={css.buttons}>
-          <button className={css.button} type="submit">
+        <div className={css.buttons}> {/* Dodaj kontener na przyciski */}
+          <Button onClick={() => setIsLogin(true)} style={{ marginRight: '10px' }}>
             Login
-          </button>
-          <button className={css.button} type="submit">
-            {" "}
-            Registration{" "}
-          </button>
+          </Button>
+          <Button onClick={() => setIsLogin(false)}>
+            Register
+          </Button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default LoginForm;

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .container {
   position: relative; /* Change position to relative */
   visibility: visible;
@@ -9,11 +13,7 @@
 }
 
 
-.logo_mainpage {
-  position: relative;
-  left: 15%;
-  margin-top: 15%;
-}
+
 
 .google_btn {
   display: flex;
@@ -61,22 +61,7 @@
   border-radius: 30px;
   background-color: #f6f7fb;
 }
-.button[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #858e97;
-  color: white;
-  cursor: pointer;
-  border-radius: 30px;
-}
 
-.buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-}
 
 @media (max-width: 768px) {
   .container {

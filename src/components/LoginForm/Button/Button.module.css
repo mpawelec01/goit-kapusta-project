@@ -1,0 +1,40 @@
+.btn {
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color:rgb(149, 149, 149);
+    color: black;
+    /* outline: 2px solid transparent; */
+    /* box-shadow: 0px 0px 5px 1px grey; */
+    /* transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: outline 500ms cubic-bezier(0.4, 0, 0.2, 1); */
+    padding: 10px 20px;
+    border: none;
+  }
+  .btn:hover,
+  .btn:focus {
+    /* opacity: 1; */
+    color: rgb(27, 1, 1);
+    background:rgb(255, 145, 0);
+    /* transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: outline 500ms cubic-bezier(0.4, 0, 0.2, 1); */
+  }
+
+
+
+  /* .button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #858e97;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+} */
