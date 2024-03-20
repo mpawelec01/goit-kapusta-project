@@ -4,13 +4,11 @@ import {
   fetchIncome,
   addExpense,
   addIncome,
-  deleteExpense,
-  deleteIncome,
+  deleteTransaction,
 } from "./operations";
 
 const transactionsInitialState = {
-  expenses: [],
-  income: [],
+  transactions: [],
   isLoading: false,
   error: null,
 };
@@ -42,43 +40,38 @@ const transactionsSlice = createSlice({
       .addCase(fetchExpenses.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.expenses = action.payload;
+        state.transactions = action.payload.filter(
+          (transaction) => transaction.type === "expenses"
+        );
       })
 
       .addCase(fetchIncome.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.income = action.payload;
+        state.transactions = action.payload.filter(
+          (transaction) => transaction.type === "income"
+        );
       })
 
       .addCase(addExpense.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.expenses.push(action.payload);
+        state.transactions.push(action.payload);
       })
 
       .addCase(addIncome.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.income.push(action.payload);
+        state.transactions.push(action.payload);
       })
 
-      .addCase(deleteExpense.fulfilled, (state, action) => {
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.transactions.expenses.findIndex(
+        const index = state.transactions.findIndex(
           (transaction) => transaction.id === action.payload.id
         );
-        state.transactions.expenses.splice(index, 1);
-      })
-
-      .addCase(deleteIncome.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        const index = state.transactions.income.findIndex(
-          (transaction) => transaction.id === action.payload.id
-        );
-        state.transactions.income.splice(index, 1);
+        state.transactions.splice(index, 1);
       })
 
       .addMatcher(isPendingAction, handlePending)

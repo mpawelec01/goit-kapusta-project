@@ -1,6 +1,4 @@
-export const selectExpenses = (state) => state.transactions.expenses;
-
-export const selectIncome = (state) => state.transactions.income;
+export const selectTransactions = (state) => state.transactions;
 
 export const selectIsLoading = (state) => state.transactions.isLoading;
 

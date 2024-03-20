@@ -3,27 +3,28 @@ import Today from "../../Today/Today";
 import BalanceModal from "../BalanceModal/BalanceModal";
 import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
-// import { selectBalance } from "../../../redux/balance/selectors";
-// import { setBalance } from "../../../redux/balance/balanceSlice";
+import { selectBalance } from "../../../redux/balance/selectors";
+import { setBalance } from "../../../redux/balance/operations";
 
 const Balance = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const balance = useSelector(selectBalance);
+  const balance = useSelector(selectBalance);
 
-  // console.log(balance);
+  const handleSubmit = (evt) => {
+    debugger;
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    const newBalance = form.elements.balance.value;
 
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   const form = evt.currentTarget;
-  //   const newBalance = form.elements.value;
-  //   dispatch(setBalance(newBalance));
-  // };
+    dispatch(setBalance(newBalance));
+    form.elements.balance.value = newBalance;
+  };
 
   return (
     <div className={css.fullWrapper}>
       <ReportsLink />
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <label className={css.label} htmlFor="balance">
           Balance:
         </label>
@@ -39,7 +40,7 @@ const Balance = () => {
               placeholder="00.00"
             />
             <span className={css.currency}>UAH</span>
-            {/* <BalanceModal /> */}
+            {balance === 0 && <BalanceModal />}
           </div>
           <button className={css.btn} type="submit">
             CONFIRM
