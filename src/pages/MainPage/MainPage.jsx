@@ -10,6 +10,7 @@ import Background from "../../components/Background/Background";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
+import Summary from "../../components/MainPage/Summary/Summary";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -43,7 +44,8 @@ export default function MainPage() {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-        {/* <TransactionsList /> */}
+        <TransactionsList />
+        <Summary />
       </div>
     </div>
   );
