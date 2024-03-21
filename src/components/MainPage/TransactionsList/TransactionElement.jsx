@@ -2,6 +2,7 @@ import css from "./TransactionsList.module.css";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../../redux/transactions/operations";
+import Icon from "../../Icon/Icon";
 
 export const TransactionElement = ({ transaction }) => {
   const { date, description, category, amount, id } = transaction;
@@ -15,11 +16,11 @@ export const TransactionElement = ({ transaction }) => {
     <tr id={id} className={css.tableRow}>
       <td>{date}</td>
       <td>{description}</td>
-      <td>{category}</td>
-      <td>
-        <span>{amount}</span>
+      <td className={css.category}>{category}</td>
+      <td className={css.sum}>{amount}</td>
+      <td className={css.btn}>
         <button type="button" className={css.btnDelete} onClick={handleDelete}>
-          Delete
+          <Icon className={css.icon} iconName="delete" />
         </button>
       </td>
     </tr>
