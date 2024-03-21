@@ -1,80 +1,59 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import css from "./LoginForm.module.css";
-import React, { useState } from "react";
+import google from "../../img/icon-google.svg";
 import Logo from "./Logo/Logo";
-import Button from "./Button/Button";
-import { useDispatch } from 'react-redux';
-import { logIn, register } from '../../redux/auth/operations';
 
-const LoginForm = () => {
-  const dispatch = useDispatch();
-  const [isLogin, setIsLogin] = useState(true); // Stan wewnętrzny określający, czy użytkownik chce się zalogować (true) czy zarejestrować (false)
+const LoginForm = ({ onLogin }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
-
-    // Jeśli użytkownik chce się zalogować
-    if (isLogin) {
-      dispatch(
-        logIn({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      );
-    } else { // Jeśli użytkownik chce się zarejestrować
-      dispatch(
-        register({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      );
-    }
-    form.reset();
+    onLogin({ email, password });
   };
 
   return (
-    <div className={css.container}>
-      <Logo/>
-      <div className={css.form_container}>
-        <p>Zaloguj się przy pomocy konta Google</p>
-        <button className={css.google_btn}>
-          <img
-            src="https://e7.pngegg.com/pngimages/326/85/png-clipart-google-logo-google-text-trademark.png"
-            alt="Google"
-          />
-          Google
-        </button>
-        <p>Lub przy pomocy adresu e-mail i hasła, po zarejestrowaniu</p>
-     
-        <form onSubmit={handleSubmit}>
-          <label className={css.label}>Email</label>
-          <input
-            className={css.input}
-            type="email"
-            name="email"
-            placeholder="example: user@user.com"
-            required
-          ></input>
-          <label className={css.label}>Password</label>
-          <input
-            className={css.input}
-            type="password"
-            name="password"
-            required
-          ></input>
-
-        </form>
-        <div className={css.buttons}> {/* Dodaj kontener na przyciski */}
-          <Button onClick={() => setIsLogin(true)} style={{ marginRight: '10px' }}>
-            Login
-          </Button>
-          <Button onClick={() => setIsLogin(false)}>
-            Register
-          </Button>
+    <div className={css.container}>  
+        <div className={css.loginformLogo}>
+          <Logo/>
         </div>
+      <div className={css.formContainer} >
+        <form className={css.form} onSubmit={handleSubmit}>
+          <p className={css.firstText}>
+            You can log in with your Google Account
+          </p>
+          <div className={css.googleLogin}>
+            <Link className={css.google_btn}
+              to={
+                "" //link do google account
+              }
+            >
+              <img src={google} alt="" />
+              <p>Google</p>
+            </Link>
+          </div>
+          <p className={css.secondText}>Or log in using an email and password, after registering:</p>
+          <h5 className={css.titles}>Email</h5>
+          <input
+            className={css.inputs}
+            type="email"
+            placeholder="your@email.com"
+          />
+          <h5 className={css.titles}>Password</h5>
+          <input
+            className={css.inputs}
+            type="password"
+            placeholder="Password"
+          />
+          <div className={css.buttons}>
+            <button className={css.submitButton}>LOG IN</button>
+            <button className={css.submitButton}>REGISTRATION</button>
+          </div>
+        </form>
       </div>
     </div>
   );
-}
+};
 
 export default LoginForm;
