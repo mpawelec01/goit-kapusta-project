@@ -30,6 +30,7 @@
   --positive-color: #407946;
   --negative-color: #e7192e;
   --line-color: #E0E5EB;
+  --icons-color: #071F41;
 
   /*Resolutions
   Tutaj niestety nie da się tego
@@ -59,6 +60,7 @@
   --border-sm: 22px;
   --border-m: 30px;
   --border-chart: 10px 10px 0 0;
+  --border-chart-mobile: 0 10px 10px 0;
   --border-main: 0 30px 30px 30px;
   --border-left: 22px 0 0 22px;
   --border-right: 0 22px 22px 0;
@@ -68,4 +70,7 @@
   --border-none: none;
   --border-thin: 1px solid;
   --border-thick: 2px solid;
+
+  /*Box Shadow*/
+  --box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
 }
