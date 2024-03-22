@@ -1,15 +1,31 @@
 import css from "./Navigation.module.css";
 import { useNavigate } from "react-router-dom";
-const Navigation = () => {
+
+const Navigation = ({ transactionType }) => {
   const navigate = useNavigate();
   return (
     <nav className={css.wrapper}>
-      <a onClick={() => navigate("/main")} className={css.item}>
-        EXPENSES
-      </a>
-      <a onClick={() => navigate("/main/incomes")} className={css.item}>
-        INCOME
-      </a>
+      {transactionType === "expenses" && (
+        <>
+          <a onClick={() => navigate("/main")} className={css.active}>
+            EXPENSES
+          </a>
+          <a onClick={() => navigate("/main/incomes")} className={css.item}>
+            INCOME
+          </a>
+        </>
+      )}
+
+      {transactionType === "income" && (
+        <>
+          <a onClick={() => navigate("/main")} className={css.item}>
+            EXPENSES
+          </a>
+          <a onClick={() => navigate("/main/incomes")} className={css.active}>
+            INCOME
+          </a>
+        </>
+      )}
     </nav>
   );
 };

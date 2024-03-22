@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../../redux/transactions/operations";
 import Icon from "../../Icon/Icon";
 
-export const TransactionElement = ({ transaction }) => {
+export const TransactionElement = ({ transaction, transactionType }) => {
   const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
 
@@ -17,7 +17,14 @@ export const TransactionElement = ({ transaction }) => {
       <td className={css.date}>{date}</td>
       <td className={css.description}>{description}</td>
       <td className={css.category}>{category}</td>
-      <td className={css.sum}>{amount}</td>
+
+      {transactionType === "expenses" && (
+        <td className={css.sumExpenses}>{`- ${amount} UAH.`}</td>
+      )}
+      {transactionType === "income" && (
+        <td className={css.sumIncome}>{`${amount} UAH.`}</td>
+      )}
+
       <td className={css.btn}>
         <button type="button" className={css.btnDelete} onClick={handleDelete}>
           <Icon className={css.icon} iconName="delete" />
@@ -35,4 +42,5 @@ TransactionElement.propTypes = {
     amount: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
   }).isRequired,
+  transactionType: PropTypes.string,
 };

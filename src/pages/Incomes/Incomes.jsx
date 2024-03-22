@@ -7,20 +7,20 @@ import TransactionsList from "../../components/MainPage/TransactionsList/Transac
 import MobileForm from "../../components/MainPage/MobileForm/MobileForm";
 import css from "../MainPage/MainPage.module.css";
 import Background from "../../components/Background/Background";
+import Summary from "../../components/MainPage/Summary/Summary";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIncome } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
-import Summary from "../../components/MainPage/Summary/Summary";
 
 export const Incomes = () => {
+  const dispatch = useDispatch();
+
   const transactionsList =
     useSelector(selectTransactions).transactions.filter(
       (transaction) => transaction.type === "income"
     ) || null;
-  const dispatch = useDispatch();
-  console.log(transactionsList);
 
   useEffect(() => {
     dispatch(fetchIncome());
@@ -29,6 +29,7 @@ export const Incomes = () => {
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();
+    document.body.style.position = "fixed";
   };
 
   return (
@@ -43,7 +44,7 @@ export const Incomes = () => {
         <span className={css.btnText}>ADD TRANSACTION</span>
       </button>
       <Balance />
-      <Navigation />
+      <Navigation transactionType="income" />
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
@@ -52,7 +53,17 @@ export const Incomes = () => {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-        <TransactionsList transactionsList={transactionsList} />
+        <div className={css.desktopView}>
+          <TransactionsList
+            transactionsList={transactionsList}
+            transactionType="income"
+          />
+          <div className={css.desktop}>
+            <Summary />
+          </div>
+        </div>
+      </div>
+      <div className={css.tablet}>
         <Summary />
       </div>
     </div>

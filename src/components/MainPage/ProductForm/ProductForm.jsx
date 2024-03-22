@@ -31,23 +31,28 @@ const ProductForm = ({ transactionType }) => {
   const expensesCategories = useSelector(selectExpensesCategories);
   const incomeCategories = useSelector(selectIncomeCategories);
 
+  const balance = useSelector(selectBalance);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     const form = evt.currentTarget;
     const today = getDate();
-
     const transaction = {
       date: today,
       description: form.elements.description.value,
       category: form.elements.category.value,
       amount: parseFloat(form.elements.amount.value),
     };
-    console.log(transaction);
+
     if (transactionType === "expenses") {
-      dispatch(addExpense(transaction));
+      if (transaction.amount <= balance) {
+        dispatch(addExpense(transaction));
+      } else alert("Not enough balance. Please try another sum of money!");
     }
-    dispatch(addIncome(transaction));
+
+    if (transactionType === "income") {
+      dispatch(addIncome(transaction));
+    }
 
     form.reset();
   };

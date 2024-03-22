@@ -12,10 +12,12 @@
 .row {
   list-style: none;
   height: 45px;
+  border-bottom: 1px solid #f5f6fb;
 }
 
 .description,
-.sum {
+.sumIncome,
+.sumExpenses {
   font-family: Roboto;
   font-size: 12px;
   font-weight: 700;
@@ -34,9 +36,12 @@
   color: #52555f;
 }
 
-.sum {
+.sumIncome {
+  color: #407946;
+}
+
+.sumExpenses {
   color: #e7192e;
-  /* color: #407946; */
 }
 
 .icon {
