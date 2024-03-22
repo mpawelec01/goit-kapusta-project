@@ -1,27 +1,32 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
+import { useSelector } from "react-redux";
+import { selectTransactions } from "../../../redux/transactions/selectors";
+import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
 
 const TransactionsList = ({ transactionsList }) => {
   return (
     <>
+      {/* <TransactionsMobile transactionsList={transactionsList} /> */}
       <table className={css.table}>
         <thead>
           <tr className={css.tHead}>
-            <th className={css.th}>DATE</th>
-            <th className={css.th}>DESCRIPTION</th>
-            <th className={css.th}>CATEGORY</th>
-            <th className={css.th}>SUM</th>
+            <th className={css.date}>DATE</th>
+            <th className={css.description}>DESCRIPTION</th>
+            <th className={css.category}>CATEGORY</th>
+            <th className={css.sum}>SUM</th>
+            <th className={css.empty}></th>
           </tr>
         </thead>
 
-        <tbody>
-          {transactionsList &&
+        <tbody className={css.tbodyScroll}>
+          {{transactionsList &&
             transactionsList.map((transaction) => (
               <TransactionElement
                 key={transaction._id}
                 transaction={transaction}
               />
-            ))}
+            ))}}
         </tbody>
       </table>
     </>

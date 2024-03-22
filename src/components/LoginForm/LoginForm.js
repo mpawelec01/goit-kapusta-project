@@ -39,9 +39,7 @@ const LoginForm = () => {
   }
   return (
     <div className={css.container}>
-      <div className={css.logo_mainpage}>
-        <img alt="logo" src={Logo} />
-      </div>
+      <Logo/>
       <div className={css.form_container}>
         <p>Zaloguj się przy pomocy konta Google</p>
         <button className={css.google_btn}>
@@ -59,18 +57,16 @@ const LoginForm = () => {
           <input
             className={css.input}
             type="email"
-            id="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="example: user@user.com"
+            required
           />
-          <label className={css.label} htmlFor="password">
-            Hasło:
-          </label>
+          <label htmlFor="password" className={css.label}>Password</label>
           <input
             className={css.input}
             type="password"
-            id="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -88,6 +84,6 @@ const LoginForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoginForm;

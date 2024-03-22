@@ -7,18 +7,19 @@ const MobileForm = () => {
   const handleCloseModal = () => {
     const dialog = document.getElementById("mobileModal");
     dialog.close();
+    document.body.style.position = "relative";
   };
 
   return (
-    <div className={css.wrapper}>
-      <dialog id="mobileModal" className={css.modal}>
+    <dialog id="mobileModal" className={css.modal}>
+      <div className={css.wrapper}>
         <Background />
         <button onClick={handleCloseModal} className={css.btn}>
           <Icon iconName="arrow_left" className={css.btnIcon} />
         </button>
         <ProductForm />
-      </dialog>
-    </div>
+      </div>
+    </dialog>
   );
 };
 
