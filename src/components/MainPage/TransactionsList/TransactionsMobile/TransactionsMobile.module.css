@@ -1,0 +1,78 @@
+@media (min-width: 771px) {
+  .wrapper {
+    display: none;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  padding: 20px;
+}
+
+.row {
+  list-style: none;
+  height: 45px;
+}
+
+.description,
+.sum {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.04em;
+}
+
+.date,
+.category {
+  font-family: Roboto;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 9.38px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #52555f;
+}
+
+.sum {
+  color: #e7192e;
+  /* color: #407946; */
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.btnDelete {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btnDelete:hover .icon {
+  fill: var(--brand-color);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.down {
+  display: flex;
+  gap: 20px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

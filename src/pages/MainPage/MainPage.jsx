@@ -22,6 +22,7 @@ export default function MainPage() {
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();
+    document.body.style.position = "fixed";
   };
 
   return (
@@ -37,6 +38,7 @@ export default function MainPage() {
       </button>
       <Balance />
       <Navigation />
+
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
           <ProductForm />
@@ -44,7 +46,14 @@ export default function MainPage() {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-        <TransactionsList />
+        <div className={css.desktopView}>
+          <TransactionsList />
+          <div className={css.desktop}>
+            <Summary />
+          </div>
+        </div>
+      </div>
+      <div className={css.tablet}>
         <Summary />
       </div>
     </div>

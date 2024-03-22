@@ -1,9 +1,15 @@
+@media (max-width: 771px) {
+  .wrapper {
+    display: none;
+  }
+}
+
 .wrapper {
   border: 2px solid #ffffff;
   border-radius: 18px 18px 18px 0;
   background: #f5f6fb;
   width: 230px;
-  height: auto;
+  height: 300px;
 }
 
 .title {
