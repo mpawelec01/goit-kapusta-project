@@ -17,6 +17,7 @@ import {
   selectIncomeCategories,
 } from "../../../redux/transactions/selectors";
 import { useEffect } from "react";
+import { selectBalance } from "../../../redux/auth/selectors";
 
 const ProductForm = ({ transactionType }) => {
   const dispatch = useDispatch();
