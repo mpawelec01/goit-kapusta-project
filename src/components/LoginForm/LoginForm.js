@@ -39,7 +39,7 @@ const LoginForm = () => {
   }
   return (
     <div className={css.container}>
-      <Logo/>
+      {/* <Logo /> */}
       <div className={css.form_container}>
         <p>Zaloguj się przy pomocy konta Google</p>
         <button className={css.google_btn}>
@@ -63,7 +63,9 @@ const LoginForm = () => {
             placeholder="example: user@user.com"
             required
           />
-          <label htmlFor="password" className={css.label}>Password</label>
+          <label htmlFor="password" className={css.label}>
+            Password
+          </label>
           <input
             className={css.input}
             type="password"
@@ -84,6 +86,6 @@ const LoginForm = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LoginForm;
