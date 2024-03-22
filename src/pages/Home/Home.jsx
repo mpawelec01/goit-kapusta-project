@@ -1,14 +1,12 @@
-import React from 'react';
-import Background from '../../components/Background/Background'; // Import the Background component
-import LoginForm from '../../components/LoginForm/LoginForm'; // Import the LoginForm component
+import React from "react";
+import Background from "../../components/Background/Background"; // Import the Background component
+import LoginForm from "../../components/LoginForm/LoginForm"; // Import the LoginForm component
 
-function Home() {
+export const Home = () => {
   return (
     <div>
       <Background /> {/* Render the Background component */}
       <LoginForm /> {/* Render the LoginForm component */}
     </div>
   );
-}
-
-export default Home;
+};

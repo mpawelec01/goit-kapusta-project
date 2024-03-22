@@ -5,15 +5,15 @@ import { deleteTransaction } from "../../../redux/transactions/operations";
 import Icon from "../../Icon/Icon";
 
 export const TransactionElement = ({ transaction }) => {
-  const { date, description, category, amount, id } = transaction;
+  const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteTransaction(id));
+    dispatch(deleteTransaction(_id));
   };
 
   return (
-    <tr id={id} className={css.tableRow}>
+    <tr id={_id} className={css.tableRow}>
       <td className={css.date}>{date}</td>
       <td className={css.description}>{description}</td>
       <td className={css.category}>{category}</td>
@@ -33,6 +33,6 @@ TransactionElement.propTypes = {
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
 };

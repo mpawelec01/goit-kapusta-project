@@ -1,13 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addExpense } from "../../../redux/transactions/operations";
+import {
+  addExpense,
+  addIncome,
+  fetchExpensesCategories,
+  fetchIncomeCategories,
+} from "../../../redux/transactions/operations";
+
+import { nanoid } from "nanoid";
 
 import css from "./ProductForm.module.css";
 import Icon from "../../Icon/Icon";
 import Today from "../../Today/Today";
 import { getDate } from "../../../getDate";
+import {
+  selectExpensesCategories,
+  selectIncomeCategories,
+} from "../../../redux/transactions/selectors";
+import { useEffect } from "react";
 
-const ProductForm = () => {
+const ProductForm = ({ transactionType }) => {
   const dispatch = useDispatch();
+  const getCategories = () => {
+    dispatch(fetchExpensesCategories());
+    dispatch(fetchIncomeCategories());
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const expensesCategories = useSelector(selectExpensesCategories);
+  const incomeCategories = useSelector(selectIncomeCategories);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -21,8 +43,11 @@ const ProductForm = () => {
       category: form.elements.category.value,
       amount: parseFloat(form.elements.amount.value),
     };
-
-    dispatch(addExpense(transaction));
+    console.log(transaction);
+    if (transactionType === "expenses") {
+      dispatch(addExpense(transaction));
+    }
+    dispatch(addIncome(transaction));
 
     form.reset();
   };
@@ -63,17 +88,18 @@ const ProductForm = () => {
                 <option value="default" hidden>
                   Product category
                 </option>
-                <option value="transport">Transport</option>
-                <option value="products">Products</option>
-                <option value="health">Health</option>
-                <option value="alcohol">Alcohol</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="housing">Housing</option>
-                <option value="technique">Technique</option>
-                <option value="communication">Communal, communication</option>
-                <option value="hobbies">Sports, hobbies</option>
-                <option value="education">Education</option>
-                <option value="other">Other</option>
+                {transactionType === "expenses" &&
+                  expensesCategories.map((category) => (
+                    <option key={nanoid()} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                {transactionType === "income" &&
+                  incomeCategories.map((category) => (
+                    <option key={nanoid()} value={category}>
+                      {category}
+                    </option>
+                  ))}
               </select>
             </div>
           </div>

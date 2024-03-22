@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://vast-plum-camel-vest.cyclic.app/api/users";
+// axios.defaults.baseURL = "https://vast-plum-camel-vest.cyclic.app/api/users";
 
 // export const getBalance = createAsyncThunk(
 //   "balance/getBalance",

@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "./Report.module.css";
-import icons from "../../img/icons.svg"
+import icons from "../../img/icons.svg";
+import { useNavigate } from "react-router-dom";
 export const Report = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <div className={styles.bg}></div>
-      <svg className={styles.arrowLeft} width={24} height={24}>
+
+      <svg
+        onClick={() => navigate("/main")}
+        className={styles.arrowLeft}
+        width={24}
+        height={24}
+      >
         <use href={`${icons}#icon-arrow_left`}></use>
       </svg>
+
       <div className={styles.period}>
         <p className={styles.period_header}>Current period:</p>
         <div className={styles.periodBox}>
@@ -131,4 +140,3 @@ export const Report = () => {
     </div>
   );
 };
-

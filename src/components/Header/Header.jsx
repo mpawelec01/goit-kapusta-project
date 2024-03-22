@@ -1,13 +1,22 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
-import { useState } from "react";
+import { useEffect } from "react";
+
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/auth/operations";
 
 export const Header = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
 
-  // dodany state dla testów 
-  // po przełączeniu na true odpala się header na telefony/desktop w zależności od rozdzielczości
-  const [isLoggedIn, setIsLoggedIn] = ("");
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
+
+  console.log(user);
   return (
     <header className={css.header}>
       <NavLink to="/">
@@ -19,12 +28,22 @@ export const Header = () => {
         <>
           <div className={css.headerRightMobile}>
             <div className={css.user}>U</div>
-            <img src="/logout.svg" />
+            <button onClick={handleLogout}>
+              <img src="/logout.svg" />
+            </button>
           </div>
           <div className={css.headerRightDesktop}>
-            <div className={css.user}>U</div>
-            <p className={css.name}>User Name</p>
-            <p className={css.exit}>Exit</p>
+            <div
+              className={css.user}
+              style={{
+                backgroundImage: `url(${user.avatarUrl})`,
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <p className={css.name}>{user.email}</p>
+            <p onClick={handleLogout} className={css.exit}>
+              Exit
+            </p>
           </div>
         </>
       )}

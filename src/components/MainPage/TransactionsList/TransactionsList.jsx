@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { selectTransactions } from "../../../redux/transactions/selectors";
 import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
 
-export const TransactionsList = () => {
-  const transactionsList = useSelector(selectTransactions) || null;
-
+const TransactionsList = ({ transactionsList }) => {
   return (
     <>
       {/* <TransactionsMobile transactionsList={transactionsList} /> */}
@@ -22,15 +20,17 @@ export const TransactionsList = () => {
         </thead>
 
         <tbody className={css.tbodyScroll}>
-          {/* {transactionsList &&
+          {{transactionsList &&
             transactionsList.map((transaction) => (
               <TransactionElement
-                key={transaction.id}
+                key={transaction._id}
                 transaction={transaction}
               />
-            ))} */}
+            ))}}
         </tbody>
       </table>
     </>
   );
 };
+
+export default TransactionsList;

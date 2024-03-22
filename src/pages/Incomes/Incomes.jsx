@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "../../components/Icon/Icon";
 import Balance from "../../components/MainPage/Balance/Balance";
 import Navigation from "../../components/MainPage/Navigation/Navigation";
@@ -9,28 +10,24 @@ import Background from "../../components/Background/Background";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExpenses } from "../../redux/transactions/operations";
+import { fetchIncome } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
-import Summary from "../../components/MainPage/Summary/Summary";
-
-
-export const MainPage = () => {
+export const Incomes = () => {
   const transactionsList =
     useSelector(selectTransactions).transactions.filter(
-      (transaction) => transaction.type === "expenses"
+      (transaction) => transaction.type === "income"
     ) || null;
   const dispatch = useDispatch();
   console.log(transactionsList);
 
   useEffect(() => {
-    dispatch(fetchExpenses());
+    dispatch(fetchIncome());
   }, [dispatch]);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();
-    document.body.style.position = "fixed";
   };
 
   return (
@@ -49,22 +46,14 @@ export const MainPage = () => {
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
-          <ProductForm transactionType="expenses" />
+          <ProductForm transactionType="income" />
         </div>
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-//         <TransactionsList transactionsList={transactionsList} />
-        <div className={css.desktopView}>
-          <TransactionsList />
-          <div className={css.desktop}>
-            <Summary />
-          </div>
-        </div>
-      </div>
-      <div className={css.tablet}>
-        <Summary />
+        <TransactionsList transactionsList={transactionsList} />
       </div>
     </div>
   );
 };
+export default Incomes;

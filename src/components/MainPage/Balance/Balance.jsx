@@ -3,16 +3,15 @@ import Today from "../../Today/Today";
 import BalanceModal from "../BalanceModal/BalanceModal";
 import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
-import { selectBalance } from "../../../redux/balance/selectors";
-import { setBalance } from "../../../redux/balance/operations";
+import { selectBalance } from "../../../redux/auth/selectors";
+import { setBalance } from "../../../redux/auth/operations";
+import { useEffect } from "react";
 
 const Balance = () => {
   const dispatch = useDispatch();
-
   const balance = useSelector(selectBalance);
 
   const handleSubmit = (evt) => {
-    debugger;
     evt.preventDefault();
     const form = evt.currentTarget;
     const newBalance = form.elements.balance.value;
@@ -21,10 +20,15 @@ const Balance = () => {
     form.elements.balance.value = newBalance;
   };
 
+  useEffect(() => {
+    document.getElementById("balance").value = balance;
+    dispatch(setBalance(balance));
+  }, [dispatch]);
+
   return (
     <div className={css.fullWrapper}>
       <ReportsLink />
-      <form className={css.form} onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit} id="form">
         <label className={css.label} htmlFor="balance">
           Balance:
         </label>

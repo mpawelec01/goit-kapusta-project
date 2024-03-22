@@ -5,10 +5,14 @@ import {
   addExpense,
   addIncome,
   deleteTransaction,
+  fetchExpensesCategories,
+  fetchIncomeCategories,
 } from "./operations";
 
 const transactionsInitialState = {
   transactions: [],
+  expensesCategories: [],
+  incomeCategories: [],
   isLoading: false,
   error: null,
 };
@@ -72,6 +76,16 @@ const transactionsSlice = createSlice({
           (transaction) => transaction.id === action.payload.id
         );
         state.transactions.splice(index, 1);
+      })
+      .addCase(fetchExpensesCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.expensesCategories = action.payload;
+      })
+      .addCase(fetchIncomeCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.incomeCategories = action.payload;
       })
 
       .addMatcher(isPendingAction, handlePending)

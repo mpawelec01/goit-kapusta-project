@@ -1,37 +1,42 @@
 import css from "./LoginForm.module.css";
 import React, { useState } from "react";
-import Logo from "./Logo/Logo";
-import Button from "./Button/Button";
-import { useDispatch } from 'react-redux';
-import { logIn, register } from '../../redux/auth/operations';
+import Logo from "../../img/background/logo-kapusta.png";
+import { useDispatch, useSelector } from "react-redux";
+import { register, logIn } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const [isLogin, setIsLogin] = useState(true); // Stan wewnętrzny określający, czy użytkownik chce się zalogować (true) czy zarejestrować (false)
 
-  const handleSubmit = e => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
 
-    // Jeśli użytkownik chce się zalogować
-    if (isLogin) {
-      dispatch(
-        logIn({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      );
-    } else { // Jeśli użytkownik chce się zarejestrować
-      dispatch(
-        register({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      );
-    }
-    form.reset();
+    const user = {
+      email: email,
+      password: password,
+    };
+    console.log("Formularz wysłany!");
+    dispatch(register(user));
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const user = {
+      email: email,
+      password: password,
+    };
+    console.log("Formularz wysłany!");
+    dispatch(logIn(user));
+  };
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  if (isLoggedIn) {
+    return <Navigate to="/main" />;
+  }
   return (
     <div className={css.container}>
       <Logo/>
@@ -44,34 +49,38 @@ const LoginForm = () => {
           />
           Google
         </button>
-        <p>Lub przy pomocy adresu e-mail i hasła, po zarejestrowaniu</p>
-     
-        <form onSubmit={handleSubmit}>
-          <label className={css.label}>Email</label>
+        <p>Lub przy pomocy adresu e-mail I hasla, po zarejestrowaniu</p>
+        <form>
+          <label htmlFor="email" className={css.label}>
+            Email:
+          </label>
           <input
             className={css.input}
             type="email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="example: user@user.com"
             required
-          ></input>
-          <label className={css.label}>Password</label>
+          />
+          <label htmlFor="password" className={css.label}>Password</label>
           <input
             className={css.input}
             type="password"
             name="password"
-            required
-          ></input>
-
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className={css.buttons}>
+            <button className={css.button} onClick={handleLogin}>
+              Login
+            </button>
+            <button className={css.button} onClick={handleRegister}>
+              {" "}
+              Registration{" "}
+            </button>
+          </div>
         </form>
-        <div className={css.buttons}> {/* Dodaj kontener na przyciski */}
-          <Button onClick={() => setIsLogin(true)} style={{ marginRight: '10px' }}>
-            Login
-          </Button>
-          <Button onClick={() => setIsLogin(false)}>
-            Register
-          </Button>
-        </div>
       </div>
     </div>
   );
