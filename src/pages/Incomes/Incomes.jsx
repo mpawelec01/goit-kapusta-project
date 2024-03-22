@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIncome } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
+import Summary from "../../components/MainPage/Summary/Summary";
 
 export const Incomes = () => {
   const transactionsList =
@@ -52,6 +53,7 @@ export const Incomes = () => {
           <MobileForm />
         </div>
         <TransactionsList transactionsList={transactionsList} />
+        <Summary />
       </div>
     </div>
   );

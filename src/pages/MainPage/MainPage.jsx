@@ -14,7 +14,6 @@ import { selectTransactions } from "../../redux/transactions/selectors";
 
 import Summary from "../../components/MainPage/Summary/Summary";
 
-
 export const MainPage = () => {
   const transactionsList =
     useSelector(selectTransactions).transactions.filter(
@@ -54,9 +53,9 @@ export const MainPage = () => {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-//         <TransactionsList transactionsList={transactionsList} />
+        <TransactionsList transactionsList={transactionsList} />
         <div className={css.desktopView}>
-          <TransactionsList />
+          {/* <TransactionsList /> */}
           <div className={css.desktop}>
             <Summary />
           </div>

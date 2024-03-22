@@ -20,13 +20,13 @@ const TransactionsList = ({ transactionsList }) => {
         </thead>
 
         <tbody className={css.tbodyScroll}>
-          {{transactionsList &&
+          {transactionsList &&
             transactionsList.map((transaction) => (
               <TransactionElement
                 key={transaction._id}
                 transaction={transaction}
               />
-            ))}}
+            ))}
         </tbody>
       </table>
     </>
