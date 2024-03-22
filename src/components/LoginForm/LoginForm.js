@@ -1,16 +1,42 @@
 import css from "./LoginForm.module.css";
 import React, { useState } from "react";
 import Logo from "../../img/background/logo-kapusta.png";
+import { useDispatch, useSelector } from "react-redux";
+import { register, logIn } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
+
+    const user = {
+      email: email,
+      password: password,
+    };
     console.log("Formularz wysłany!");
+    dispatch(register(user));
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const user = {
+      email: email,
+      password: password,
+    };
+    console.log("Formularz wysłany!");
+    dispatch(logIn(user));
+  };
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  if (isLoggedIn) {
+    return <Navigate to="/main" />;
+  }
   return (
     <div className={css.container}>
       <div className={css.logo_mainpage}>
@@ -26,7 +52,7 @@ const LoginForm = () => {
           Google
         </button>
         <p>Lub przy pomocy adresu e-mail I hasla, po zarejestrowaniu</p>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label htmlFor="email" className={css.label}>
             Email:
           </label>
@@ -49,16 +75,16 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className={css.buttons}>
+            <button className={css.button} onClick={handleLogin}>
+              Login
+            </button>
+            <button className={css.button} onClick={handleRegister}>
+              {" "}
+              Registration{" "}
+            </button>
+          </div>
         </form>
-        <div className={css.buttons}>
-          <button className={css.button} type="submit">
-            Login
-          </button>
-          <button className={css.button} type="submit">
-            {" "}
-            Registration{" "}
-          </button>
-        </div>
       </div>
     </div>
   );

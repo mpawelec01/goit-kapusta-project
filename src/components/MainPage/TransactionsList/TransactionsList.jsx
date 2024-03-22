@@ -1,11 +1,7 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../../../redux/transactions/selectors";
 
-export const TransactionsList = () => {
-  const transactionsList = useSelector(selectTransactions) || null;
-
+const TransactionsList = ({ transactionsList }) => {
   return (
     <>
       <table className={css.table}>
@@ -22,7 +18,7 @@ export const TransactionsList = () => {
           {transactionsList &&
             transactionsList.map((transaction) => (
               <TransactionElement
-                key={transaction.id}
+                key={transaction._id}
                 transaction={transaction}
               />
             ))}
@@ -31,3 +27,5 @@ export const TransactionsList = () => {
     </>
   );
 };
+
+export default TransactionsList;

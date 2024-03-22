@@ -1,12 +1,13 @@
 import css from "./Navigation.module.css";
-
+import { useNavigate } from "react-router-dom";
 const Navigation = () => {
+  const navigate = useNavigate();
   return (
     <nav className={css.wrapper}>
-      <a href="/" className={css.item}>
+      <a onClick={() => navigate("/main")} className={css.item}>
         EXPENSES
       </a>
-      <a href="/" className={css.item}>
+      <a onClick={() => navigate("/main/incomes")} className={css.item}>
         INCOME
       </a>
     </nav>
