@@ -7,7 +7,11 @@ export const Report = () => {
     <div className={styles.container}>
       <div className={styles.bg} />
       <ReportPage />
-      <ToggledReport className={styles.switchedBackground} />
+      <ToggledReport />
+      <div className={styles.position_cabbages}>
+        <div className={styles.cabbages} />
+        <div className={styles.moreCabbages}/>
+      </div>
     </div>
   );
 };

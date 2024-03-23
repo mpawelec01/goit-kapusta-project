@@ -173,22 +173,34 @@ font-size: var(--fSize-s);
 }
 .listOfExpenses_list_item {
   width: 14%;
+  margin-bottom: 28px;
 }
 .diagram {
   margin-top: 32px;
   background-color: var(--background-color);
-  background-image: linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px);
-  background-size: 1px 60px;
   border-radius: var(--border-m);
   box-shadow: var(--box-shadow);
   width: 704px;
   height: 422px;
+  position: relative;
 }
 
 .diagram_list{
 flex-direction: row;
+padding: 0 20px;
+gap: 10px;
+margin: 0 auto;
 justify-content: center;
-gap: 25px;
+position: relative;
+}
+.diagram_list::after{
+content: '';
+background-image: linear-gradient(var(--button-color) 1px, transparent 1px);
+background-size: 1px 39px;
+width: 635px;
+height: 338px;
+top: 60px;
+position: absolute;
 }
 
 .diagram_list_item_value{
@@ -196,6 +208,7 @@ margin: 16px 0 15px 0;
 text-align: center;
 font-size: var(--fSize-s);
 }
+
 .diagram_list_item:nth-child(1),
 .diagram_list_item:nth-child(2),
 .diagram_list_item:nth-child(3),
@@ -210,7 +223,8 @@ flex-wrap: nowrap;
 flex-direction: column;
 justify-content: flex-end;
 align-items: center;
-width: auto;
+width: 56px;
+z-index: 1;
 }
 .diagram_list_item_chart_1,
 .diagram_list_item_chart_2,
@@ -257,39 +271,8 @@ height: 12px;
 }
 .diagram_list_item_header{
 margin: 16px 0 15px 0;
-font-size: var(--fSize-s);
+font-size: var(--fSize-m);
 order: 3;
-}
-
-.diagram_list_item:nth-child(1){
-width: auto;
-} 
-.diagram_list_item:nth-child(2){
-width: auto;
-}
-.diagram_list_item:nth-child(3){
-width: auto;
-}
-.diagram_list_item:nth-child(4){
-width: auto;
-}
-.diagram_list_item:nth-child(5){
-width: auto; 
-}
-.diagram_list_item:nth-child(6){
-width: auto;
-}
-.diagram_list_item:nth-child(7){
-width: auto;
-}
-.diagram_list_item:nth-child(8){
-width: auto;
-}
-.diagram_list_item:nth-child(9){
-width: auto;
-}
-.diagram_list_item:nth-child(10){
-width: auto;
 }
 }
 
