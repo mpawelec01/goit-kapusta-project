@@ -1,16 +1,10 @@
 import css from "./TransactionsMobile.module.css";
-// import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import Icon from "../../../Icon/Icon";
 import { deleteTransaction } from "../../../../redux/transactions/operations";
 
-export const TransactionsMobile = ({ transactionsList }) => {
-  //   const { date, description, category, amount, id } = transaction;
-  //   const dispatch = useDispatch();
-
-  //   const handleDelete = () => {
-  //     dispatch(deleteTransaction(id));
-  //   };
+export const TransactionsMobile = ({ transactionsList, transactionType }) => {
+  const dispatch = useDispatch();
 
   return (
     <ul className={css.wrapper}>
@@ -25,9 +19,25 @@ export const TransactionsMobile = ({ transactionsList }) => {
               </div>
             </div>
             <div className={css.right}>
-              <div className={css.sum}>{transaction.amount}</div>
+              {transactionType === "expenses" && (
+                <div
+                  className={css.sumExpenses}
+                >{`- ${transaction.amount} UAH.`}</div>
+              )}
+              {transactionType === "income" && (
+                <div
+                  className={css.sumIncome}
+                >{`${transaction.amount} UAH.`}</div>
+              )}
+
               <div className={css.btn}>
-                <button type="button" className={css.btnDelete}>
+                <button
+                  type="button"
+                  className={css.btnDelete}
+                  onClick={() => {
+                    dispatch(deleteTransaction(transaction._id));
+                  }}
+                >
                   <Icon className={css.icon} iconName="delete" />
                 </button>
               </div>

@@ -1,13 +1,14 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../../../redux/transactions/selectors";
 import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
 
-const TransactionsList = ({ transactionsList }) => {
+const TransactionsList = ({ transactionsList, transactionType }) => {
   return (
     <>
-      {/* <TransactionsMobile transactionsList={transactionsList} /> */}
+      <TransactionsMobile
+        transactionsList={transactionsList}
+        transactionType={transactionType}
+      />
       <table className={css.table}>
         <thead>
           <tr className={css.tHead}>
@@ -25,6 +26,7 @@ const TransactionsList = ({ transactionsList }) => {
               <TransactionElement
                 key={transaction._id}
                 transaction={transaction}
+                transactionType={transactionType}
               />
             ))}
         </tbody>

@@ -6,21 +6,20 @@ import TransactionsList from "../../components/MainPage/TransactionsList/Transac
 import MobileForm from "../../components/MainPage/MobileForm/MobileForm";
 import css from "../MainPage/MainPage.module.css";
 import Background from "../../components/Background/Background";
+import Summary from "../../components/MainPage/Summary/Summary";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
-import Summary from "../../components/MainPage/Summary/Summary";
-
 export const MainPage = () => {
+  const dispatch = useDispatch();
+
   const transactionsList =
     useSelector(selectTransactions).transactions.filter(
       (transaction) => transaction.type === "expenses"
     ) || null;
-  const dispatch = useDispatch();
-  console.log(transactionsList);
 
   useEffect(() => {
     dispatch(fetchExpenses());
@@ -44,7 +43,7 @@ export const MainPage = () => {
         <span className={css.btnText}>ADD TRANSACTION</span>
       </button>
       <Balance />
-      <Navigation />
+      <Navigation transactionType="expenses" />
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
@@ -53,9 +52,11 @@ export const MainPage = () => {
         <div className={css.mobileForm}>
           <MobileForm />
         </div>
-        <TransactionsList transactionsList={transactionsList} />
         <div className={css.desktopView}>
-          {/* <TransactionsList /> */}
+          <TransactionsList
+            transactionsList={transactionsList}
+            transactionType="expenses"
+          />
           <div className={css.desktop}>
             <Summary />
           </div>

@@ -21,7 +21,7 @@
   text-align: left;
   background: #f5f6fb;
   border-radius: 14px 14px 0 0;
-  padding-right: 7px;
+  /* padding-right: 7px; */
 }
 
 tr {
@@ -77,15 +77,21 @@ tr {
   width: 20%;
 }
 
-.sum {
+.sum,
+.sumIncome,
+.sumExpenses {
   text-align: right;
   width: 20%;
 }
 
-.tbodyScroll .sum {
+.sumIncome {
+  font-weight: 700;
+  color: #407946;
+}
+
+.sumExpenses {
   font-weight: 700;
   color: #e7192e;
-  /* color: #407946; */
 }
 
 .btn {
@@ -98,6 +104,7 @@ th,
 td {
   padding: 0 20px;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 7px;
