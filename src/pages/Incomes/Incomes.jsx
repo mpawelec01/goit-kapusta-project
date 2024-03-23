@@ -12,15 +12,12 @@ import Summary from "../../components/MainPage/Summary/Summary";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIncome } from "../../redux/transactions/operations";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import { selectIncomeTransactions } from "../../redux/transactions/selectors";
 
 export const Incomes = () => {
   const dispatch = useDispatch();
 
-  const transactionsList =
-    useSelector(selectTransactions).transactions.filter(
-      (transaction) => transaction.type === "income"
-    ) || null;
+  const transactionsList = useSelector(selectIncomeTransactions);
 
   useEffect(() => {
     dispatch(fetchIncome());
