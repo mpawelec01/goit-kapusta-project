@@ -1,190 +1,64 @@
 @import "../../styles/Styles.css";
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .container {
   display: flex;
   margin: auto;
   align-items: center;
   flex-direction: column;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   padding: var(--container-mobile);
 }
-.arrowLeft {
-  margin: 16px auto 0 0;
-  fill: var(--brand-color);
-}
-.bg {
-  background-color: #f5f6fb;
-  height: 300px;
+.bg{
+  background-color: #F5F6FB;
+  height: 275px;
   width: 100vw;
   position: absolute;
   z-index: -1;
-  border-bottom-left-radius: 60px;
+  border-bottom-left-radius: 120px;
 }
-
-.period {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 16px;
+.cabbages, .moreCabbages {
+  display: none;
 }
-
-.period_header {
-  font-size: var(--fSize-m);
-  color: var(--secondary-color-dimmed);
-}
-
-.period_date {
-  font-size: var(--fSize-l);
-  color: var(--main-color);
-  font-weight: var(--fWeight-bold);
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0;
-}
-
-.balance {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 32px;
-}
-.balance_header {
-  font-size: var(--fSize-m);
-  color: var(--secondary-color-dimmed);
-}
-
-.balance_value {
-  font-size: var(--fSize-m);
-  color: var(--main-color);
-  font-weight: var(--fWeight-bold);
-  border: var(--border-thick);
-  border-radius: var(--border-sm);
-  border-color: var(--tertiary-color);
-  padding: 15px 29px;
-  text-transform: uppercase;
-}
-
-.summary {
-  margin-top: 32px;
-  display: flex;
-  gap: 10px;
-  background-color: var(--background-color);
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-sm);
-  width: 285px;
-  height: 85px;
-  box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
-}
-
-.expenses {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.expenses_header {
-  font-size: var(--fSize-l);
-  color: var(--secondary-color);
-  font-weight: var(--fWeight-bold);
-}
-
-.expenses_value {
-  font-size: var(--fSize-l);
-  color: var(--negative-color);
-  font-weight: var(--fWeight-bold);
-}
-
-.income {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.income_header {
-  font-size: var(--fSize-l);
-  color: var(--secondary-color);
-  font-weight: var(--fWeight-bold);
-}
-
-.income_value {
-  font-size: var(--fSize-l);
-  color: var(--positive-color);
-  font-weight: var(--fWeight-bold);
-}
-
-.line {
-  width: 2px;
-  height: 70px;
-  background-color: var(--line-color);
-}
-
-.listOfExpenses {
-  margin-top: 32px;
-  display: flex;
-  align-items: baseline;
-  width: 134px;
-  justify-content: space-between;
-}
-
-.listOfExpenses_header {
-  color: var(--primary-color);
-  margin: 0;
-}
-
-.periodBox {
-  gap: 4px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-.vectorLeft {
-  fill: none;
-  stroke-width: 2px;
-  stroke: #ff751d;
-}
-.vectorRight {
-  fill: none;
-  stroke-width: 2px;
-  stroke: #ff751d;
-}
-
-.listOfExpenses_list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  list-style: none;
-}
-.listOfExpenses_list_item {
-  width: calc(33.333%);
-  margin-bottom: 20px;
-  font-size: var(--fSize-m);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 5px;
-}
-.iconSvg {
-  background-color: var(--label-color);
-  border-radius: 20px;
-  width: 59px;
-  height: 46px;
-  overflow: visible;
-}
-.iconSvg:hover {
-  background-color: var(--secondary-brand-color);
-  fill: var(--brand-color);
-}
-.listOfExpenses_line {
-  width: 280px;
-  height: 2px;
-  background-color: var(--line-color);
-}
+ @media screen and (min-width: 768px) and (max-width: 1279px) {
+  .bg{
+    height: 503px;
+  }
+  .position_cabbages{
+    width: 704px;
+    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .cabbages{
+    display: block;
+    background-image: url("../../img/background/two-cabbages.png");
+    position: absolute;
+    bottom: -38px;
+    right: 40px;
+    z-index: -1;
+    width: 183px;
+    height: 142px;
+  }
+ .container {
+  padding: var(--container-report-tablet);
+ }
+  }
+  @media screen and (min-width: 1280px) {
+   .container {
+    padding: var(--container-report-desktop);
+   }
+    .bg{
+    height: 503px;
+  }
+    .moreCabbages{
+    display: block;
+    background-image: url("../../img/background/cabbage-background-bottom.png");
+    background-size: 99%;
+    position: absolute;
+    bottom: -300px;
+    left: 0px;
+    z-index: -1;
+    width: 100vw;
+    height: 232px;
+  }
+  }
