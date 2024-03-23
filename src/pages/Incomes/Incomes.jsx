@@ -59,12 +59,12 @@ export const Incomes = () => {
             transactionType="income"
           />
           <div className={css.desktop}>
-            <Summary />
+            <Summary reportType="income" />
           </div>
         </div>
       </div>
       <div className={css.tablet}>
-        <Summary />
+        <Summary reportType="income" />
       </div>
     </div>
   );
