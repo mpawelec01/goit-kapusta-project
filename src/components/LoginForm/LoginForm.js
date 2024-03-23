@@ -1,6 +1,5 @@
 import css from "./LoginForm.module.css";
 import React, { useState } from "react";
-import Logo from "../../img/background/logo-kapusta.png";
 import { useDispatch, useSelector } from "react-redux";
 import { register, logIn } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
@@ -37,19 +36,19 @@ const LoginForm = () => {
   if (isLoggedIn) {
     return <Navigate to="/main" />;
   }
+
   return (
     <div className={css.container}>
-      {/* <Logo /> */}
       <div className={css.form_container}>
         <p>Zaloguj się przy pomocy konta Google</p>
-        <button className={css.google_btn}>
+        <a href="http://localhost:4000/auth/google" className={css.google_btn}>
           <img
             src="https://e7.pngegg.com/pngimages/326/85/png-clipart-google-logo-google-text-trademark.png"
             alt="Google"
           />
           Google
-        </button>
-        <p>Lub przy pomocy adresu e-mail I hasla, po zarejestrowaniu</p>
+        </a>
+        <p>Lub przy pomocy adresu e-mail i hasła, po zarejestrowaniu</p>
         <form>
           <label htmlFor="email" className={css.label}>
             Email:
@@ -64,7 +63,7 @@ const LoginForm = () => {
             required
           />
           <label htmlFor="password" className={css.label}>
-            Password
+            Password:
           </label>
           <input
             className={css.input}
@@ -72,14 +71,18 @@ const LoginForm = () => {
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className={css.buttons}>
-            <button className={css.button} onClick={handleLogin}>
+            <button type="submit" className={css.button} onClick={handleLogin}>
               Login
             </button>
-            <button className={css.button} onClick={handleRegister}>
-              {" "}
-              Registration{" "}
+            <button
+              type="submit"
+              className={css.button}
+              onClick={handleRegister}
+            >
+              Registration
             </button>
           </div>
         </form>
