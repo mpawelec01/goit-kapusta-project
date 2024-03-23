@@ -1,5 +1,6 @@
-.logo_mainpage {
-    position: relative;
-    left: 50%;
-    margin-top: 75%;
-  }
+.logo {
+  position: relative;
+  margin: 0;
+  padding: 0%;
+}
+
