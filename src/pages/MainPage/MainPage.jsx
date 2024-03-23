@@ -11,15 +11,12 @@ import Summary from "../../components/MainPage/Summary/Summary";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import { selectExpensesTransactions } from "../../redux/transactions/selectors";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
 
-  const transactionsList =
-    useSelector(selectTransactions).transactions.filter(
-      (transaction) => transaction.type === "expenses"
-    ) || null;
+  const transactionsList = useSelector(selectExpensesTransactions);
 
   useEffect(() => {
     dispatch(fetchExpenses());
