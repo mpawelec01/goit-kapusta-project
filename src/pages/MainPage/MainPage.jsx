@@ -58,12 +58,12 @@ export const MainPage = () => {
             transactionType="expenses"
           />
           <div className={css.desktop}>
-            <Summary />
+            <Summary reportType="expenses" />
           </div>
         </div>
       </div>
       <div className={css.tablet}>
-        <Summary />
+        <Summary reportType="expenses" />
       </div>
     </div>
   );
