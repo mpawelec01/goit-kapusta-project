@@ -5,6 +5,7 @@ import {
   fetchExpensesCategories,
   fetchIncomeCategories,
 } from "../../../redux/transactions/operations";
+import { setBalance } from "../../../redux/auth/operations";
 
 import { nanoid } from "nanoid";
 
@@ -48,11 +49,15 @@ const ProductForm = ({ transactionType }) => {
     if (transactionType === "expenses") {
       if (transaction.amount <= balance) {
         dispatch(addExpense(transaction));
+        document.getElementById("balance").value = balance - transaction.amount;
+        dispatch(setBalance(balance - transaction.amount));
       } else alert("Not enough balance. Please try another sum of money!");
     }
 
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
+      document.getElementById("balance").value = balance + transaction.amount;
+      dispatch(setBalance(balance + transaction.amount));
     }
 
     form.reset();
@@ -116,7 +121,7 @@ const ProductForm = ({ transactionType }) => {
                 name="amount"
                 className={css.sumInput}
                 required
-                step="0.10"
+                step="0.01"
                 placeholder="0.00"
               />
               <span className={css.currency}>UAH</span>

@@ -40,7 +40,7 @@ const Balance = () => {
               name="balance"
               max="10000000.00"
               id="balance"
-              step="0.10"
+              step="0.01"
               placeholder="00.00"
             />
             <span className={css.currency}>UAH</span>
