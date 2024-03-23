@@ -1,5 +1,5 @@
 import css from "./Navigation.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navigation = ({ transactionType }) => {
   const navigate = useNavigate();

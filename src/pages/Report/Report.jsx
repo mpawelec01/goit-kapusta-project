@@ -2,7 +2,10 @@ import React from "react";
 import styles from "./Report.module.css";
 import icons from "../../img/icons.svg";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectBalance } from "../../redux/auth/selectors";
 export const Report = () => {
+  const balance = useSelector(selectBalance);
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -31,7 +34,7 @@ export const Report = () => {
       </div>
       <div className={styles.balance}>
         <p className={styles.balance_header}>Balance:</p>
-        <p className={styles.balance_value}>55 000.00 UAH</p>
+        <p className={styles.balance_value}>{balance} UAH</p>
       </div>
       <div className={styles.summary}>
         <div className={styles.expenses}>

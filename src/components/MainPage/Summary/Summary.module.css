@@ -9,7 +9,12 @@
   border-radius: 18px 18px 18px 0;
   background: #f5f6fb;
   width: 230px;
-  height: 300px;
+  height: 335px;
+}
+
+.columns {
+  max-height: 280px;
+  overflow: auto;
 }
 
 .title {
