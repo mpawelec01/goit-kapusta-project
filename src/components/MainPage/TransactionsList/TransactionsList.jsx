@@ -1,57 +1,38 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../../../redux/transactions/selectors";
-import Icon from "../../Icon/Icon";
+import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
 
-export const TransactionsList = () => {
-  const transactionsList = useSelector(selectTransactions) || null;
-
+const TransactionsList = ({ transactionsList, transactionType }) => {
   return (
     <>
+      <TransactionsMobile
+        transactionsList={transactionsList}
+        transactionType={transactionType}
+      />
       <table className={css.table}>
         <thead>
           <tr className={css.tHead}>
-            <th className={css.headDate}>DATE</th>
-            <th className={css.headDescription}>DESCRIPTION</th>
+            <th className={css.date}>DATE</th>
+            <th className={css.description}>DESCRIPTION</th>
             <th className={css.category}>CATEGORY</th>
             <th className={css.sum}>SUM</th>
-            <th></th>
+            <th className={css.empty}></th>
           </tr>
         </thead>
 
-        <tbody className={css.tbody}>
-          {/* <tr className={css.tableRow}>
-            <td>date</td>
-            <td>description</td>
-            <td className={css.category}>category</td>
-            <td className={css.sum}>amount</td>
-            <td className={css.btn}>
-              <button type="button" className={css.btnDelete}>
-                <Icon className={css.icon} iconName="delete" />
-              </button>
-            </td>
-          </tr>
-          <tr className={css.tableRow}>
-            <td>date</td>
-            <td>description</td>
-            <td className={css.category}>category</td>
-            <td className={css.sum}>amount</td>
-            <td className={css.btn}>
-              <button type="button" className={css.btnDelete}>
-                <Icon className={css.icon} iconName="delete" />
-              </button>
-            </td>
-          </tr> */}
-          {/* {transactionsList &&
+        <tbody className={css.tbodyScroll}>
+          {transactionsList &&
             transactionsList.map((transaction) => (
               <TransactionElement
-                key={transaction.id}
+                key={transaction._id}
                 transaction={transaction}
+                transactionType={transactionType}
               />
-            ))} */}
+            ))}
         </tbody>
       </table>
     </>
   );
 };
+
+export default TransactionsList;

@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "../../components/Icon/Icon";
 import Balance from "../../components/MainPage/Balance/Balance";
 import Navigation from "../../components/MainPage/Navigation/Navigation";
@@ -10,19 +11,19 @@ import Summary from "../../components/MainPage/Summary/Summary";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExpenses } from "../../redux/transactions/operations";
+import { fetchIncome } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
-export const MainPage = () => {
+export const Incomes = () => {
   const dispatch = useDispatch();
 
   const transactionsList =
     useSelector(selectTransactions).transactions.filter(
-      (transaction) => transaction.type === "expenses"
+      (transaction) => transaction.type === "income"
     ) || null;
 
   useEffect(() => {
-    dispatch(fetchExpenses());
+    dispatch(fetchIncome());
   }, [dispatch]);
 
   const handleShowModal = () => {
@@ -43,11 +44,11 @@ export const MainPage = () => {
         <span className={css.btnText}>ADD TRANSACTION</span>
       </button>
       <Balance />
-      <Navigation transactionType="expenses" />
+      <Navigation transactionType="income" />
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
-          <ProductForm transactionType="expenses" />
+          <ProductForm transactionType="income" />
         </div>
         <div className={css.mobileForm}>
           <MobileForm />
@@ -55,16 +56,17 @@ export const MainPage = () => {
         <div className={css.desktopView}>
           <TransactionsList
             transactionsList={transactionsList}
-            transactionType="expenses"
+            transactionType="income"
           />
           <div className={css.desktop}>
-            <Summary reportType="expenses" />
+            <Summary reportType="income" />
           </div>
         </div>
       </div>
       <div className={css.tablet}>
-        <Summary reportType="expenses" />
+        <Summary reportType="income" />
       </div>
     </div>
   );
 };
+export default Incomes;

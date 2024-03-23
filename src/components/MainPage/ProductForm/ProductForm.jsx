@@ -1,20 +1,44 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addExpense } from "../../../redux/transactions/operations";
+import {
+  addExpense,
+  addIncome,
+  fetchExpensesCategories,
+  fetchIncomeCategories,
+} from "../../../redux/transactions/operations";
+import { setBalance } from "../../../redux/auth/operations";
+
+import { nanoid } from "nanoid";
 
 import css from "./ProductForm.module.css";
 import Icon from "../../Icon/Icon";
 import Today from "../../Today/Today";
 import { getDate } from "../../../getDate";
+import {
+  selectExpensesCategories,
+  selectIncomeCategories,
+} from "../../../redux/transactions/selectors";
+import { useEffect } from "react";
+import { selectBalance } from "../../../redux/auth/selectors";
 
-const ProductForm = () => {
+const ProductForm = ({ transactionType }) => {
   const dispatch = useDispatch();
+  const getCategories = () => {
+    dispatch(fetchExpensesCategories());
+    dispatch(fetchIncomeCategories());
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const expensesCategories = useSelector(selectExpensesCategories);
+  const incomeCategories = useSelector(selectIncomeCategories);
+
+  const balance = useSelector(selectBalance);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     const form = evt.currentTarget;
     const today = getDate();
-
     const transaction = {
       date: today,
       description: form.elements.description.value,
@@ -22,7 +46,19 @@ const ProductForm = () => {
       amount: parseFloat(form.elements.amount.value),
     };
 
-    dispatch(addExpense(transaction));
+    if (transactionType === "expenses") {
+      if (transaction.amount <= balance) {
+        dispatch(addExpense(transaction));
+        document.getElementById("balance").value = balance - transaction.amount;
+        dispatch(setBalance(balance - transaction.amount));
+      } else alert("Not enough balance. Please try another sum of money!");
+    }
+
+    if (transactionType === "income") {
+      dispatch(addIncome(transaction));
+      document.getElementById("balance").value = balance + transaction.amount;
+      dispatch(setBalance(balance + transaction.amount));
+    }
 
     form.reset();
   };
@@ -63,17 +99,18 @@ const ProductForm = () => {
                 <option value="default" hidden>
                   Product category
                 </option>
-                <option value="transport">Transport</option>
-                <option value="products">Products</option>
-                <option value="health">Health</option>
-                <option value="alcohol">Alcohol</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="housing">Housing</option>
-                <option value="technique">Technique</option>
-                <option value="communication">Communal, communication</option>
-                <option value="hobbies">Sports, hobbies</option>
-                <option value="education">Education</option>
-                <option value="other">Other</option>
+                {transactionType === "expenses" &&
+                  expensesCategories.map((category) => (
+                    <option key={nanoid()} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                {transactionType === "income" &&
+                  incomeCategories.map((category) => (
+                    <option key={nanoid()} value={category}>
+                      {category}
+                    </option>
+                  ))}
               </select>
             </div>
           </div>
@@ -84,7 +121,7 @@ const ProductForm = () => {
                 name="amount"
                 className={css.sumInput}
                 required
-                step="0.10"
+                step="0.01"
                 placeholder="0.00"
               />
               <span className={css.currency}>UAH</span>

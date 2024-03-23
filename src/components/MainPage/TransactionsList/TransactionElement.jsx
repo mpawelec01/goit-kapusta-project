@@ -1,23 +1,41 @@
 import css from "./TransactionsList.module.css";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../../../redux/transactions/operations";
+import { setBalance } from "../../../redux/auth/operations";
 import Icon from "../../Icon/Icon";
+import { selectBalance } from "../../../redux/auth/selectors";
 
-export const TransactionElement = ({ transaction }) => {
-  const { date, description, category, amount, id } = transaction;
+export const TransactionElement = ({ transaction, transactionType }) => {
+  const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
 
+  const balance = useSelector(selectBalance);
+
   const handleDelete = () => {
-    dispatch(deleteTransaction(id));
+    if (transactionType === "expenses") {
+      document.getElementById("balance").value = balance + amount;
+      dispatch(setBalance(balance + transaction.amount));
+    } else {
+      document.getElementById("balance").value = balance - amount;
+      dispatch(setBalance(balance - transaction.amount));
+    }
+    dispatch(deleteTransaction(_id));
   };
 
   return (
-    <tr id={id} className={css.tableRow}>
-      <td>{date}</td>
-      <td>{description}</td>
+    <tr id={_id} className={css.tableRow}>
+      <td className={css.date}>{date}</td>
+      <td className={css.description}>{description}</td>
       <td className={css.category}>{category}</td>
-      <td className={css.sum}>{amount}</td>
+
+      {transactionType === "expenses" && (
+        <td className={css.sumExpenses}>{`- ${amount} UAH.`}</td>
+      )}
+      {transactionType === "income" && (
+        <td className={css.sumIncome}>{`${amount} UAH.`}</td>
+      )}
+
       <td className={css.btn}>
         <button type="button" className={css.btnDelete} onClick={handleDelete}>
           <Icon className={css.icon} iconName="delete" />
@@ -33,6 +51,7 @@ TransactionElement.propTypes = {
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
+  transactionType: PropTypes.string,
 };

@@ -42,7 +42,7 @@
   line-height: 14px;
   letter-spacing: 0.02em;
   border: 0;
-  background: #f5f6fb;
+  background: transparent;
   text-align: right;
   width: 95%;
   padding-right: 37px;
@@ -115,7 +115,7 @@ input[type="number"] {
     justify-content: space-between;
     align-items: center;
     height: 44px;
-    padding: 50px;
+    margin-bottom: 40px;
   }
   .form {
     flex-direction: row;
@@ -149,5 +149,6 @@ input[type="number"] {
   .fullWrapper {
     justify-content: flex-start;
     gap: 280px;
+    margin-bottom: 12px;
   }
 }

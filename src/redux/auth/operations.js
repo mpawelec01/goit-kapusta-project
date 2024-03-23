@@ -1,16 +1,18 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = 'https://vast-plum-camel-vest.cyclic.app';
+// "https://vast-plum-camel-vest.cyclic.app/api"
+
+// axios.defaults.baseURL = "";
 
 // Utility to add JWT
-const setAuthHeader = token => {
+const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  axios.defaults.headers.common.Authorization = "";
 };
 
 /*
@@ -18,12 +20,16 @@ const clearAuthHeader = () => {
  * body: { name, email, password }
  */
 export const register = createAsyncThunk(
-  'auth/register',
+  "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const res = await axios.post(
+        "http://localhost:4000/api/auth/register",
+        credentials
+      );
+      setAuthHeader(res.data.result.user.token);
+      console.log(res.data.result.user.token);
+      return res.data.result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -35,12 +41,16 @@ export const register = createAsyncThunk(
  * body: { email, password }
  */
 export const logIn = createAsyncThunk(
-  'auth/login',
+  "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/login', credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const res = await axios.post(
+        "http://localhost:4000/api/auth/login",
+        credentials
+      );
+      setAuthHeader(res.data.result.user.token);
+
+      return res.data.result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -51,9 +61,9 @@ export const logIn = createAsyncThunk(
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  */
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.get("http://localhost:4000/api/auth/logout");
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -65,21 +75,40 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
  * headers: Authorization: Bearer token
  */
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+  "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue("Unable to fetch user");
     }
 
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/me');
-      return res.data;
+      const res = await axios.get("http://localhost:4000/api/users/info");
+      return res.data.result.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const setBalance = createAsyncThunk(
+  "auth/setBalance",
+  async (balance, thunkAPI) => {
+    try {
+      // const state = thunkAPI.getState();
+      // const userId = state.auth.user.id;
+      const response = await axios.patch(
+        `http://localhost:4000/api/users/balance`,
+        {
+          balance,
+        }
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
