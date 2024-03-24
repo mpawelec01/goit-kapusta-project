@@ -6,7 +6,7 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { lazy, useEffect } from "react";
+import { lazy, useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Home } from "./pages/Home/Home";
 import { MainPage } from "./pages/MainPage/MainPage";
@@ -18,10 +18,14 @@ import { useAuth } from "./hooks/useAuth";
 import { refreshUser } from "./redux/auth/operations";
 import { selectToken } from "./redux/auth/selectors";
 import Incomes from "./pages/Incomes/Incomes";
+import { Loader } from "./components/Loader/Loader";
 
 const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   const token = useSelector(selectToken);
 
@@ -31,8 +35,10 @@ const App = () => {
   //   }
   //   dispatch(refreshUser());
   // }, [dispatch, token]);
-  return (
-    <>
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route element={<Layout />}>
           <Route
@@ -55,7 +61,8 @@ const App = () => {
           />
         </Route>
       </Routes>
-    </>
+    
+    </Suspense>
   );
 };
 
