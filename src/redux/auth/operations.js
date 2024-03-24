@@ -58,6 +58,24 @@ export const logIn = createAsyncThunk(
 );
 
 /*
+ * GET @ /auth/google
+ * body: { email, password }
+ */
+export const googleLogIn = createAsyncThunk(
+  "auth/google",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get("http://localhost:4000/auth/google");
+      setAuthHeader(res.data.user.token);
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  */
