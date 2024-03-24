@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+.loginformLogo {
+  position: relative;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-bottom: 10%;
+}
+
 .errorMessage1  {
   color: #EB5757;
   width: 90%;
@@ -116,6 +123,7 @@
   padding-left: 20px;
   margin-top: 20px;
   border: unset;
+  outline: none;
 }
 
 .googleLogin {
