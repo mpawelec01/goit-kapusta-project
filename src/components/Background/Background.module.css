@@ -34,13 +34,15 @@
   background-repeat: no-repeat;
   position: absolute;
   z-index: 0;
-  top: 50%;
+  top: 80%;
   left: 10%;
   width: 50%;
   height: 50%;
-  animation: float 6s ease-in-out infinite;
+  margin-bottom: unset;
+  padding: unset;
+  /* animation: float 6s ease-in-out infinite; */
   }
-  @keyframes float {
+  /* @keyframes float {
     0% {
       transform: translatey(0px);
     }
@@ -50,7 +52,7 @@
     100% {
       transform: translatey(0px);
     }
-  }
+  } */
 
 @media (min-width: 772px) {
   .background_image1  {
@@ -78,16 +80,17 @@
   .background_image2 {
     background-image: url("../../img/background/two-cabbages.png");
     background-repeat: no-repeat;
+    background-position: 20%;
     position: absolute;
-    display: flex;
+    /* display: flex; */
     z-index: 0;
-    margin-top: 10%;
+    /* margin-top: 10%; */
     margin-bottom: unset;
     padding: unset;
-    left: 20%;
-    animation: float 6s ease-in-out infinite;
+    /* left: 20%; */
+    /* animation: float 6s ease-in-out infinite; */
   }
-  @keyframes float {
+  /* @keyframes float {
     0% {
       transform: translatey(0px);
     }
@@ -97,5 +100,5 @@
     100% {
       transform: translatey(0px);
     }
-  }
+  } */
 }
