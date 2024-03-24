@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Logo from "./Logo/Logo";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { register, logIn } from "../../redux/auth/operations";
+import { register, logIn, googleLogIn } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Navigate } from "react-router-dom";
 import google from "../../img/icon-google.svg";
@@ -34,6 +34,12 @@ const LoginForm = () => {
     };
     console.log("Formularz wysłany!");
     dispatch(logIn(user));
+  };
+
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+
+    dispatch(googleLogIn());
   };
 
   const isLoggedIn = useSelector(selectIsLoggedIn);

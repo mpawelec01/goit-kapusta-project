@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser, setBalance } from "./operations";
+import { add } from "date-fns";
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  setBalance,
+  googleLogIn,
+} from "./operations";
 
 const initialState = {
   user: { email: null, balance: null, avatarUrl: null },
@@ -24,6 +32,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         console.log(state.token);
         console.log(state.user);
+      })
+      .addCase(googleLogIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.user.token;
+        state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { email: null };
