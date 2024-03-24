@@ -1,19 +1,21 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
-import { useEffect } from "react";
 
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../redux/auth/operations";
+import { toggleIsLogout } from "../../redux/modal/modalSlice";
+import { selectIsLogout } from "../../redux/modal/selectors";
+import { LeaveModal } from "../Modals/LeaveModal/LeaveModal";
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
+  const isOpen = useSelector(selectIsLogout);
 
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logOut());
+    dispatch(toggleIsLogout());
   };
 
   // console.log(user);
@@ -41,9 +43,10 @@ export const Header = () => {
               }}
             ></div>
             <p className={css.name}>{user.email}</p>
-            <p onClick={handleLogout} className={css.exit}>
+            <button type="button" onClick={handleLogout} className={css.exit}>
               Exit
-            </p>
+            </button>
+            {isOpen && <LeaveModal />}
           </div>
         </>
       )}

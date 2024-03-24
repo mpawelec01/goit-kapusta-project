@@ -1,3 +1,14 @@
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
 .leaveModal {
   box-shadow: 10px 10px 30px 0px #52555f66;
   background-color: #fff;
@@ -9,68 +20,75 @@
   align-items: center;
   border-radius: 30px;
   padding: 60px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
 }
 
 .closeModal {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #52555f;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    align-items: center;
-    font-weight: 500;
-    font-size: 14px;
-    color: #52555f;
-  }
-  
-  .buttonList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  .buttonYes,
-  .buttonNo {
-    border-radius: 16px;
-    padding: 12px 34px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 12px;
-  }
-  
-  .buttonNo {
-    border: 2px solid #f5f6fb;
-    background-color: #fff;
-    color: #52555f;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .buttonYes {
-    color: #fff;
-    background-color: #ff751d;
-    border: 0;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .buttonYes:hover,
-  .buttonYes:focus {
-    background-color: #f89a5f;
-  }
-  
-  .buttonNo:hover,
-  .buttonNo:focus {
-    background-color: #f5f6fb;
-  }
-  
-  .closeModal:hover,
-  .closeModal:focus {
-      color: black;
-  }
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #52555f;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  border: none;
+  background: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: #52555f;
+}
+
+.buttonList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.buttonYes,
+.buttonNo {
+  border-radius: 16px;
+  padding: 12px 34px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.buttonNo {
+  border: 2px solid #f5f6fb;
+  background-color: #fff;
+  color: #52555f;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.buttonYes {
+  color: #fff;
+  background-color: #ff751d;
+  border: 0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.buttonYes:hover,
+.buttonYes:focus {
+  background-color: #f89a5f;
+}
+
+.buttonNo:hover,
+.buttonNo:focus {
+  background-color: #f5f6fb;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+  color: black;
+}

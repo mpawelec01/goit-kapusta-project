@@ -17,11 +17,11 @@ const Balance = () => {
     const newBalance = form.elements.balance.value;
 
     dispatch(setBalance(newBalance));
-    form.elements.balance.value = newBalance;
+    form.elements.balance.value = parseFloat(newBalance).toFixed(2);
   };
 
   useEffect(() => {
-    document.getElementById("balance").value = balance;
+    document.getElementById("balance").value = parseFloat(balance).toFixed(2);
     dispatch(setBalance(balance));
   }, [dispatch]);
 
