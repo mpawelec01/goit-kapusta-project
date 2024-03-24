@@ -40,7 +40,23 @@ const LoginForm = () => {
   if (isLoggedIn) {
     return <Navigate to="/main" />;
   }
+
   return (
+    <div className={css.container}>
+      <div className={css.form_container}>
+        <p>Zaloguj się przy pomocy konta Google</p>
+        <a href="http://localhost:4000/auth/google" className={css.google_btn}>
+          <img
+            src="https://e7.pngegg.com/pngimages/326/85/png-clipart-google-logo-google-text-trademark.png"
+            alt="Google"
+          />
+          Google
+        </a>
+        <p>Lub przy pomocy adresu e-mail i hasła, po zarejestrowaniu</p>
+        <form>
+          <label htmlFor="email" className={css.label}>
+            Email:
+          </label>
     <div className={css.container}>  
       <div className={css.loginformLogo}>
         <Logo/>
@@ -71,6 +87,9 @@ const LoginForm = () => {
             placeholder="your@email.com"
             required
           />
+          <label htmlFor="password" className={css.label}>
+            Password:
+          </label>
           <label htmlFor="password" className={css.titles}>Password:</label>
           <input
             className={css.inputs}
@@ -78,8 +97,19 @@ const LoginForm = () => {
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className={css.buttons}>
+            <button type="submit" className={css.button} onClick={handleLogin}>
+              Login
+            </button>
+            <button
+              type="submit"
+              className={css.button}
+              onClick={handleRegister}
+            >
+              Registration
+            </button>
             <button onClick={handleLogin} className={css.submitButton}>LOG IN</button>
             <button onClick={handleRegister} className={css.submitButton}>REGISTRATION</button>
           </div>
