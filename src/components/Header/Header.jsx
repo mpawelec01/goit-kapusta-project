@@ -16,7 +16,7 @@ export const Header = () => {
     dispatch(logOut());
   };
 
-  console.log(user);
+  // console.log(user);
   return (
     <header className={css.header}>
       <NavLink to="/">

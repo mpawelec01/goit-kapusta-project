@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "../../components/Icon/Icon";
 import Balance from "../../components/MainPage/Balance/Balance";
 import Navigation from "../../components/MainPage/Navigation/Navigation";
@@ -20,7 +21,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     dispatch(fetchExpenses());
-  }, [dispatch]);
+  }, [dispatch, ProductForm]);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
@@ -65,3 +66,5 @@ export const MainPage = () => {
     </div>
   );
 };
+
+export default MainPage;
