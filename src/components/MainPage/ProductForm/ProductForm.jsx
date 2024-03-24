@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addExpense,
@@ -12,7 +13,6 @@ import { nanoid } from "nanoid";
 import css from "./ProductForm.module.css";
 import Icon from "../../Icon/Icon";
 import Today from "../../Today/Today";
-import { getDate } from "../../../getDate";
 import {
   selectExpensesCategories,
   selectIncomeCategories,
@@ -21,6 +21,12 @@ import { useEffect } from "react";
 import { selectBalance } from "../../../redux/auth/selectors";
 
 const ProductForm = ({ transactionType }) => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
   const dispatch = useDispatch();
   const getCategories = () => {
     dispatch(fetchExpensesCategories());
@@ -35,12 +41,24 @@ const ProductForm = ({ transactionType }) => {
 
   const balance = useSelector(selectBalance);
 
+  function formatDate(initialDateStr) {
+    const initialDate = new Date(initialDateStr);
+    const day = initialDate.getDate();
+    const month = initialDate.getMonth() + 1;
+    const year = initialDate.getFullYear();
+
+    const formattedDay = day < 10 ? "0" + day : day;
+    const formattedMonth = month < 10 ? "0" + month : month;
+
+    return `${formattedDay}.${formattedMonth}.${year}`;
+  }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const form = evt.currentTarget;
-    const today = getDate();
+    const date = formatDate(selectedDate);
     const transaction = {
-      date: today,
+      date,
       description: form.elements.description.value,
       category: form.elements.category.value,
       amount: parseFloat(form.elements.amount.value),
@@ -71,7 +89,7 @@ const ProductForm = ({ transactionType }) => {
     <form className={css.form} onSubmit={handleSubmit} id="addTransactionForm">
       <div className={css.tabletView}>
         <div className={css.today}>
-          <Today />
+          <Today selectedDate={selectedDate} onDateChange={handleDateChange} />
         </div>
         <div className={css.formInputs}>
           <div className={css.bothWrapper}>
