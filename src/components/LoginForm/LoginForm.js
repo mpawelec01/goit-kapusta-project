@@ -1,9 +1,13 @@
 import css from "./LoginForm.module.css";
 import React, { useState } from "react";
+import Logo from "./Logo/Logo";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register, logIn } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Navigate } from "react-router-dom";
+import google from "../../img/icon-google.svg";
+import { ReactComponent as GoogleIcon } from '../../img/google-icon.svg';
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -53,20 +57,42 @@ const LoginForm = () => {
           <label htmlFor="email" className={css.label}>
             Email:
           </label>
+    <div className={css.container}>  
+      <div className={css.loginformLogo}>
+        <Logo/>
+      </div>
+      <div className={css.formContainer} >
+        <form className={css.form} >
+          <p className={css.firstText}>
+            You can log in with your Google Account
+          </p>
+          <div className={css.googleLogin}>
+            <Link className={css.google_btn}
+              to={
+                "" //link do google account
+              }
+            >
+              <GoogleIcon/>
+              <p className={css.googleBtnText}>Google</p>
+            </Link>
+          </div>
+          <p className={css.secondText}>Or log in using an email and password, after registering:</p>
+          <label htmlFor="email" className={css.titles}>Email:</label>
           <input
-            className={css.input}
+            className={css.inputs}
             type="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="example: user@user.com"
+            placeholder="your@email.com"
             required
           />
           <label htmlFor="password" className={css.label}>
             Password:
           </label>
+          <label htmlFor="password" className={css.titles}>Password:</label>
           <input
-            className={css.input}
+            className={css.inputs}
             type="password"
             name="password"
             value={password}
@@ -84,6 +110,8 @@ const LoginForm = () => {
             >
               Registration
             </button>
+            <button onClick={handleLogin} className={css.submitButton}>LOG IN</button>
+            <button onClick={handleRegister} className={css.submitButton}>REGISTRATION</button>
           </div>
         </form>
       </div>

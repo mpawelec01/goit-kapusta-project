@@ -1,6 +1,12 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
 import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+  fetchExpenses,
+  fetchIncome,
+} from "../../../redux/transactions/operations";
 
 const TransactionsList = ({ transactionsList, transactionType }) => {
   return (
