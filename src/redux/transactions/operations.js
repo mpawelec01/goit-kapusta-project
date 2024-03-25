@@ -37,8 +37,6 @@ export const addExpense = createAsyncThunk(
   "transactions/addExpense",
   async (info, thunkAPI) => {
     try {
-      debugger;
-
       const response = await axios.post(
         "http://localhost:4000/api/transactions/expenses",
         {

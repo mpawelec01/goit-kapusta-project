@@ -1,12 +1,12 @@
-// import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-// import TextField from "@mui/material/TextField";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import TextField from "@mui/material/TextField";
 import css from "./Today.module.css";
 
 const Today = ({ selectedDate, onDateChange }) => {
   return (
     <div className={css.wrapper}>
-      {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           label="Chose date"
           value={selectedDate}
@@ -15,7 +15,7 @@ const Today = ({ selectedDate, onDateChange }) => {
           }}
           renderInput={(params) => <TextField {...params} />}
         />
-      </LocalizationProvider> */}
+      </LocalizationProvider>
     </div>
   );
 };
