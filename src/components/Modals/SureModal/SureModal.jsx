@@ -6,6 +6,7 @@ export const SureModal = ({ onYes }) => {
   const dispatch = useDispatch();
 
   const toggleSure = () => {
+    console.log("toggleSure");
     dispatch(toggleIsOpen());
     onYes();
   };
@@ -26,7 +27,7 @@ export const SureModal = ({ onYes }) => {
             <button
               className={css.buttonYes}
               type="button"
-              onClick={toggleSure}
+              onClick={() => toggleSure()}
             >
               YES
             </button>

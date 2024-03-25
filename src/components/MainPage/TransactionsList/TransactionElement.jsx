@@ -1,10 +1,7 @@
 import css from "./TransactionsList.module.css";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteTransaction,
-  fetchExpenses,
-} from "../../../redux/transactions/operations";
+import { deleteTransaction } from "../../../redux/transactions/operations";
 import { setBalance } from "../../../redux/auth/operations";
 import Icon from "../../Icon/Icon";
 import { selectBalance } from "../../../redux/auth/selectors";
@@ -27,6 +24,7 @@ export const TransactionElement = ({ transaction, transactionType }) => {
     console.log("delete");
     if (transactionType === "expenses") {
       document.getElementById("balance").value = balance + amount;
+      console.log("done");
       dispatch(setBalance(balance + transaction.amount));
     } else {
       document.getElementById("balance").value = balance - amount;

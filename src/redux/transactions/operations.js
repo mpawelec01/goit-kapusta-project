@@ -11,6 +11,7 @@ export const fetchExpenses = createAsyncThunk(
       const response = await axios.get(
         "http://localhost:4000/api/transactions/expenses"
       );
+      console.log("jjj");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -36,6 +37,8 @@ export const addExpense = createAsyncThunk(
   "transactions/addExpense",
   async (info, thunkAPI) => {
     try {
+      debugger;
+
       const response = await axios.post(
         "http://localhost:4000/api/transactions/expenses",
         {
@@ -75,6 +78,7 @@ export const addIncome = createAsyncThunk(
 export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
   async (transactionId, thunkAPI) => {
+    console.log("redux");
     try {
       const response = await axios.delete(
         `http://localhost:4000/api/transactions/${transactionId}`

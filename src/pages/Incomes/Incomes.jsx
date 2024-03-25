@@ -12,12 +12,12 @@ import Summary from "../../components/MainPage/Summary/Summary";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIncome } from "../../redux/transactions/operations";
-import { selectIncomeTransactions } from "../../redux/transactions/selectors";
+import { selectTransactions } from "../../redux/transactions/selectors";
 
 export const Incomes = () => {
   const dispatch = useDispatch();
 
-  const transactionsList = useSelector(selectIncomeTransactions);
+  const transactionsList = useSelector(selectTransactions);
 
   useEffect(() => {
     dispatch(fetchIncome());
