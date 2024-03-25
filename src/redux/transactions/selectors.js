@@ -1,8 +1,14 @@
+export const selectTransactions = (state) => state.transactions.transactions;
+
 export const selectExpensesTransactions = (state) =>
-  state.transactions.transactions.expenses;
+  state.transactions.transactions.filter(
+    (transaction) => transaction.type === "expenses"
+  );
 
 export const selectIncomeTransactions = (state) =>
-  state.transactions.transactions.income;
+  state.transactions.transactions.filter(
+    (transaction) => transaction.type === "income"
+  );
 
 export const selectIsLoading = (state) => state.transactions.isLoading;
 

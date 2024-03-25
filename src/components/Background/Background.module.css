@@ -14,11 +14,10 @@
   background: #f5f6fb;
   border-radius: 0 0 0 38%;
   z-index: -99;
-  
 }
 
 .background_multicabbage {
-  background-image: url('../../img/background/cabbage-background-top.png');
+  background-image: url("../../img/background/cabbage-background-top.png");
   position: absolute;
   top: 0;
   left: 0;
@@ -26,8 +25,7 @@
   height: 100%;
   border-radius: 0 0 0 38%;
   z-index: 0;
-} 
-
+}
 
 .background_image2 {
   background-image: url("../../img/background/two-cabbages.png");
@@ -41,8 +39,8 @@
   margin-bottom: unset;
   padding: unset;
   /* animation: float 6s ease-in-out infinite; */
-  }
-  /* @keyframes float {
+}
+/* @keyframes float {
     0% {
       transform: translatey(0px);
     }
@@ -55,7 +53,7 @@
   } */
 
 @media (min-width: 772px) {
-  .background_image1  {
+  .background_image1 {
     border-radius: 0 0 0 140px;
     width: 100%;
   }
@@ -66,16 +64,16 @@
     z-index: 0;
     top: 65%;
     left: 10%;
-    width: 50%;
+    width: 25%;
     height: 50%;
   }
 }
 
 @media (min-width: 1280px) {
-  .background_image1  {
+  .background_image1 {
     width: 100%;
     height: 75%;
-    border-radius: 0 0 0 140px
+    border-radius: 0 0 0 140px;
   }
   .background_image2 {
     background-image: url("../../img/background/two-cabbages.png");

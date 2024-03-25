@@ -12,12 +12,12 @@ import Summary from "../../components/MainPage/Summary/Summary";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
-import { selectExpensesTransactions } from "../../redux/transactions/selectors";
+import { selectTransactions } from "../../redux/transactions/selectors";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
 
-  const transactionsList = useSelector(selectExpensesTransactions);
+  const transactionsList = useSelector(selectTransactions);
 
   useEffect(() => {
     dispatch(fetchExpenses());

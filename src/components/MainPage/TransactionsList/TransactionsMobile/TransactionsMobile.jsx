@@ -20,14 +20,14 @@ export const TransactionsMobile = ({ transactionsList, transactionType }) => {
             </div>
             <div className={css.right}>
               {transactionType === "expenses" && (
-                <div
-                  className={css.sumExpenses}
-                >{`- ${transaction.amount} UAH.`}</div>
+                <div className={css.sumExpenses}>{`- ${parseFloat(
+                  transaction.amount
+                ).toFixed(2)} UAH.`}</div>
               )}
               {transactionType === "income" && (
-                <div
-                  className={css.sumIncome}
-                >{`${transaction.amount} UAH.`}</div>
+                <div className={css.sumIncome}>{`${parseFloat(
+                  transaction.amount
+                ).toFixed(2)} UAH.`}</div>
               )}
 
               <div className={css.btn}>
