@@ -52,7 +52,7 @@ const transactionsSlice = createSlice({
       .addCase(fetchIncome.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions.income = action.payload.filter(
+        state.transactions = action.payload.filter(
           (transaction) => transaction.type === "income"
         );
       })
@@ -72,8 +72,6 @@ const transactionsSlice = createSlice({
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
-        debugger;
         const index = state.transactions.findIndex(
           (transaction) => transaction.id === action.payload.id
         );

@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
+import { TransactionElement } from "../../components/MainPage/TransactionsList/TransactionElement";
+
 export const MainPage = () => {
   const dispatch = useDispatch();
 
@@ -21,7 +23,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     dispatch(fetchExpenses());
-  }, [dispatch, ProductForm]);
+  }, [dispatch, TransactionElement]);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");

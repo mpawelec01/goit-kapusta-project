@@ -17,10 +17,10 @@ export const TransactionElement = ({ transaction, transactionType }) => {
   const isOpen = useSelector(selectIsOpen);
 
   const handleDelete = () => {
-    dispatch(toggleIsOpen());
+    return dispatch(toggleIsOpen());
   };
 
-  const deleteTransaction = () => {
+  const handleDeleteTransaction = () => {
     console.log("delete");
     if (transactionType === "expenses") {
       document.getElementById("balance").value = balance + amount;
@@ -54,7 +54,7 @@ export const TransactionElement = ({ transaction, transactionType }) => {
         <button type="button" className={css.btnDelete} onClick={handleDelete}>
           <Icon className={css.icon} iconName="delete" />
         </button>
-        {isOpen && <SureModal onYes={deleteTransaction} />}
+        {isOpen && <SureModal onYes={handleDeleteTransaction} />}
       </td>
     </tr>
   );
