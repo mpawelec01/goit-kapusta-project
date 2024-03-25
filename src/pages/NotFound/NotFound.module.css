@@ -1,0 +1,34 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40;
+    color: #010101;
+  }
+
+
+  .container p {
+    background-color: gray;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 15px 25px;
+  }
+
+  .container p:hover,
+  .container p:focus {
+    background-color: var(--brand-color);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+  }
+
+
+  /* .cabbage {
+    background-color: var(--brand-color);
+    border-radius: 30%;
+    padding: 20px;
+    z-index: 10;
+  } */

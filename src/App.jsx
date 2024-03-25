@@ -19,6 +19,7 @@ import { refreshUser } from "./redux/auth/operations";
 import { selectToken } from "./redux/auth/selectors";
 import Incomes from "./pages/Incomes/Incomes";
 import { Loader } from "./components/Loader/Loader";
+import NotFound from "./pages/NotFound/NotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const App = () => {
             element={<PrivateRoute redirectTo="/" component={<Report />} />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     
     </Suspense>
