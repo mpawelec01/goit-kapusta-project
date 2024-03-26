@@ -1,32 +1,34 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import styles from "./Report.module.css";
 import icons from "../../img/icons.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectBalance } from "../../redux/auth/selectors";
-import {
-  selectExpensesTransactions,
-  selectIncomeTransactions,
-  selectTransactions,
-} from "../../redux/transactions/selectors";
-import {
-  fetchExpenses,
-  fetchIncome,
-} from "../../redux/transactions/operations";
-export const ReportPage = () => {
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+// import {
+//   fetchExpenses,
+//   fetchIncome,
+// } from "../../redux/transactions/operations";
+export const ReportPage = ({
+  balance,
+  expensesTransactions,
+  incomeTransactions,
+  getFilteredMoths,
+  showIncome,
+  toggleShowIncome,
+  currentIndex,
+  setCurrentIndex,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const balance = useSelector(selectBalance);
 
   // useEffect(() => {
   //   dispatch(fetchIncome());
   //   dispatch(fetchExpenses());
   // }, []);
 
-  const expensesTransactions = useSelector(selectExpensesTransactions);
-  const incomeTransactions = useSelector(selectIncomeTransactions);
-  console.log(expensesTransactions);
-  console.log(incomeTransactions);
+  // console.log(expensesTransactions);
+  // console.log(incomeTransactions);
+
   const totalExpenses = expensesTransactions.reduce(
     (accumulator, currentItem) => {
       return accumulator + currentItem.amount;
@@ -37,6 +39,30 @@ export const ReportPage = () => {
     return accumulator + currentItem.amount;
   }, 0);
 
+  const monthsFromTransactionType = (
+    showIncome,
+    incomeTransactions,
+    expensesTransactions
+  ) => {
+    if (!showIncome) return getFilteredMoths(incomeTransactions);
+    return getFilteredMoths(expensesTransactions);
+  };
+  const filteredMonths = monthsFromTransactionType(
+    showIncome,
+    incomeTransactions,
+    expensesTransactions
+  );
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? filteredMonths.length - 1 : prevIndex - 1
+    );
+  };
+  const handleRightClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === filteredMonths.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
     <div>
       <div className={styles.box}>
@@ -44,7 +70,12 @@ export const ReportPage = () => {
           onClick={() => navigate("/main")}
           className={styles.main_page_button}
         >
-          <svg className={styles.arrowLeft} width={24} height={24}>
+          <svg
+            className={styles.arrowLeft}
+            width={24}
+            height={24}
+            onClick={toggleShowIncome}
+          >
             <use href={`${icons}#icon-arrow_left`}></use>
           </svg>
           <p>Main Page</p>
@@ -52,11 +83,21 @@ export const ReportPage = () => {
         <div className={styles.period}>
           <p className={styles.period_header}>Current period:</p>
           <div className={styles.periodBox}>
-            <svg className={styles.vectorLeft} width={7} height={12}>
+            <svg
+              className={styles.vectorLeft}
+              width={7}
+              height={12}
+              onClick={handleLeftClick}
+            >
               <use href={`${icons}#icon-vector_left`}></use>
             </svg>
-            <p className={styles.period_date}>November 2019</p>
-            <svg className={styles.vectorRight} width={7} height={12}>
+            <p className={styles.period_date}>{filteredMonths[currentIndex]}</p>
+            <svg
+              className={styles.vectorRight}
+              width={7}
+              height={12}
+              onClick={handleRightClick}
+            >
               <use href={`${icons}#icon-vector_right`}></use>
             </svg>
           </div>
