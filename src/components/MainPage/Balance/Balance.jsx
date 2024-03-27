@@ -5,25 +5,31 @@ import ReportsLink from "../ReportsLink/ReportsLink";
 import css from "./Balance.module.css";
 import { selectBalance } from "../../../redux/auth/selectors";
 import { setBalance } from "../../../redux/auth/operations";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Balance = () => {
   const dispatch = useDispatch();
   const balance = useSelector(selectBalance);
+  const [value, setValue] = useState("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const newBalance = form.elements.balance.value;
-
     dispatch(setBalance(newBalance));
-    form.elements.balance.value = parseFloat(newBalance).toFixed(2);
   };
 
   useEffect(() => {
-    document.getElementById("balance").value = parseFloat(balance).toFixed(2);
-    dispatch(setBalance(balance));
-  }, [dispatch]);
+    if (balance === 0) {
+      setValue("");
+      return;
+    }
+    setValue(balance.toFixed(2));
+  }, [balance]);
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
 
   return (
     <div className={css.fullWrapper}>
@@ -42,6 +48,8 @@ const Balance = () => {
               id="balance"
               step="0.01"
               placeholder="00.00"
+              value={value}
+              onChange={onChange}
             />
             <span className={css.currency}>UAH</span>
             {balance === 0 && <BalanceModal />}

@@ -16,7 +16,7 @@ import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { useAuth } from "./hooks/useAuth";
 import { refreshUser } from "./redux/auth/operations";
-import { selectToken } from "./redux/auth/selectors";
+import { selectBalance, selectToken, selectUser } from "./redux/auth/selectors";
 import Incomes from "./pages/Incomes/Incomes";
 import { Loader } from "./components/Loader/Loader";
 import NotFound from "./pages/NotFound/NotFound";
@@ -24,18 +24,17 @@ import NotFound from "./pages/NotFound/NotFound";
 const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
   const token = useSelector(selectToken);
-
-  // useEffect(() => {
-  //   if (!token) {
-  //     return;
-  //   }
-  //   dispatch(refreshUser());
-  // }, [dispatch, token]);
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    dispatch(refreshUser());
+  }, [dispatch, token]);
   return isRefreshing ? (
     <Loader />
   ) : (
@@ -63,7 +62,6 @@ const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    
     </Suspense>
   );
 };

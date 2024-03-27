@@ -14,16 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/transactions/operations";
 import { selectTransactions } from "../../redux/transactions/selectors";
 
-import { TransactionElement } from "../../components/MainPage/TransactionsList/TransactionElement";
-
 export const MainPage = () => {
   const dispatch = useDispatch();
-
   const transactionsList = useSelector(selectTransactions);
 
   useEffect(() => {
     dispatch(fetchExpenses());
-  }, [dispatch, TransactionElement]);
+  }, [dispatch]);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");
@@ -50,7 +47,7 @@ export const MainPage = () => {
           <ProductForm transactionType="expenses" />
         </div>
         <div className={css.mobileForm}>
-          <MobileForm />
+          <MobileForm transactionType="expenses" />
         </div>
         <div className={css.desktopView}>
           <TransactionsList

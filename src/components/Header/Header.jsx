@@ -22,7 +22,7 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <NavLink to="/">
-        <img src="/logo.svg" />
+        <img alt="logo icon" src="/logo.svg" />
       </NavLink>
       {!isLoggedIn ? (
         ""
@@ -30,9 +30,7 @@ export const Header = () => {
         <>
           <div className={css.headerRightMobile}>
             <div className={css.user}>U</div>
-            <button onClick={handleLogout}>
-              <img src="/logout.svg" />
-            </button>
+            <img alt="logout icon" onClick={handleLogout} src="/logout.svg" />
           </div>
           <div className={css.headerRightDesktop}>
             <div

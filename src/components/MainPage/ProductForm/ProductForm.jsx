@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addExpense,
   addIncome,
+  fetchExpenses,
   fetchExpensesCategories,
   fetchIncomeCategories,
 } from "../../../redux/transactions/operations";
-import { setBalance } from "../../../redux/auth/operations";
 
 import { nanoid } from "nanoid";
 
@@ -67,15 +67,11 @@ const ProductForm = ({ transactionType }) => {
     if (transactionType === "expenses") {
       if (transaction.amount <= balance) {
         dispatch(addExpense(transaction));
-        document.getElementById("balance").value = balance - transaction.amount;
-        dispatch(setBalance(balance - transaction.amount));
       } else alert("Not enough balance. Please try another sum of money!");
     }
 
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
-      document.getElementById("balance").value = balance + transaction.amount;
-      dispatch(setBalance(balance + transaction.amount));
     }
 
     form.reset();

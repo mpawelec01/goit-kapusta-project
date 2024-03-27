@@ -48,7 +48,7 @@ export const Incomes = () => {
           <ProductForm transactionType="income" />
         </div>
         <div className={css.mobileForm}>
-          <MobileForm />
+          <MobileForm transactionType="income" />
         </div>
         <div className={css.desktopView}>
           <TransactionsList
