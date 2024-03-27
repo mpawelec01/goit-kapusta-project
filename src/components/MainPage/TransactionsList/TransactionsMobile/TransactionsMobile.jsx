@@ -10,7 +10,7 @@ export const TransactionsMobile = ({ transactionsList, transactionType }) => {
     <ul className={css.wrapper}>
       {transactionsList &&
         transactionsList.map((transaction) => (
-          <li className={css.row} key={transaction.id}>
+          <li className={css.row} key={transaction._id}>
             <div className={css.left}>
               <div className={css.description}>{transaction.description}</div>
               <div className={css.down}>

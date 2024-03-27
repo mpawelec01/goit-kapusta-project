@@ -15,21 +15,20 @@ import axios from "axios";
 //   }
 // );
 
-//!!! Nie dokonca rozumiem skad pobiera sie userId???
-export const setBalance = createAsyncThunk(
-  "balance/setBalance",
-  async (balance, thunkAPI) => {
-    debugger;
-    try {
-      const state = thunkAPI.getState();
-      const userId = state.auth.user.id;
-      console.log(userId);
-      const response = await axios.patch(`/${userId}/balance`, {
-        balance,
-      });
-      return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+// export const setBalance = createAsyncThunk(
+//   "balance/setBalance",
+//   async (balance, thunkAPI) => {
+//     debugger;
+//     try {
+//       const state = thunkAPI.getState();
+//       const userId = state.auth.user.id;
+//       console.log(userId);
+//       const response = await axios.patch(`/${userId}/balance`, {
+//         balance,
+//       });
+//       return response.data;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
