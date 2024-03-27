@@ -1,81 +1,56 @@
 import React from "react";
 import styles from "./ReportExpenses.module.css";
 import icons from "../../img/icons.svg";
+import {
+  getTransactionsByCategory,
+  getTotalAmountOfCurrentCategory,
+} from "../../common/common";
+
+const expensesCategories = [
+  "Products",
+  "Alcohol",
+  "Entertainment",
+  "Health",
+  "Transport",
+  "Housing",
+  "Technique",
+  "Communal, communication",
+  "Sports, hobbies",
+  "Education",
+  "Other",
+];
+const iconsNames = [
+  "products",
+  "alcohol",
+  "entertainment",
+  "health",
+  "transport",
+  "housing",
+  "technique",
+  "communication",
+  "hobbies",
+  "education",
+  "other",
+];
+
 export const ReportExpenses = ({
   toggleShowIncome,
   currentIndex,
   filteredExpensesTransactions,
-  getTransactionsByCategory,
-  getTotalAmountOfCurrentCategory,
 }) => {
-  const productsExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Products"
+  const expensesByCategory = expensesCategories.map((category) =>
+    getTransactionsByCategory(
+      filteredExpensesTransactions,
+      currentIndex,
+      category
+    )
   );
-  const alcoholExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Alcohol"
-  );
-  const entertainmentExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Entertainment"
-  );
-  const healthExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Health"
-  );
-  const transportExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Transport"
-  );
-  const housingExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Housing"
-  );
-  const techniqueExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Technique"
-  );
-  const communalExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Communal, communication"
-  );
-  const hobbiesExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Sports, hobbies"
-  );
-  const educationExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Education"
-  );
-  const otherExpenses = getTransactionsByCategory(
-    filteredExpensesTransactions,
-    currentIndex,
-    "Other"
-  );
-  const totalProducts = getTotalAmountOfCurrentCategory(productsExpenses);
-  const totalAlcohol = getTotalAmountOfCurrentCategory(alcoholExpenses);
-  const totalEntertainment = getTotalAmountOfCurrentCategory(
-    entertainmentExpenses
-  );
-  const totalHealth = getTotalAmountOfCurrentCategory(healthExpenses);
-  const totalTransport = getTotalAmountOfCurrentCategory(transportExpenses);
-  const totalHousing = getTotalAmountOfCurrentCategory(housingExpenses);
-  const totalTechnique = getTotalAmountOfCurrentCategory(techniqueExpenses);
-  const totalCommunal = getTotalAmountOfCurrentCategory(communalExpenses);
-  const totalHobbies = getTotalAmountOfCurrentCategory(hobbiesExpenses);
-  const totalEducation = getTotalAmountOfCurrentCategory(educationExpenses);
-  const totalOther = getTotalAmountOfCurrentCategory(otherExpenses);
+
+  const totals = expensesByCategory.map((el, index) => ({
+    name: expensesCategories[index],
+    total: getTotalAmountOfCurrentCategory(el),
+    icon: iconsNames[index],
+  }));
 
   return (
     <div>
@@ -100,126 +75,18 @@ export const ReportExpenses = ({
           </svg>
         </div>
         <ul className={styles.listOfExpenses_list}>
-          {productsExpenses && productsExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalProducts}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-products`}></use>
-              </svg>
-              <p>Products</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {alcoholExpenses && alcoholExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalAlcohol}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-alcohol`}></use>
-              </svg>
-              <p>Alcohol</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {entertainmentExpenses && entertainmentExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalEntertainment}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-entertainment`}></use>
-              </svg>
-              <p>Entertainment</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {healthExpenses && healthExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalHealth}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-health`}></use>
-              </svg>
-              <p>Health</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {transportExpenses && transportExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalTransport}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-transport`}></use>
-              </svg>
-              <p>Transport</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {housingExpenses && housingExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalHousing}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-housing`}></use>
-              </svg>
-              <p>Housing</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {techniqueExpenses && techniqueExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalTechnique}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-technique`}></use>
-              </svg>
-              <p>Technique</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {communalExpenses && communalExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalCommunal}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-communication`}></use>
-              </svg>
-              <p>Communal, Communication</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {hobbiesExpenses && hobbiesExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalHobbies}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-hobbies`}></use>
-              </svg>
-              <p>Sports, Hobbies</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {educationExpenses && educationExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalEducation}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-education`}></use>
-              </svg>
-              <p>Education</p>
-            </li>
-          ) : (
-            <li></li>
-          )}
-          {otherExpenses && otherExpenses.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalOther}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-other`}></use>
-              </svg>
-              <p>Other</p>
-            </li>
-          ) : (
-            <li></li>
+          {totals.map((obj) =>
+            obj.total ? (
+              <li className={styles.listOfExpenses_list_item}>
+                <p>{obj.total}</p>
+                <svg className={styles.iconSvg} width={56} height={56}>
+                  <use href={`${icons}#icon-${obj.icon}`}></use>
+                </svg>
+                <p>{obj.name}</p>
+              </li>
+            ) : (
+              <li></li>
+            )
           )}
           <div className={styles.listOfExpenses_line}></div>
         </ul>

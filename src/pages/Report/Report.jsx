@@ -9,6 +9,7 @@ import {
   selectTransactions,
 } from "../../redux/transactions/selectors";
 import { selectBalance } from "../../redux/auth/selectors";
+import { getFilteredMoths, getFilteredTransactions } from "../../common/common";
 
 export const Report = () => {
   const [showIncome, setShowIncome] = useState(true);
@@ -23,70 +24,70 @@ export const Report = () => {
   const incomeTransactions = useSelector(selectIncomeTransactions);
   const balance = useSelector(selectBalance);
 
-  const getMonthName = (dateString) => {
-    const date = new Date(dateString);
-    const monthNames = [
-      "JANUARY",
-      "FEBRUARY",
-      "MARCH",
-      "APRIL",
-      "MAY",
-      "JUNE",
-      "JULY",
-      "AUGUST",
-      "SEPTEMBER",
-      "OCTOBER",
-      "NOVEMBER",
-      "DECEMBER",
-    ];
-    return `${date.getFullYear()} ${monthNames[date.getMonth()]}`;
-  };
+  // const getMonthName = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const monthNames = [
+  //     "JANUARY",
+  //     "FEBRUARY",
+  //     "MARCH",
+  //     "APRIL",
+  //     "MAY",
+  //     "JUNE",
+  //     "JULY",
+  //     "AUGUST",
+  //     "SEPTEMBER",
+  //     "OCTOBER",
+  //     "NOVEMBER",
+  //     "DECEMBER",
+  //   ];
+  //   return `${date.getFullYear()} ${monthNames[date.getMonth()]}`;
+  // };
 
-  const getFilteredMoths = (transactionsType) => {
-    const filteredTransactions = transactionsType.map((transaction) => {
-      const month = transaction.date.split(".")[1];
-      const year = transaction.date.split(".")[2];
-      const yearAndMonth = `${year}-${month}`;
-      return yearAndMonth;
-    });
-    const transactionsMonths = filteredTransactions.map((transaction) =>
-      getMonthName(transaction)
-    );
-    const uniqueTransactionsMonths = transactionsMonths.filter(
-      (transaction, index) => {
-        return transactionsMonths.indexOf(transaction) === index;
-      }
-    );
-    return uniqueTransactionsMonths;
-  };
+  // const getFilteredMoths = (transactionsType) => {
+  //   const filteredTransactions = transactionsType.map((transaction) => {
+  //     const month = transaction.date.split(".")[1];
+  //     const year = transaction.date.split(".")[2];
+  //     const yearAndMonth = `${year}-${month}`;
+  //     return yearAndMonth;
+  //   });
+  //   const transactionsMonths = filteredTransactions.map((transaction) =>
+  //     getMonthName(transaction)
+  //   );
+  //   const uniqueTransactionsMonths = transactionsMonths.filter(
+  //     (transaction, index) => {
+  //       return transactionsMonths.indexOf(transaction) === index;
+  //     }
+  //   );
+  //   return uniqueTransactionsMonths;
+  // };
 
-  const getFilteredTransactions = (transactionsType) => {
-    const uniqueTransactionsMonths = getFilteredMoths(transactionsType);
-    const listsOfTransactionsByMonths = uniqueTransactionsMonths.map((fil) => {
-      const [selectedYear, selectedMonthName] = fil.split(" ");
-      const selectedMonthNumber =
-        new Date(
-          Date.parse(`${selectedMonthName} 1, ${selectedYear}`)
-        ).getMonth() + 1;
+  // const getFilteredTransactions = (transactionsType) => {
+  //   const uniqueTransactionsMonths = getFilteredMoths(transactionsType);
+  //   const listsOfTransactionsByMonths = uniqueTransactionsMonths.map((fil) => {
+  //     const [selectedYear, selectedMonthName] = fil.split(" ");
+  //     const selectedMonthNumber =
+  //       new Date(
+  //         Date.parse(`${selectedMonthName} 1, ${selectedYear}`)
+  //       ).getMonth() + 1;
 
-      const transactionsForSelectedMonth = transactionsType.filter(
-        (transaction) => {
-          const [transactionDay, transactionMonth, transactionYear] =
-            transaction.date.split(".");
-          return (
-            parseInt(transactionMonth) === selectedMonthNumber &&
-            parseInt(transactionYear) === parseInt(selectedYear)
-          );
-        }
-      );
-      return transactionsForSelectedMonth;
-    });
-    return listsOfTransactionsByMonths;
-  };
-  const filteredIncomeTransactions =
-    getFilteredTransactions(incomeTransactions);
-  const filteredExpensesTransactions =
-    getFilteredTransactions(expensesTransactions);
+  //     const transactionsForSelectedMonth = transactionsType.filter(
+  //       (transaction) => {
+  //         const [transactionDay, transactionMonth, transactionYear] =
+  //           transaction.date.split(".");
+  //         return (
+  //           parseInt(transactionMonth) === selectedMonthNumber &&
+  //           parseInt(transactionYear) === parseInt(selectedYear)
+  //         );
+  //       }
+  //     );
+  //     return transactionsForSelectedMonth;
+  //   });
+  //   return listsOfTransactionsByMonths;
+  // };
+  // const filteredIncomeTransactions =
+  //   getFilteredTransactions(incomeTransactions);
+  // const filteredExpensesTransactions =
+  //   getFilteredTransactions(expensesTransactions);
 
   return (
     <div className={styles.container}>
@@ -95,7 +96,7 @@ export const Report = () => {
         expensesTransactions={expensesTransactions}
         incomeTransactions={incomeTransactions}
         balance={balance}
-        getFilteredMoths={getFilteredMoths}
+        // getFilteredMoths={getFilteredMoths}
         showIncome={showIncome}
         toggleShowIncome={toggleShowIncome}
         currentIndex={currentIndex}
@@ -105,8 +106,10 @@ export const Report = () => {
         showIncome={showIncome}
         toggleShowIncome={toggleShowIncome}
         currentIndex={currentIndex}
-        filteredIncomeTransactions={filteredIncomeTransactions}
-        filteredExpensesTransactions={filteredExpensesTransactions}
+        expensesTransactions={expensesTransactions}
+        incomeTransactions={incomeTransactions}
+        // filteredIncomeTransactions={filteredIncomeTransactions}
+        // filteredExpensesTransactions={filteredExpensesTransactions}
       />
       <div className={styles.position_cabbages}>
         <div className={styles.cabbages} />
