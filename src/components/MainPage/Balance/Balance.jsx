@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const Balance = () => {
   const dispatch = useDispatch();
   const balance = useSelector(selectBalance);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(balance);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
