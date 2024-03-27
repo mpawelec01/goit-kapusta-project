@@ -1,18 +1,14 @@
-// import { useEffect } from "react";
 import styles from "./Report.module.css";
 import icons from "../../img/icons.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-// import {
-//   fetchExpenses,
-//   fetchIncome,
-// } from "../../redux/transactions/operations";
+import { monthsFromTransactionType } from "../../common/common";
+
 export const ReportPage = ({
   balance,
   expensesTransactions,
   incomeTransactions,
-  getFilteredMoths,
   showIncome,
   toggleShowIncome,
   currentIndex,
@@ -39,14 +35,6 @@ export const ReportPage = ({
     return accumulator + currentItem.amount;
   }, 0);
 
-  const monthsFromTransactionType = (
-    showIncome,
-    incomeTransactions,
-    expensesTransactions
-  ) => {
-    if (!showIncome) return getFilteredMoths(incomeTransactions);
-    return getFilteredMoths(expensesTransactions);
-  };
   const filteredMonths = monthsFromTransactionType(
     showIncome,
     incomeTransactions,
