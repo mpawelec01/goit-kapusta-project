@@ -73,7 +73,7 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.transactions.findIndex(
-          (transaction) => transaction.id === action.payload.id
+          (transaction) => transaction.id === action.payload
         );
         state.transactions.splice(index, 1);
       })
