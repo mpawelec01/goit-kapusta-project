@@ -7,6 +7,7 @@ import {
   refreshUser,
   setBalance,
   googleLogIn,
+  getUserBalance,
 } from "./operations";
 
 const initialState = {
@@ -56,6 +57,10 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(setBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload.balance;
+        state.isRefreshing = false;
+      })
+      .addCase(getUserBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.balance;
         state.isRefreshing = false;
       });
