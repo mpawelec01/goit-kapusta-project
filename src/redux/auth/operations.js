@@ -131,3 +131,17 @@ export const setBalance = createAsyncThunk(
     }
   }
 );
+
+export const getUserBalance = createAsyncThunk(
+  "auth/getUserBalance",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/users/balance`
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
