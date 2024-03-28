@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addExpense,
   addIncome,
-  fetchExpenses,
   fetchExpensesCategories,
   fetchIncomeCategories,
 } from "../../../redux/transactions/operations";
