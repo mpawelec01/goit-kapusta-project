@@ -21,7 +21,7 @@ const Balance = () => {
 
   useEffect(() => {
     if (balance === 0) {
-      setValue("");
+      setValue(0);
       return;
     }
     setValue(balance.toFixed(2));
