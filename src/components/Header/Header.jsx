@@ -1,24 +1,23 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
+import { useNavigate } from "react-router-dom"; // Added for navigation
 
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleIsLogout } from "../../redux/modal/modalSlice";
-import { selectIsLogout } from "../../redux/modal/selectors";
+import { logOut } from "../../redux/auth/operations"; // Adjust based on your actual logout action
 import { LeaveModal } from "../Modals/LeaveModal/LeaveModal";
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
-  const isOpen = useSelector(selectIsLogout);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Used for redirect after logout
 
-  const handleLogout = () => {
-    dispatch(toggleIsLogout());
+  const handleLogout = async () => {
+    await dispatch(logOut()); // Assuming logOut is an async thunk
+    navigate("/"); // Redirect to home or login page after logout
   };
 
-  // console.log(user);
   return (
     <header className={css.header}>
       <NavLink to="/">
@@ -44,7 +43,6 @@ export const Header = () => {
             <button type="button" onClick={handleLogout} className={css.exit}>
               Exit
             </button>
-            {isOpen && <LeaveModal />}
           </div>
         </>
       )}

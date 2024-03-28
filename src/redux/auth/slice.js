@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { add } from "date-fns";
 import {
   register,
   logIn,
@@ -19,6 +18,18 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    // Reducers for direct state updates
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    clearAuthState: (state) => {
+      state.user = { email: null, balance: null, avatarUrl: null };
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isRefreshing = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
@@ -30,8 +41,6 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.user.token;
         state.isLoggedIn = true;
-        console.log(state.token);
-        console.log(state.user);
       })
       .addCase(googleLogIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -39,9 +48,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.user = { email: null };
-        state.token = null;
-        state.isLoggedIn = false;
+        // Use the clearAuthState reducer to reset auth state on logout
+        authSlice.caseReducers.clearAuthState(state);
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
@@ -57,9 +65,10 @@ const authSlice = createSlice({
       })
       .addCase(setBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.balance;
-        state.isRefreshing = false;
       });
   },
 });
+
+export const { setToken, clearAuthState } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
