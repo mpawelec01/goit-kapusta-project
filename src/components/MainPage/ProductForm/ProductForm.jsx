@@ -67,13 +67,11 @@ const ProductForm = ({ transactionType }) => {
     if (transactionType === "expenses") {
       if (transaction.amount <= balance) {
         dispatch(addExpense(transaction));
-        dispatch(getUserBalance());
       } else alert("Not enough balance. Please try another sum of money!");
     }
 
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
-      dispatch(getUserBalance());
     }
 
     form.reset();
