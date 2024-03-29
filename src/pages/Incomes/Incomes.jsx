@@ -19,9 +19,9 @@ export const Incomes = () => {
 
   const transactionsList = useSelector(selectIncomeTransactions);
 
-  useEffect(() => {
-    dispatch(fetchIncome());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchIncome());
+  // }, [dispatch]);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");

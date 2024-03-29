@@ -5,6 +5,7 @@ import {
   getTransactionsByCategory,
   getTotalAmountOfCurrentCategory,
 } from "../../common/common";
+import { Graph } from "../Chart/Chart";
 
 const incomeCategories = ["Salary", "Add. Income"];
 const iconsNames = ["salary", "income"];
@@ -13,6 +14,11 @@ export const ReportIncome = ({
   toggleShowIncome,
   currentIndex,
   filteredIncomeTransactions,
+  showChart,
+  setShowChart,
+  iconName,
+  setIconName,
+  toggleChart,
 }) => {
   const incomeByCategory = incomeCategories.map((category) =>
     getTransactionsByCategory(
@@ -27,19 +33,6 @@ export const ReportIncome = ({
     total: getTotalAmountOfCurrentCategory(el),
     icon: iconsNames[index],
   }));
-
-  // const salaryIncome = getTransactionsByCategory(
-  //   filteredIncomeTransactions,
-  //   currentIndex,
-  //   "Salary"
-  // );
-  // const additionalIncome = getTransactionsByCategory(
-  //   filteredIncomeTransactions,
-  //   currentIndex,
-  //   "Add. Income"
-  // );
-  // const totalSalary = getTotalAmountOfCurrentCategory(salaryIncome);
-  // const totalAdditionalInc = getTotalAmountOfCurrentCategory(additionalIncome);
 
   return (
     <div>
@@ -63,12 +56,17 @@ export const ReportIncome = ({
             <use href={`${icons}#icon-vector_right`}></use>
           </svg>
         </div>
-        <ul className={styles.listOfExpenses_list}>
+        <ul className={styles.listOfIncome_list}>
           {totals.map((obj) =>
             obj.total ? (
               <li className={styles.listOfExpenses_list_item}>
                 <p>{obj.total}</p>
-                <svg className={styles.iconSvg} width={56} height={56}>
+                <svg
+                  className={styles.iconSvg}
+                  width={56}
+                  height={56}
+                  onClick={() => toggleChart(obj.name)}
+                >
                   <use href={`${icons}#icon-${obj.icon}`}></use>
                 </svg>
                 <p>{obj.name}</p>
@@ -77,20 +75,14 @@ export const ReportIncome = ({
               <li></li>
             )
           )}
-          {/* {additionalIncome && additionalIncome.length > 0 ? (
-            <li className={styles.listOfExpenses_list_item}>
-              <p>{totalAdditionalInc}</p>
-              <svg className={styles.iconSvg} width={56} height={56}>
-                <use href={`${icons}#icon-income`}></use>
-              </svg>
-              <p>Add Income</p>
-            </li>
-          ) : (
-            <li></li>
-          )} */}
         </ul>
       </div>
-      <div className={styles.diagram}>
+      {showChart ? (
+        <Graph incomeByCategory={incomeByCategory} iconName={iconName} />
+      ) : (
+        <></>
+      )}
+      {/* <div className={styles.diagram}>
         <ul className={styles.diagram_list}>
           <li className={styles.diagram_list_item}>
             <p className={styles.diagram_list_item_header}>My</p>
@@ -103,7 +95,7 @@ export const ReportIncome = ({
             <div className={styles.diagram_list_item_chart_2}></div>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

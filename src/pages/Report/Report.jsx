@@ -14,8 +14,12 @@ import { getFilteredMoths, getFilteredTransactions } from "../../common/common";
 export const Report = () => {
   const [showIncome, setShowIncome] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showChart, setShowChart] = useState(false);
+  const [iconName, setIconName] = useState("");
 
   const toggleShowIncome = () => {
+    setShowChart(false);
+    setIconName("");
     setShowIncome(!showIncome);
     setCurrentIndex(0);
   };
@@ -24,71 +28,6 @@ export const Report = () => {
   const incomeTransactions = useSelector(selectIncomeTransactions);
   const balance = useSelector(selectBalance);
 
-  // const getMonthName = (dateString) => {
-  //   const date = new Date(dateString);
-  //   const monthNames = [
-  //     "JANUARY",
-  //     "FEBRUARY",
-  //     "MARCH",
-  //     "APRIL",
-  //     "MAY",
-  //     "JUNE",
-  //     "JULY",
-  //     "AUGUST",
-  //     "SEPTEMBER",
-  //     "OCTOBER",
-  //     "NOVEMBER",
-  //     "DECEMBER",
-  //   ];
-  //   return `${date.getFullYear()} ${monthNames[date.getMonth()]}`;
-  // };
-
-  // const getFilteredMoths = (transactionsType) => {
-  //   const filteredTransactions = transactionsType.map((transaction) => {
-  //     const month = transaction.date.split(".")[1];
-  //     const year = transaction.date.split(".")[2];
-  //     const yearAndMonth = `${year}-${month}`;
-  //     return yearAndMonth;
-  //   });
-  //   const transactionsMonths = filteredTransactions.map((transaction) =>
-  //     getMonthName(transaction)
-  //   );
-  //   const uniqueTransactionsMonths = transactionsMonths.filter(
-  //     (transaction, index) => {
-  //       return transactionsMonths.indexOf(transaction) === index;
-  //     }
-  //   );
-  //   return uniqueTransactionsMonths;
-  // };
-
-  // const getFilteredTransactions = (transactionsType) => {
-  //   const uniqueTransactionsMonths = getFilteredMoths(transactionsType);
-  //   const listsOfTransactionsByMonths = uniqueTransactionsMonths.map((fil) => {
-  //     const [selectedYear, selectedMonthName] = fil.split(" ");
-  //     const selectedMonthNumber =
-  //       new Date(
-  //         Date.parse(`${selectedMonthName} 1, ${selectedYear}`)
-  //       ).getMonth() + 1;
-
-  //     const transactionsForSelectedMonth = transactionsType.filter(
-  //       (transaction) => {
-  //         const [transactionDay, transactionMonth, transactionYear] =
-  //           transaction.date.split(".");
-  //         return (
-  //           parseInt(transactionMonth) === selectedMonthNumber &&
-  //           parseInt(transactionYear) === parseInt(selectedYear)
-  //         );
-  //       }
-  //     );
-  //     return transactionsForSelectedMonth;
-  //   });
-  //   return listsOfTransactionsByMonths;
-  // };
-  // const filteredIncomeTransactions =
-  //   getFilteredTransactions(incomeTransactions);
-  // const filteredExpensesTransactions =
-  //   getFilteredTransactions(expensesTransactions);
-
   return (
     <div className={styles.container}>
       <div className={styles.bg} />
@@ -96,11 +35,12 @@ export const Report = () => {
         expensesTransactions={expensesTransactions}
         incomeTransactions={incomeTransactions}
         balance={balance}
-        // getFilteredMoths={getFilteredMoths}
         showIncome={showIncome}
         toggleShowIncome={toggleShowIncome}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
+        setIconName={setIconName}
+        setShowChart={setShowChart}
       />
       <ToggledReport
         showIncome={showIncome}
@@ -108,8 +48,10 @@ export const Report = () => {
         currentIndex={currentIndex}
         expensesTransactions={expensesTransactions}
         incomeTransactions={incomeTransactions}
-        // filteredIncomeTransactions={filteredIncomeTransactions}
-        // filteredExpensesTransactions={filteredExpensesTransactions}
+        showChart={showChart}
+        setShowChart={setShowChart}
+        iconName={iconName}
+        setIconName={setIconName}
       />
       <div className={styles.position_cabbages}>
         <div className={styles.cabbages} />

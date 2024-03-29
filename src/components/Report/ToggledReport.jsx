@@ -9,36 +9,19 @@ export const ToggledReport = ({
   currentIndex,
   expensesTransactions,
   incomeTransactions,
+  showChart,
+  setShowChart,
+  iconName,
+  setIconName,
 }) => {
-  // const getTransactionsByCategory = (
-  //   filteredIncomeTransactions,
-  //   index,
-  //   category
-  // ) => {
-  //   const incomesOfCurrentCategory =
-  //     filteredIncomeTransactions[index] &&
-  //     filteredIncomeTransactions[index].length > 0
-  //       ? filteredIncomeTransactions[index].filter(
-  //           (transaction) => transaction.category === category
-  //         )
-  //       : 0;
-  //   return incomesOfCurrentCategory;
-  // };
-
-  // const getTotalAmountOfCurrentCategory = (transactions) => {
-  //   const total = transactions
-  //     ? transactions.reduce(
-  //         (accumulator, transaction) => accumulator + transaction.amount,
-  //         0
-  //       )
-  //     : 0;
-  //   return total;
-  // };
-
   const filteredIncomeTransactions =
     getFilteredTransactions(incomeTransactions);
   const filteredExpensesTransactions =
     getFilteredTransactions(expensesTransactions);
+  const toggleChart = (name) => {
+    setIconName(name);
+    setShowChart(true);
+  };
 
   return (
     <div>
@@ -47,16 +30,22 @@ export const ToggledReport = ({
           toggleShowIncome={toggleShowIncome}
           currentIndex={currentIndex}
           filteredExpensesTransactions={filteredExpensesTransactions}
-          // getTransactionsByCategory={getTransactionsByCategory}
-          // getTotalAmountOfCurrentCategory={getTotalAmountOfCurrentCategory}
+          showChart={showChart}
+          setShowChart={setShowChart}
+          iconName={iconName}
+          setIconName={setIconName}
+          toggleChart={toggleChart}
         />
       ) : (
         <ReportIncome
           toggleShowIncome={toggleShowIncome}
           currentIndex={currentIndex}
           filteredIncomeTransactions={filteredIncomeTransactions}
-          // getTransactionsByCategory={getTransactionsByCategory}
-          // getTotalAmountOfCurrentCategory={getTotalAmountOfCurrentCategory}
+          showChart={showChart}
+          setShowChart={setShowChart}
+          iconName={iconName}
+          setIconName={setIconName}
+          toggleChart={toggleChart}
         />
       )}
     </div>
