@@ -63,6 +63,12 @@ const authSlice = createSlice({
       .addCase(getUserBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.balance;
         state.isRefreshing = false;
+        console.log(state);
+        console.log(action);
+      })
+      .addCase(getUserBalance.rejected, (state, action) => {
+        console.log(state);
+        console.log(action);
       });
   },
 });

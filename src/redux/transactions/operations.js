@@ -12,7 +12,6 @@ export const fetchExpenses = createAsyncThunk(
       const response = await axios.get(
         "http://localhost:4000/api/transactions/expenses"
       );
-      console.log("jjj");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
