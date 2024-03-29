@@ -12,6 +12,12 @@
   justify-content: center;
   list-style: none;
 }
+.listOfIncome_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+}
 .listOfExpenses_list_item {
   width: calc(33.333%);
   margin: 20px 0;
@@ -42,7 +48,7 @@
   background-color: var(--line-color);
 }
 
-.diagram_list {
+/* .diagram_list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -122,7 +128,7 @@
 .diagram_list_item_value {
   margin: 16px 0 15px 0;
   font-size: var(--fSize-s);
-}
+} */
 .listOfExpenses {
   display: flex;
   align-items: baseline;
@@ -170,14 +176,16 @@
     box-shadow: var(--box-shadow);
     width: 704px;
   }
-  .listOfExpenses_list {
+  .listOfExpenses_list,
+  .listOfIncome_list {
     gap: 20px;
+    justify-content: center;
   }
   .listOfExpenses_list_item {
     width: 14%;
     margin-bottom: 28px;
   }
-  .diagram {
+  /* .diagram {
     margin-top: 32px;
     background-color: var(--background-color);
     border-radius: var(--border-m);
@@ -275,14 +283,14 @@
     margin: 16px 0 15px 0;
     font-size: var(--fSize-m);
     order: 3;
-  }
+  } */
 }
 
 @media screen and (min-width: 1280px) {
   .box {
     width: 1034px;
   }
-  .diagram {
+  /* .diagram {
     width: 1034px;
   }
   .diagram_list {
@@ -291,9 +299,10 @@
   }
   .diagram_list_item {
     max-width: 102px;
-  }
+  } */
 
-  .listOfExpenses_list {
+  .listOfExpenses_list,
+  .listOfIncome_list {
     gap: 10px;
     width: 623px;
     margin: auto;

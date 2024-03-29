@@ -1,0 +1,19 @@
+.graphContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.graph {
+  width: 500px;
+  max-width: 80%;
+}
+
+.barsNames {
+  font-size: 12px;
+  word-wrap: break-word;
+}
+
+.bar:hover,
+.bar:focus {
+  fill: #ff751d;
+}

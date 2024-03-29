@@ -1,8 +1,7 @@
 import styles from "./Report.module.css";
 import icons from "../../img/icons.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+// import { useDispatch } from "react-redux";
 import { monthsFromTransactionType } from "../../common/common";
 
 export const ReportPage = ({
@@ -13,9 +12,11 @@ export const ReportPage = ({
   toggleShowIncome,
   currentIndex,
   setCurrentIndex,
+  setIconName,
+  setShowChart,
 }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(fetchIncome());
@@ -41,11 +42,15 @@ export const ReportPage = ({
     expensesTransactions
   );
   const handleLeftClick = () => {
+    setShowChart(false);
+    setIconName("");
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? filteredMonths.length - 1 : prevIndex - 1
     );
   };
   const handleRightClick = () => {
+    setShowChart(false);
+    setIconName("");
     setCurrentIndex((prevIndex) =>
       prevIndex === filteredMonths.length - 1 ? 0 : prevIndex + 1
     );

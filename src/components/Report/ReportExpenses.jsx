@@ -5,6 +5,7 @@ import {
   getTransactionsByCategory,
   getTotalAmountOfCurrentCategory,
 } from "../../common/common";
+import { Graph } from "../Chart/Chart";
 
 const expensesCategories = [
   "Products",
@@ -37,6 +38,11 @@ export const ReportExpenses = ({
   toggleShowIncome,
   currentIndex,
   filteredExpensesTransactions,
+  showChart,
+  setShowChart,
+  iconName,
+  setIconName,
+  toggleChart,
 }) => {
   const expensesByCategory = expensesCategories.map((category) =>
     getTransactionsByCategory(
@@ -79,7 +85,12 @@ export const ReportExpenses = ({
             obj.total ? (
               <li className={styles.listOfExpenses_list_item}>
                 <p>{obj.total}</p>
-                <svg className={styles.iconSvg} width={56} height={56}>
+                <svg
+                  className={styles.iconSvg}
+                  width={56}
+                  height={56}
+                  onClick={() => toggleChart(obj.name)}
+                >
                   <use href={`${icons}#icon-${obj.icon}`}></use>
                 </svg>
                 <p>{obj.name}</p>
@@ -91,7 +102,12 @@ export const ReportExpenses = ({
           <div className={styles.listOfExpenses_line}></div>
         </ul>
       </div>
-      <div className={styles.diagram}>
+      {showChart ? (
+        <Graph incomeByCategory={expensesByCategory} iconName={iconName} />
+      ) : (
+        <></>
+      )}
+      {/* <div className={styles.diagram}>
         <ul className={styles.diagram_list}>
           <li className={styles.diagram_list_item}>
             <p className={styles.diagram_list_item_header}>Pork</p>
@@ -144,7 +160,7 @@ export const ReportExpenses = ({
             <div className={styles.diagram_list_item_chart_10}></div>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
