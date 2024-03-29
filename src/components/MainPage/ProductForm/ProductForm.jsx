@@ -6,7 +6,6 @@ import {
   fetchExpensesCategories,
   fetchIncomeCategories,
 } from "../../../redux/transactions/operations";
-import { setBalance } from "../../../redux/auth/operations";
 
 import { nanoid } from "nanoid";
 
@@ -19,6 +18,7 @@ import {
 } from "../../../redux/transactions/selectors";
 import { useEffect } from "react";
 import { selectBalance } from "../../../redux/auth/selectors";
+import { getUserBalance } from "../../../redux/auth/operations";
 
 const ProductForm = ({ transactionType }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -67,15 +67,11 @@ const ProductForm = ({ transactionType }) => {
     if (transactionType === "expenses") {
       if (transaction.amount <= balance) {
         dispatch(addExpense(transaction));
-        document.getElementById("balance").value = balance - transaction.amount;
-        dispatch(setBalance(balance - transaction.amount));
       } else alert("Not enough balance. Please try another sum of money!");
     }
 
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
-      document.getElementById("balance").value = balance + transaction.amount;
-      dispatch(setBalance(balance + transaction.amount));
     }
 
     form.reset();

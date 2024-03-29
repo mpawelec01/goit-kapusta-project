@@ -2,24 +2,23 @@ import css from "./TransactionsList.module.css";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../../../redux/transactions/operations";
-import { setBalance } from "../../../redux/auth/operations";
 import Icon from "../../Icon/Icon";
-import { selectBalance } from "../../../redux/auth/selectors";
+import { selectIsOpen } from "../../../redux/modal/selectors";
+import { toggleIsOpen } from "../../../redux/modal/modalSlice";
+import { SureModal } from "../../Modals/SureModal/SureModal";
 
 export const TransactionElement = ({ transaction, transactionType }) => {
   const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
 
-  const balance = useSelector(selectBalance);
+  const isOpen = useSelector(selectIsOpen);
 
   const handleDelete = () => {
-    if (transactionType === "expenses") {
-      document.getElementById("balance").value = balance + amount;
-      dispatch(setBalance(balance + transaction.amount));
-    } else {
-      document.getElementById("balance").value = balance - amount;
-      dispatch(setBalance(balance - transaction.amount));
-    }
+    return dispatch(toggleIsOpen());
+  };
+
+  const handleDeleteTransaction = () => {
+    console.log("delete");
     dispatch(deleteTransaction(_id));
   };
 
@@ -30,16 +29,21 @@ export const TransactionElement = ({ transaction, transactionType }) => {
       <td className={css.category}>{category}</td>
 
       {transactionType === "expenses" && (
-        <td className={css.sumExpenses}>{`- ${amount} UAH.`}</td>
+        <td className={css.sumExpenses}>{`- ${parseFloat(amount).toFixed(
+          2
+        )} UAH.`}</td>
       )}
       {transactionType === "income" && (
-        <td className={css.sumIncome}>{`${amount} UAH.`}</td>
+        <td className={css.sumIncome}>{`${parseFloat(amount).toFixed(
+          2
+        )} UAH.`}</td>
       )}
 
       <td className={css.btn}>
         <button type="button" className={css.btnDelete} onClick={handleDelete}>
           <Icon className={css.icon} iconName="delete" />
         </button>
+        {isOpen && <SureModal onYes={handleDeleteTransaction} />}
       </td>
     </tr>
   );

@@ -1,14 +1,40 @@
-
 * {
   box-sizing: border-box;
 }
 
-/* @media (min-width: 320px)  { */
 .loginformLogo {
   position: relative;
   margin-top: 10%;
-  margin-left: 5%;
+  margin-left: 10%;
   margin-bottom: 10%;
+}
+
+.errorMessage1  {
+  color: #EB5757;
+  width: 90%;
+  text-align: start;
+  font-size: 10px;
+  /* padding-top: 5px; */
+  position: absolute;
+  bottom: 40%;
+  left: 15%;
+  /* transform: translateY(100%); */
+}
+
+.errorMessage2  {
+  color: #EB5757;
+  width: 90%;
+  text-align: start;
+  font-size: 10px;
+  /* padding-top: 5px; */
+  position: absolute;
+  top: 80%;
+  left: 15%;
+  /* transform: translateY(100%); */
+}
+
+.errorStar {
+  color: #EB5757;
 }
 
 .googleBtnText{
@@ -49,6 +75,8 @@
   height: auto;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
+  min-height: 350px; /* Ustawienie minimalnej wysokości */
+  position: relative; /* Konieczne dla pozycjonowania komunikatu błędu */
 }
 
 .form {
@@ -80,7 +108,7 @@
   color: black;
   text-align: left;
   margin-top: 20px;
-  padding: 0px 20px;
+  padding: 5px 20px;
 }
 
 .inputs {
@@ -95,6 +123,7 @@
   padding-left: 20px;
   margin-top: 20px;
   border: unset;
+  outline: none;
 }
 
 .googleLogin {
@@ -223,7 +252,7 @@
     justify-content: center;
     width: 100%;
     margin-top: 20px;
-    margin: 30px 0;
+    margin: 30px 0px;
   }
   .submitButton {
     border: unset;
@@ -249,6 +278,30 @@
     margin-top: 10%;
     margin-left: 5%;
     margin-bottom: 10%;
+  }
+
+  .errorMessage1  {
+    color: #EB5757;
+    width: 90%;
+    text-align: start;
+    font-size: 10px;
+    /* padding-top: 5px; */
+    position: absolute;
+    bottom: 46%;
+    left: 20%;
+    /* transform: translateY(100%); */
+  }
+  
+  .errorMessage2  {
+    color: #EB5757;
+    width: 90%;
+    text-align: start;
+    font-size: 10px;
+    /* padding-top: 5px; */
+    position: absolute;
+    top: 72%;
+    left: 20%;
+    /* transform: translateY(100%); */
   }
 
 }
@@ -338,17 +391,7 @@
   
 
   
-  .inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    background-color: #F6F7FB;
-    height: 52px;
-    border-radius: 26px;
-    padding-left: 20px;
-    margin-top: 20px;
-  }
+  
   
   .googleLogin {
     display: flex;
@@ -392,6 +435,33 @@
     color: #52555F;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   } */
+
+
+  
+  .errorMessage1  {
+    color: #EB5757;
+    width: 90%;
+    text-align: start;
+    font-size: 10px;
+    /* padding-top: 5px; */
+    position: absolute;
+    bottom: 46%;
+    left: 15%;
+    /* transform: translateY(100%); */
+  }
+  
+  .errorMessage2  {
+    color: #EB5757;
+    width: 90%;
+    text-align: start;
+    font-size: 10px;
+    /* padding-top: 5px; */
+    position: absolute;
+    top: 72%;
+    left: 15%;
+    /* transform: translateY(100%); */
+  }
+
 
   .titles {
     font-size: 12px;

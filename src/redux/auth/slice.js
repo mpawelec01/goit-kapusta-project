@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser, setBalance } from "./operations";
+// import { add } from "date-fns";
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  setBalance,
+  googleLogIn,
+  getUserBalance,
+} from "./operations";
 
 const initialState = {
   user: { email: null, balance: null, avatarUrl: null },
@@ -25,6 +34,11 @@ const authSlice = createSlice({
         console.log(state.token);
         console.log(state.user);
       })
+      .addCase(googleLogIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.user.token;
+        state.isLoggedIn = true;
+      })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { email: null };
         state.token = null;
@@ -34,7 +48,8 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.user.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -42,6 +57,10 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(setBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload.balance;
+        state.isRefreshing = false;
+      })
+      .addCase(getUserBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.balance;
         state.isRefreshing = false;
       });

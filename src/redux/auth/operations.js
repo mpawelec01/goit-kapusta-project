@@ -58,6 +58,24 @@ export const logIn = createAsyncThunk(
 );
 
 /*
+ * GET @ /auth/google
+ * body: { email, password }
+ */
+export const googleLogIn = createAsyncThunk(
+  "auth/google",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get("http://localhost:4000/auth/google");
+      setAuthHeader(res.data.user.token);
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  */
@@ -87,7 +105,8 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const res = await axios.get("http://localhost:4000/api/users/info");
-      return res.data.result.user;
+      console.log(res.data);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -105,6 +124,20 @@ export const setBalance = createAsyncThunk(
         {
           balance,
         }
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const getUserBalance = createAsyncThunk(
+  "auth/getUserBalance",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/users/balance`
       );
       return response.data;
     } catch (err) {

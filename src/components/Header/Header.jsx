@@ -1,26 +1,28 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
-import { useEffect } from "react";
 
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../redux/auth/operations";
+import { toggleIsLogout } from "../../redux/modal/modalSlice";
+import { selectIsLogout } from "../../redux/modal/selectors";
+import { LeaveModal } from "../Modals/LeaveModal/LeaveModal";
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
+  const isOpen = useSelector(selectIsLogout);
 
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logOut());
+    dispatch(toggleIsLogout());
   };
 
   // console.log(user);
   return (
     <header className={css.header}>
       <NavLink to="/">
-        <img src="/logo.svg" />
+        <img alt="logo icon" src="/logo.svg" />
       </NavLink>
       {!isLoggedIn ? (
         ""
@@ -28,9 +30,7 @@ export const Header = () => {
         <>
           <div className={css.headerRightMobile}>
             <div className={css.user}>U</div>
-            <button onClick={handleLogout}>
-              <img src="/logout.svg" />
-            </button>
+            <img alt="logout icon" onClick={handleLogout} src="/logout.svg" />
           </div>
           <div className={css.headerRightDesktop}>
             <div
@@ -41,9 +41,10 @@ export const Header = () => {
               }}
             ></div>
             <p className={css.name}>{user.email}</p>
-            <p onClick={handleLogout} className={css.exit}>
+            <button type="button" onClick={handleLogout} className={css.exit}>
               Exit
-            </p>
+            </button>
+            {isOpen && <LeaveModal />}
           </div>
         </>
       )}

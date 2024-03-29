@@ -15,12 +15,11 @@ import {
   fetchExpenses,
   fetchIncome,
 } from "../../redux/transactions/operations";
-import { selectExpensesTransactions } from "../../redux/transactions/selectors";
+import { selectTransactions } from "../../redux/transactions/selectors";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
-
-  const transactionsList = useSelector(selectExpensesTransactions);
+  const transactionsList = useSelector(selectTransactions);
 
   useEffect(() => {
     dispatch(fetchExpenses());
@@ -52,7 +51,7 @@ export const MainPage = () => {
           <ProductForm transactionType="expenses" />
         </div>
         <div className={css.mobileForm}>
-          <MobileForm />
+          <MobileForm transactionType="expenses" />
         </div>
         <div className={css.desktopView}>
           <TransactionsList
