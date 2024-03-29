@@ -8,20 +8,11 @@ import MobileForm from "../../components/MainPage/MobileForm/MobileForm";
 import css from "../MainPage/MainPage.module.css";
 import Background from "../../components/Background/Background";
 import Summary from "../../components/MainPage/Summary/Summary";
-
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchIncome } from "../../redux/transactions/operations";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import { useSelector } from "react-redux";
+import { selectIncomeTransactions } from "../../redux/transactions/selectors";
 
 export const Incomes = () => {
-  const dispatch = useDispatch();
-
-  const transactionsList = useSelector(selectTransactions);
-
-  // useEffect(() => {
-  //   dispatch(fetchIncome());
-  // }, [dispatch]);
+  const transactionsList = useSelector(selectIncomeTransactions);
 
   const handleShowModal = () => {
     const dialog = document.getElementById("mobileModal");

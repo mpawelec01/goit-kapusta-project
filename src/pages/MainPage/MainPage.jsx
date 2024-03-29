@@ -15,11 +15,11 @@ import {
   fetchExpenses,
   fetchIncome,
 } from "../../redux/transactions/operations";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import { selectExpensesTransactions } from "../../redux/transactions/selectors";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
-  const transactionsList = useSelector(selectTransactions);
+  const transactionsList = useSelector(selectExpensesTransactions);
 
   useEffect(() => {
     dispatch(fetchExpenses());

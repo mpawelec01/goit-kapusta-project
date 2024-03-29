@@ -83,7 +83,7 @@ export const ReportExpenses = ({
         <ul className={styles.listOfExpenses_list}>
           {totals.map((obj) =>
             obj.total ? (
-              <li className={styles.listOfExpenses_list_item}>
+              <li key={obj.name} className={styles.listOfExpenses_list_item}>
                 <p>{obj.total}</p>
                 <svg
                   className={styles.iconSvg}
@@ -96,7 +96,7 @@ export const ReportExpenses = ({
                 <p>{obj.name}</p>
               </li>
             ) : (
-              <li></li>
+              <></>
             )
           )}
           <div className={styles.listOfExpenses_line}></div>
