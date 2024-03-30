@@ -73,7 +73,11 @@ const transactionsSlice = createSlice({
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        if (action.payload.type === "expenses") {
+        if (
+          state.expensesTransactions.find(
+            (item) => item._id === action.meta.arg
+          )
+        ) {
           const index = state.expensesTransactions.findIndex(
             (transaction) => transaction.id === action.payload
           );
