@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Navigate,
   Route,
@@ -24,6 +24,9 @@ import NotFound from "./pages/NotFound/NotFound";
 const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+
+  const [isAddTransModalOpen, setIsAddTransModalOpen] = useState(false);
+  // console.log(isAddTransModalOpen);
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [dispatch]);
@@ -49,11 +52,30 @@ const App = () => {
           />
           <Route
             path="/main"
-            element={<PrivateRoute redirectTo="/" component={<MainPage />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/"
+                component={
+                  <MainPage
+                    isAddTransModalOpen={isAddTransModalOpen}
+                    setIsAddTransModalOpen={setIsAddTransModalOpen}
+                  />
+                }
+              />
+            }
           />
           <Route
             path="/main/incomes"
-            element={<PrivateRoute component={<Incomes />} />}
+            element={
+              <PrivateRoute
+                component={
+                  <Incomes
+                    isAddTransModalOpen={isAddTransModalOpen}
+                    setIsAddTransModalOpen={setIsAddTransModalOpen}
+                  />
+                }
+              />
+            }
           />
           <Route
             path="/report"

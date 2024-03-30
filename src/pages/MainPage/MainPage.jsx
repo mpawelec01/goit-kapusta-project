@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import Balance from "../../components/MainPage/Balance/Balance";
 import Navigation from "../../components/MainPage/Navigation/Navigation";
@@ -17,7 +17,7 @@ import {
 } from "../../redux/transactions/operations";
 import { selectExpensesTransactions } from "../../redux/transactions/selectors";
 
-export const MainPage = () => {
+export const MainPage = ({ isAddTransModalOpen, setIsAddTransModalOpen }) => {
   const dispatch = useDispatch();
   const transactionsList = useSelector(selectExpensesTransactions);
 
@@ -27,6 +27,7 @@ export const MainPage = () => {
   }, [dispatch]);
 
   const handleShowModal = () => {
+    setIsAddTransModalOpen(true);
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();
     document.body.style.position = "fixed";
@@ -48,10 +49,17 @@ export const MainPage = () => {
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
-          <ProductForm transactionType="expenses" />
+          <ProductForm
+            transactionType="expenses"
+            isAddTransModalOpen={isAddTransModalOpen}
+          />
         </div>
         <div className={css.mobileForm}>
-          <MobileForm transactionType="expenses" />
+          <MobileForm
+            transactionType="expenses"
+            isAddTransModalOpen={isAddTransModalOpen}
+            setIsAddTransModalOpen={setIsAddTransModalOpen}
+          />
         </div>
         <div className={css.desktopView}>
           <TransactionsList

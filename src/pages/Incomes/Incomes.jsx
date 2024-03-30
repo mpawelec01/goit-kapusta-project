@@ -11,10 +11,11 @@ import Summary from "../../components/MainPage/Summary/Summary";
 import { useSelector } from "react-redux";
 import { selectIncomeTransactions } from "../../redux/transactions/selectors";
 
-export const Incomes = () => {
+export const Incomes = ({ isAddTransModalOpen, setIsAddTransModalOpen }) => {
   const transactionsList = useSelector(selectIncomeTransactions);
 
   const handleShowModal = () => {
+    setIsAddTransModalOpen(true);
     const dialog = document.getElementById("mobileModal");
     dialog.showModal();
     document.body.style.position = "fixed";
@@ -36,10 +37,16 @@ export const Incomes = () => {
 
       <div className={css.transactionsWindow}>
         <div className={css.formDesktop}>
-          <ProductForm transactionType="income" />
+          <ProductForm
+            transactionType="income"
+            isAddTransModalOpen={isAddTransModalOpen}
+          />
         </div>
         <div className={css.mobileForm}>
-          <MobileForm transactionType="income" />
+          <MobileForm
+            transactionType="income"
+            setIsAddTransModalOpen={setIsAddTransModalOpen}
+          />
         </div>
         <div className={css.desktopView}>
           <TransactionsList
