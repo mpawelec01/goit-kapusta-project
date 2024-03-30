@@ -6,14 +6,17 @@ import Icon from "../../Icon/Icon";
 import { selectIsOpen } from "../../../redux/modal/selectors";
 import { toggleIsOpen } from "../../../redux/modal/modalSlice";
 import { SureModal } from "../../Modals/SureModal/SureModal";
+import { useState } from "react";
 
 export const TransactionElement = ({ transaction, transactionType }) => {
   const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
-
+  // const [currentId, setCurrentId] = useState(null);
+  // console.log(id);
   const isOpen = useSelector(selectIsOpen);
 
   const handleDelete = () => {
+    // setCurrentId(id);
     return dispatch(toggleIsOpen());
   };
 

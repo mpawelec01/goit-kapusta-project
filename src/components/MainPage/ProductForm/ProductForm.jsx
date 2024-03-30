@@ -20,7 +20,11 @@ import { useEffect } from "react";
 import { selectBalance } from "../../../redux/auth/selectors";
 import { getUserBalance } from "../../../redux/auth/operations";
 
-const ProductForm = ({ transactionType }) => {
+const ProductForm = ({
+  transactionType,
+  isAddTransModalOpen,
+  handleCloseModal,
+}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
@@ -73,8 +77,9 @@ const ProductForm = ({ transactionType }) => {
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
     }
-
+    console.log(isAddTransModalOpen);
     form.reset();
+    if (isAddTransModalOpen) handleCloseModal();
   };
 
   const handleClear = () => {

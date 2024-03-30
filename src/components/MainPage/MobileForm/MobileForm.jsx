@@ -3,8 +3,13 @@ import Icon from "../../Icon/Icon";
 import css from "./MobileForm.module.css";
 import Background from "../../Background/Background";
 
-const MobileForm = ({ transactionType }) => {
+const MobileForm = ({
+  transactionType,
+  isAddTransModalOpen,
+  setIsAddTransModalOpen,
+}) => {
   const handleCloseModal = () => {
+    setIsAddTransModalOpen(false);
     const dialog = document.getElementById("mobileModal");
     dialog.close();
     document.body.style.position = "relative";
@@ -17,7 +22,11 @@ const MobileForm = ({ transactionType }) => {
         <button onClick={handleCloseModal} className={css.btn}>
           <Icon iconName="arrow_left" className={css.btnIcon} />
         </button>
-        <ProductForm transactionType={transactionType} />
+        <ProductForm
+          transactionType={transactionType}
+          isAddTransModalOpen={isAddTransModalOpen}
+          handleCloseModal={handleCloseModal}
+        />
       </div>
     </dialog>
   );

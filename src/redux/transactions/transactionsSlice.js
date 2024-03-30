@@ -78,13 +78,14 @@ const transactionsSlice = createSlice({
             (item) => item._id === action.meta.arg
           )
         ) {
+          debugger;
           const index = state.expensesTransactions.findIndex(
-            (transaction) => transaction.id === action.payload
+            (transaction) => transaction._id === action.payload
           );
           state.expensesTransactions.splice(index, 1);
         } else {
           const index = state.incomeTransactions.findIndex(
-            (transaction) => transaction.id === action.payload
+            (transaction) => transaction._id === action.payload
           );
           state.incomeTransactions.splice(index, 1);
         }
