@@ -46,7 +46,7 @@ export const TransactionElement = ({ transaction, transactionType }) => {
         <button
           type="button"
           className={css.btnDelete}
-          onClick={handleDeleteTransaction}
+          onClick={handleDeleteTransaction} // handleDelete if with modal
         >
           <Icon className={css.icon} iconName="delete" />
         </button>
