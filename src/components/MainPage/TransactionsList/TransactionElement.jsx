@@ -22,7 +22,6 @@ export const TransactionElement = ({ transaction, transactionType }) => {
 
   const handleDeleteTransaction = () => {
     console.log("delete");
-    console.log(_id);
     dispatch(deleteTransaction(_id));
   };
 
