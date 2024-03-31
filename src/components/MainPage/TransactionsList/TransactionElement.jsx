@@ -22,6 +22,7 @@ export const TransactionElement = ({ transaction, transactionType }) => {
 
   const handleDeleteTransaction = () => {
     console.log("delete");
+    console.log(_id);
     dispatch(deleteTransaction(_id));
   };
 
@@ -43,7 +44,11 @@ export const TransactionElement = ({ transaction, transactionType }) => {
       )}
 
       <td className={css.btn}>
-        <button type="button" className={css.btnDelete} onClick={handleDelete}>
+        <button
+          type="button"
+          className={css.btnDelete}
+          onClick={handleDeleteTransaction}
+        >
           <Icon className={css.icon} iconName="delete" />
         </button>
         {isOpen && <SureModal onYes={handleDeleteTransaction} />}
