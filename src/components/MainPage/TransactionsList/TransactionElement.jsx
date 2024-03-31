@@ -22,7 +22,6 @@ export const TransactionElement = ({ transaction, transactionType }) => {
 
   const handleDeleteTransaction = () => {
     console.log("delete");
-    console.log(_id);
     dispatch(deleteTransaction(_id));
   };
 
@@ -47,7 +46,7 @@ export const TransactionElement = ({ transaction, transactionType }) => {
         <button
           type="button"
           className={css.btnDelete}
-          onClick={handleDeleteTransaction}
+          onClick={handleDeleteTransaction} // handleDelete if with modal
         >
           <Icon className={css.icon} iconName="delete" />
         </button>

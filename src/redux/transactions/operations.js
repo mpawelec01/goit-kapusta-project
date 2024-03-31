@@ -84,8 +84,8 @@ export const deleteTransaction = createAsyncThunk(
         `http://localhost:4000/api/transactions/${transactionId}`
       );
       thunkAPI.dispatch(getUserBalance());
-      // thunkAPI.dispatch(fetchExpenses());
-      // thunkAPI.dispatch(fetchIncome());
+      thunkAPI.dispatch(fetchExpenses());
+      thunkAPI.dispatch(fetchIncome());
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
