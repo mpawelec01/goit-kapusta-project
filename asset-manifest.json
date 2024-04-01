@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/goit-kapusta-project/static/css/main.48266a96.css",
-    "main.js": "/goit-kapusta-project/static/js/main.2f047a81.js",
+    "main.js": "/goit-kapusta-project/static/js/main.a84b2190.js",
     "static/media/icons.svg": "/goit-kapusta-project/static/media/icons.1abb6118edee3253ee4650d59d7e4e4f.svg",
     "static/media/cabbage-background-bottom.png": "/goit-kapusta-project/static/media/cabbage-background-bottom.129b8e72914d577a362b.png",
     "static/media/cabbage-background-top.png": "/goit-kapusta-project/static/media/cabbage-background-top.566fe9adf324e2fdf028.png",
     "static/media/google-icon.svg": "/goit-kapusta-project/static/media/google-icon.7496445864c8ad7a13c18076f5b28e8c.svg",
     "index.html": "/goit-kapusta-project/index.html",
     "main.48266a96.css.map": "/goit-kapusta-project/static/css/main.48266a96.css.map",
-    "main.2f047a81.js.map": "/goit-kapusta-project/static/js/main.2f047a81.js.map"
+    "main.a84b2190.js.map": "/goit-kapusta-project/static/js/main.a84b2190.js.map"
   },
   "entrypoints": [
     "static/css/main.48266a96.css",
-    "static/js/main.2f047a81.js"
+    "static/js/main.a84b2190.js"
   ]
 }
