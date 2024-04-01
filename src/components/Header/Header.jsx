@@ -22,14 +22,20 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <NavLink to="/">
-        <img alt="logo icon" src="/logo.svg" />
+        <img alt="logo icon" src="logo.svg" />
       </NavLink>
       {!isLoggedIn ? (
         ""
       ) : (
         <>
           <div className={css.headerRightMobile}>
-            <div className={css.user}>U</div>
+            <div
+              className={css.user}
+              style={{
+                backgroundImage: `url(${user.avatarUrl})`,
+                backgroundSize: "cover",
+              }}
+            ></div>
             <img alt="logout icon" onClick={handleLogout} src="/logout.svg" />
           </div>
           <div className={css.headerRightDesktop}>
