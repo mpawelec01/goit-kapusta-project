@@ -6,23 +6,26 @@ import Icon from "../../Icon/Icon";
 import { selectIsOpen } from "../../../redux/modal/selectors";
 import { toggleIsOpen } from "../../../redux/modal/modalSlice";
 import { SureModal } from "../../Modals/SureModal/SureModal";
-import { useState } from "react";
 
-export const TransactionElement = ({ transaction, transactionType }) => {
+export const TransactionElement = ({
+  transaction,
+  transactionType,
+  currentId,
+  setCurrentId,
+}) => {
   const { date, description, category, amount, _id } = transaction;
   const dispatch = useDispatch();
-  // const [currentId, setCurrentId] = useState(null);
-  // console.log(id);
+
   const isOpen = useSelector(selectIsOpen);
 
-  const handleDelete = () => {
-    // setCurrentId(id);
+  const handleDelete = (e) => {
+    setCurrentId(e.target.id);
     return dispatch(toggleIsOpen());
   };
 
   const handleDeleteTransaction = () => {
-    console.log("delete");
-    dispatch(deleteTransaction(_id));
+    dispatch(deleteTransaction(currentId));
+    setCurrentId(null);
   };
 
   return (
@@ -46,11 +49,14 @@ export const TransactionElement = ({ transaction, transactionType }) => {
         <button
           type="button"
           className={css.btnDelete}
-          onClick={handleDeleteTransaction} // handleDelete if with modal
+          onClick={handleDelete}
+          id={_id}
         >
-          <Icon className={css.icon} iconName="delete" />
+          <Icon id={_id} className={css.icon} iconName="delete" />
         </button>
-        {isOpen && <SureModal onYes={handleDeleteTransaction} />}
+        {isOpen && (
+          <SureModal onYes={handleDeleteTransaction} currentId={currentId} />
+        )}
       </td>
     </tr>
   );

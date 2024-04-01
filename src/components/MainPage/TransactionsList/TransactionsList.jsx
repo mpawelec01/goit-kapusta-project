@@ -1,8 +1,11 @@
 import css from "./TransactionsList.module.css";
 import { TransactionElement } from "./TransactionElement";
 import { TransactionsMobile } from "./TransactionsMobile/TransactionsMobile";
+import { useState } from "react";
 
 const TransactionsList = ({ transactionsList, transactionType }) => {
+  const [currentId, setCurrentId] = useState(null);
+
   return (
     <>
       <TransactionsMobile
@@ -28,6 +31,8 @@ const TransactionsList = ({ transactionsList, transactionType }) => {
                 key={transaction._id}
                 transaction={transaction}
                 transactionType={transactionType}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
               />
             ))}
         </tbody>
