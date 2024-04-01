@@ -44,6 +44,7 @@ export const Graph = ({ incomeByCategory, iconName }) => {
         <Tooltip />
         <XAxis className={css.barsNames} dataKey="name" />
         <Bar
+          layout="vertical"
           className={css.bar}
           dataKey="pv"
           fill="#ffdac0"

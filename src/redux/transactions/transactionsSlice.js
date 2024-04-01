@@ -78,7 +78,6 @@ const transactionsSlice = createSlice({
             (item) => item._id === action.meta.arg
           )
         ) {
-          debugger;
           const index = state.expensesTransactions.findIndex(
             (transaction) => transaction._id === action.payload
           );

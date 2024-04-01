@@ -2,13 +2,14 @@ import css from "./SureModal.module.css";
 import { useDispatch } from "react-redux";
 import { toggleIsOpen } from "../../../redux/modal/modalSlice";
 
-export const SureModal = ({ onYes }) => {
+export const SureModal = ({ onYes, currentId }) => {
   const dispatch = useDispatch();
 
   const toggleSure = () => {
     console.log("toggleSure");
     dispatch(toggleIsOpen());
-    onYes();
+    console.log(currentId);
+    onYes(currentId);
   };
 
   const toggleSureNo = () => {
