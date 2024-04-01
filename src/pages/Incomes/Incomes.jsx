@@ -45,6 +45,7 @@ export const Incomes = ({ isAddTransModalOpen, setIsAddTransModalOpen }) => {
         <div className={css.mobileForm}>
           <MobileForm
             transactionType="income"
+            isAddTransModalOpen={isAddTransModalOpen}
             setIsAddTransModalOpen={setIsAddTransModalOpen}
           />
         </div>
