@@ -36,7 +36,7 @@ export const Header = () => {
                 backgroundSize: "cover",
               }}
             ></div>
-            <img alt="logout icon" onClick={handleLogout} src="/logout.svg" />
+            <img alt="logout icon" onClick={handleLogout} src="logout.svg" />
           </div>
           <div className={css.headerRightDesktop}>
             <div
