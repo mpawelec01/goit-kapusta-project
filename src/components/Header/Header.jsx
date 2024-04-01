@@ -37,6 +37,7 @@ export const Header = () => {
               }}
             ></div>
             <img alt="logout icon" onClick={handleLogout} src="logout.svg" />
+            {isOpen && <LeaveModal />}
           </div>
           <div className={css.headerRightDesktop}>
             <div
