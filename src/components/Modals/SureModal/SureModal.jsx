@@ -6,9 +6,9 @@ export const SureModal = ({ onYes, currentId }) => {
   const dispatch = useDispatch();
 
   const toggleSure = () => {
-    console.log("toggleSure");
+    // console.log("toggleSure");
     dispatch(toggleIsOpen());
-    console.log(currentId);
+    // console.log(currentId);
     onYes(currentId);
   };
 

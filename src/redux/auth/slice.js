@@ -31,8 +31,6 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.user.token;
         state.isLoggedIn = true;
-        console.log(state.token);
-        console.log(state.user);
       })
       .addCase(googleLogIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -63,13 +61,8 @@ const authSlice = createSlice({
       .addCase(getUserBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.balance;
         state.isRefreshing = false;
-        console.log(state);
-        console.log(action);
       })
-      .addCase(getUserBalance.rejected, (state, action) => {
-        console.log(state);
-        console.log(action);
-      });
+      .addCase(getUserBalance.rejected, (state, action) => {});
   },
 });
 

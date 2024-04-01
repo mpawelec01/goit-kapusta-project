@@ -18,7 +18,6 @@ import {
 } from "../../../redux/transactions/selectors";
 import { useEffect } from "react";
 import { selectBalance } from "../../../redux/auth/selectors";
-import { getUserBalance } from "../../../redux/auth/operations";
 
 const ProductForm = ({
   transactionType,
@@ -77,7 +76,7 @@ const ProductForm = ({
     if (transactionType === "income") {
       dispatch(addIncome(transaction));
     }
-    console.log(isAddTransModalOpen);
+    // console.log(isAddTransModalOpen);
     form.reset();
     if (isAddTransModalOpen) handleCloseModal();
   };

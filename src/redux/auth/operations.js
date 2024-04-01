@@ -1,9 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// "https://vast-plum-camel-vest.cyclic.app/api"
-
-// axios.defaults.baseURL = "";
+axios.defaults.baseURL = "https://vast-plum-camel-vest.cyclic.app/api";
 
 // Utility to add JWT
 const setAuthHeader = (token) => {
@@ -23,12 +21,8 @@ export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/auth/register",
-        credentials
-      );
+      const res = await axios.post("/auth/register", credentials);
       setAuthHeader(res.data.result.user.token);
-      console.log(res.data.result.user.token);
       return res.data.result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -44,10 +38,7 @@ export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/auth/login",
-        credentials
-      );
+      const res = await axios.post("/auth/login", credentials);
       setAuthHeader(res.data.result.user.token);
 
       return res.data.result;
@@ -67,7 +58,6 @@ export const googleLogIn = createAsyncThunk(
     try {
       const res = await axios.get("http://localhost:4000/auth/google");
       setAuthHeader(res.data.user.token);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -81,7 +71,7 @@ export const googleLogIn = createAsyncThunk(
  */
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.get("http://localhost:4000/api/auth/logout");
+    await axios.get("/auth/logout");
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -104,8 +94,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get("http://localhost:4000/api/users/info");
-      console.log(res.data);
+      const res = await axios.get("/users/info");
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -119,12 +108,9 @@ export const setBalance = createAsyncThunk(
     try {
       // const state = thunkAPI.getState();
       // const userId = state.auth.user.id;
-      const response = await axios.patch(
-        `http://localhost:4000/api/users/balance`,
-        {
-          balance,
-        }
-      );
+      const response = await axios.patch(`/users/balance`, {
+        balance,
+      });
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -136,9 +122,7 @@ export const getUserBalance = createAsyncThunk(
   "auth/getUserBalance",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/users/balance`
-      );
+      const response = await axios.get(`/users/balance`);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

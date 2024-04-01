@@ -13,7 +13,6 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import { userReducer } from "./user/slice";
 import modalReducer from "./modal/modalSlice";
 
 const authPersistConfig = {
@@ -26,7 +25,6 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
-    user: userReducer,
     reports: reportsReducer,
     modal: modalReducer,
   },

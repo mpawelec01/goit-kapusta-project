@@ -28,7 +28,6 @@ const LoginForm = () => {
       email: email,
       password: password,
     };
-    console.log("Formularz wysłany!");
     dispatch(register(user));
   };
 
@@ -45,7 +44,6 @@ const LoginForm = () => {
       email: email,
       password: password,
     };
-    console.log("Formularz wysłany!");
     dispatch(logIn(user));
   };
 
@@ -83,10 +81,10 @@ const LoginForm = () => {
             Or log in using an email and password, after registering:
           </p>
           <label htmlFor="email" className={css.titles}>
-          {emailError && <p className={css.errorStar}>* </p>} Email:
+            {emailError && <p className={css.errorStar}>* </p>} Email:
           </label>
           <input
-            className={`${css.inputs} ${emailError ? css.error : ''}`}
+            className={`${css.inputs} ${emailError ? css.error : ""}`}
             type="email"
             name="email"
             value={email}
@@ -97,12 +95,14 @@ const LoginForm = () => {
             placeholder="your@email.com"
             required
           />
-          {emailError && <p className={css.errorMessage1}>This is a required field</p>}
+          {emailError && (
+            <p className={css.errorMessage1}>This is a required field</p>
+          )}
           <label htmlFor="password" className={css.titles}>
-          {emailError && <p className={css.errorStar}>* </p>} Password:
+            {emailError && <p className={css.errorStar}>* </p>} Password:
           </label>
           <input
-            className={`${css.inputs} ${passwordError ? css.error : ''}`}
+            className={`${css.inputs} ${passwordError ? css.error : ""}`}
             type="password"
             name="password"
             value={password}
@@ -111,7 +111,9 @@ const LoginForm = () => {
               setPasswordError(false);
             }}
           />
-          {passwordError && <p className={css.errorMessage2}>This is a required field</p>}
+          {passwordError && (
+            <p className={css.errorMessage2}>This is a required field</p>
+          )}
           <div className={css.buttons}>
             <button onClick={handleLogin} className={css.submitButton}>
               LOG IN
